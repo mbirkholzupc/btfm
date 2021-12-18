@@ -128,5 +128,12 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# vim stuff
+*.swp
+
+# ctags/cscope/pycscope
+tags
+cscope.out
+
 # Outputs
 dataset.json
