@@ -5,21 +5,40 @@ import matplotlib.pyplot as plt
 import pickle
 from skimage import io
 from pathlib import Path
+from scipy.spatial.distance import euclidean
 
-from utils import plotMultiOnImage, clip_detect, GID
+from utils import filterJoints, plotMultiOnImage, clip_detect, GID
 
 # Zero-indexed limits
 MIN_IMAGE=0
 MAX_IMAGE=74619
 
-lsp_joints = [ 'right ankle', 'right knee', 'right hip', 
-               'left hip', 'left knee', 'left ankle', 
-               'right wrist', 'right elbow', 'right shoulder', 
-               'left shoulder', 'left elbow', 'left wrist', 
-               'neck', 'head top']
+# Threshold to consider poses "different" in m
+# Current: 40 mm
+JOINT_DIFF_THRESHOLD=0.040
+
+# Says it's COCO format (according to README), but joints don't match up
+py3dpw_joints2d = [ 'nose', 'neck',
+                    'right_shoulder', 'right_elbow', 'right_wrist',
+                    'left_shoulder', 'left_elbow', 'left_wrist',
+                    'right_hip', 'right_knee', 'right_ankle',
+                    'left_hip', 'left_knee', 'left_ankle',
+                    'right_eye', 'left_eye',
+                    'right_ear', 'left_ear' ]
+
+# SMPL format (according to README)
+py3dpw_joints3d = [ 'pelvis', 'left_hip', 'right_hip',
+                    'spine1', 'left_knee', 'right_knee',
+                    'spine2', 'left_ankle', 'right_ankle',
+                    'spine3', 'left_foot', 'right_foot',
+                    'neck', 'left_collar', 'right_collar',
+                    'head', 'left_shoulder', 'right_shoulder',
+                    'left_elbow', 'right_elbow',
+                    'left_wrist', 'right_wrist',
+                    'left_hand', 'right_hand' ]
 
 class Py3DPW:
-    def __init__(self, path_to_trn_annot, path_to_val_annot, path_to_tst_annot, path_to_img):
+    def __init__(self, path_to_trn_annot, path_to_val_annot, path_to_tst_annot, path_to_img, filter_same=True):
         self._trn_path = path_to_trn_annot
         self._val_path = path_to_val_annot
         self._tst_path = path_to_tst_annot
@@ -99,6 +118,19 @@ class Py3DPW:
         print(self._image_path(72798))
         print(self._image_path(74619))
 
+        # Filter out images whose poses are considered identical
+        # Start this off as a list because _filter_same_pose needs to traverse items in order
+        self._filtered_idxs = list(range(MAX_IMAGE+1))
+        print('Before:')
+        print(len(self._filtered_idxs))
+        if(filter_same):
+            self._filtered_idxs=self._filter_same_pose(self._filtered_idxs)
+        # Convert to set to make checking if it contains an element quicker
+        self._filtered_idxs = set(self._filtered_idxs)
+        print('After:')
+        print(len(self._filtered_idxs))
+        print('Length 2D joints: ' + str(len(py3dpw_joints2d)))
+
     def _convert_index(self, index):
         assert(index >= 0)
 
@@ -141,7 +173,7 @@ class Py3DPW:
         annotation = self._pkls[iidx[0]][iidx[1]]
 
         return self._img_path + '/' + annotation['sequence'] + f'/image_{iidx[3]:05}.jpg'
-        
+
     def disp_image(self, index):
         # Read in image and normalize. These are jpeg's, so need to be divided by 255 to
         # get values in range [0, 1]
@@ -158,11 +190,18 @@ class Py3DPW:
         img=img/255
         height=img.shape[0]
         width=img.shape[1]
+
+        # Look up the 2D joint positions
+        iidx = self._convert_index(index)
+        pkl = self._pkls[iidx[0]][iidx[1]]
+        joints = pkl['poses2d'][iidx[2]][iidx[3]]
+        print(joints.shape)
+        print(joints)
+        
         print(f'height: {height} // width: {width}')
-        joints=self._joints[index]
-        jointsx=self._joints[index][0::3]
-        jointsy=self._joints[index][1::3]
-        jointsv=self._joints[index][2::3]
+        jointsx=joints[0]
+        jointsy=joints[1]
+        jointsv=joints[2]  # Not sure how to interpret this - confidence maybe?
 
         #  Note: Very few images actually need this. Mainly cosmetic, to get rid of
         #        some whitespace around the image and keep a 1:1 pixel mapping
@@ -172,37 +211,57 @@ class Py3DPW:
             np.clip(jointsy, 0, height-1, out=jointsy)
 
         jointsxy=np.transpose(np.array([jointsy, jointsx]))
-
-        #img=plotOnImage(img, jointsxy, 'ro')
-        img=plotMultiOnImage(img, zip([jointsxy[0:6], jointsxy[7:]], ['ro', 'bo']))
+        jointsxy=filterJoints(jointsxy, jointsv)
+        img=plotMultiOnImage(img, zip([jointsxy], ['ro']))
+        #thejoint=1
+        #img=plotMultiOnImage(img, zip([jointsxy[0:thejoint+1], jointsxy[thejoint+1:]], ['ro', 'bo']))
         plt.imshow(img)
         plt.show()
 
-    def gather_data(self, which_set, gid=None):
+    def gather_data(self, which_set, gid=None, filter_same=True):
         if gid==None:
             # Start numbering from 0 if no GID given
             gid = GID()
         result = []
+
         if which_set == 'train':
             for i in range(self._num_imgs['train']):
-                result.append(self._format_annotation(i,gid.next()))
+                if (not filter_same) or (filter_same and (i in self._filtered_idxs)):
+                    result.append(self._format_annotation(i,gid.next()))
         elif which_set == 'val':
             for i in range(self._num_imgs['train'], self._num_imgs['train']+self._num_imgs['val']):
-                result.append(self._format_annotation(i,gid.next()))
+                if (not filter_same) or (filter_same and (i in self._filtered_idxs)):
+                    result.append(self._format_annotation(i,gid.next()))
         elif which_set == 'test':
-            for i in range(self._num_imgs['val'], self._num_imgs['val']+self._num_imgs['test']):
-                result.append(self._format_annotation(i,gid.next()))
-            pass
+            for i in range(self._num_imgs['train']+self._num_imgs['val'], self._num_imgs['train']+self._num_imgs['val']+self._num_imgs['test']):
+                if (not filter_same) or (filter_same and (i in self._filtered_idxs)):
+                    result.append(self._format_annotation(i,gid.next()))
         elif which_set == 'toy':
             for i in range(10):
-                result.append(self._format_annotation(i,gid.next()))
-            pass
+                if (not filter_same) or (filter_same and (i in self._filtered_idxs)):
+                    result.append(self._format_annotation(i,gid.next()))
         return result
 
     def _format_annotation(self, index, number):
         img=matplotlib.image.imread(self._image_path(index))
         height=img.shape[0]
         width=img.shape[1]
+
+        # Get the internal index and pickle for the sequence
+        iidx = self._convert_index(index)
+        pkl = self._pkls[iidx[0]][iidx[1]]
+
+        # Look up the 2D joint positions
+        j2d = pkl['poses2d'][iidx[2]][iidx[3]]
+        j2x=j2d[0]
+        j2y=j2d[1]
+        j2v=j2d[2]  # Not sure how to interpret this - confidence maybe?
+
+        # Look up 3D joints
+        j3d = pkl['jointPositions'][iidx[2]][iidx[3]]
+        j3x=j3d[0::3]
+        j3y=j3d[1::3]
+        j3z=j3d[2::3]
 
         annotation = {}
         annotation['ID'] = number
@@ -211,10 +270,52 @@ class Py3DPW:
         annotation['bbox_y'] = 0
         annotation['bbox_h'] = height
         annotation['bbox_w'] = width
-        iidx=0
-        for j in range(len(lsp_joints)):
-            for xy in ['x', 'y', 'v']:
-                annotation[f'{xy}{j}'] = self._joints[index][iidx]
-                iidx+=1
+
+
+        # Add 2D joints
+        for j in range(len(py3dpw_joints2d)):
+            annotation[f'x{j}'] = j2x[j]
+            annotation[f'y{j}'] = j2y[j]
+            annotation[f'v{j}'] = j2v[j]
+
+        # Add 3D joints
+        for j in range(len(py3dpw_joints3d)):
+            annotation[f'3d_x{j}'] = j3x[j]
+            annotation[f'3d_y{j}'] = j3y[j]
+            annotation[f'3d_z{j}'] = j3z[j]
                 
         return annotation
+
+    def _filter_same_pose(self, idxs):
+        """
+        Checks a list of images and returns only those that have at least one joint that
+        moves at least 40 mm from its previous position
+        """
+
+        # Always add first frame
+        unique_pose_idxs = [idxs[0]]
+
+        # Build list of all 3D joints
+        j=[]
+        for idx in idxs:
+            iidx = self._convert_index(idx)
+            pkl = self._pkls[iidx[0]][iidx[1]]
+            joints = pkl['jointPositions'][iidx[2]][iidx[3]]
+            jx=joints[0::3]
+            jy=joints[1::3]
+            jz=joints[2::3]
+            j.append(np.transpose([jx, jy, jz]))
+
+        # Prime loop by loading the first joint, then add images only when they differ sufficiently
+        # from last included image
+        last_idx=0
+        last_j=j[last_idx]
+        for idx in idxs[1:]:
+            cur_j = j[idx]
+            d=np.array([euclidean(a, b) for a, b in zip(last_j, cur_j)]).max()
+            if d > JOINT_DIFF_THRESHOLD:
+                unique_pose_idxs.append(idx)
+                last_idx=idx
+                last_j=j[last_idx]
+
+        return unique_pose_idxs

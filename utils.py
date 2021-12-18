@@ -34,7 +34,11 @@ def plotOnImage(img, data, fmt):
     out_img = np.array(canvas.renderer.buffer_rgba())
     return out_img
 
-def plotMultiOnImage(img, data_fmt_zip):
+def filterJoints(joints, visibility):
+    fjoints=joints[visibility>0,:]
+    return fjoints
+
+def plotMultiOnImage(img, data_fmt_zip, visibility=None):
     # Need to draw image into array instead of plot it
     # Same as plotOnImage except data and fmt are a zipped list of points and formats
     arr_fig = Figure(figsize=plt.figaspect(img))

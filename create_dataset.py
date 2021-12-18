@@ -11,6 +11,7 @@
 
 
 import json
+import numpy as np
 
 from paths import *
 
@@ -23,8 +24,19 @@ from py3dpw import Py3DPW
 
 from utils import GID
 
+# Suppress scientific notation in numpy prints (really annoying for pixel locations)
+np.set_printoptions(suppress=True)
+
 # Create a global ID object
 gid = GID()
+
+# QUICK TEST
+#tdpw = Py3DPW(TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR)
+#tdpw.disp_annotations(0)
+#tdpw.disp_annotations(72797)
+#tdpw.disp_annotations(74619)
+#exit()
+# END QUICK TEST
 
 # Create the data loader objects. If memory issues, may need to do one at a time.
 # LSP Recommended split: first 1000 training, last 1000 testing
@@ -34,8 +46,7 @@ lspet = PyLSPET(LSPET_DIR, LSPET_CSV)
 # MPII dataset has a test/train bool to check for split
 mpii = PyMPII(MPII_RELEASE_PICKLE, MPII_IMG_DIR)
 coco = PyCOCO(COCO_TRAIN_IMG, COCO_TRAIN_ANNOT, COCO_VAL_IMG, COCO_VAL_ANNOT, COCO_TEST_IMG, COCO_TEST_INFO)
-#tdpw = Py3DPW(TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR)
-#exit()
+tdpw = Py3DPW(TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR)
 
 
 # Start dataset. Top level is dict.
@@ -45,14 +56,13 @@ dataset = {}
 #mpii_data = mpii.gather_data('toy', gid=gid)  # TODO: Remove
 #coco_data = coco.gather_data('toy', gid=gid)
 
-which_set='train'  # 'train', 'test', 'val', 'toy'
+which_set='test'  # 'train', 'test', 'val', 'toy'
 lsp_data = lsp.gather_data(which_set, gid=gid)
 lspet_data = lspet.gather_data(which_set, gid=gid)
 mpii_data = mpii.gather_data(which_set, gid=gid)
 coco_data = coco.gather_data(which_set, gid=gid)
-#tdpw_data = tdpw.gather_data('toy', gid=gid)
+tdpw_data = tdpw.gather_data(which_set, gid=gid)
 
-tdpw_data = [ "no data" ]
 mi3_data = [ "no data either" ]
 
 # Add data from each dataset to top-level dict
