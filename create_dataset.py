@@ -65,21 +65,26 @@ gid = GID()
 
 # Create the data loader objects. If memory issues, may need to do one at a time.
 # LSP Recommended split: first 1000 training, last 1000 testing
-lsp = PyLSP(LSP_DIR, LSP_CSV)
-# LSPET Recommended split: all 10000 for training only
-lspet = PyLSPET(LSPET_DIR, LSPET_CSV)
-# MPII dataset has a test/train bool to check for split
-mpii = PyMPII(MPII_RELEASE_PICKLE, MPII_IMG_DIR)
-coco = PyCOCO(COCO_TRAIN_IMG, COCO_TRAIN_ANNOT, COCO_VAL_IMG, COCO_VAL_ANNOT, COCO_TEST_IMG, COCO_TEST_INFO)
-tdpw = Py3DPW(TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR)
+if USE_LSP:
+    lsp = PyLSP(LSP_DIR, LSP_CSV)
+if USE_LSPET:
+    # LSPET Recommended split: all 10000 for training only
+    lspet = PyLSPET(LSPET_DIR, LSPET_CSV)
+
+if USE_MPII:
+    # MPII dataset has a test/train bool to check for split
+    mpii = PyMPII(MPII_RELEASE_PICKLE, MPII_IMG_DIR)
+if USE_COCO:
+    coco = PyCOCO(COCO_TRAIN_IMG, COCO_TRAIN_ANNOT, COCO_VAL_IMG, COCO_VAL_ANNOT, COCO_TEST_IMG, COCO_TEST_INFO)
+if USE_3DPW:
+    tdpw = Py3DPW(TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR)
+if USE_3DHP:
+    #mi3 = PyMI3(TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR)
+    pass
 
 
 # Start dataset. Top level is dict.
 dataset = {}
-
-# Next level is the processed, formatted data from each dataset
-#mpii_data = mpii.gather_data('toy', gid=gid)  # TODO: Remove
-#coco_data = coco.gather_data('toy', gid=gid)
 
 # Gather data from each enabled dataset and add to top-level dict
 if USE_LSP:
