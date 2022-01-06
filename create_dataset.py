@@ -21,7 +21,7 @@ from pylspet import PyLSPET
 from pympii import PyMPII
 from pycoco import PyCOCO
 from py3dpw import Py3DPW
-#from pymi3 import PyMI3
+from pymi3 import PyMI3
 
 from utils import GID
 

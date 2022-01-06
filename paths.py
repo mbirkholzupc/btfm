@@ -36,3 +36,7 @@ TDPW_SEQ_DIR=TDPW_DIR+'/sequenceFiles'
 TDPW_TRAIN_DIR=TDPW_SEQ_DIR+'/train'
 TDPW_VAL_DIR=TDPW_SEQ_DIR+'/validation'
 TDPW_TEST_DIR=TDPW_SEQ_DIR+'/test'
+
+MI3_DIR='/media/mike/T7/data/mpi_inf_3dhp/mpi_inf_3dhp/download'
+MI3_TEST_DIR=MI3_DIR+'/mpi_inf_3dhp_test_set/mpi_inf_3dhp_test_set'
+MI3_PP_DIR='/media/mike/T7/data/mpi_inf_3dhp/pp'

@@ -8,3 +8,7 @@ The main datasets are:
  * COCO
  * 3DPW
  * MPI-INF-3DHP
+
+Preprocessing:
+ * First, need to preprocess a few datasets
+ * Refer to instructions in preprocessing/Readme.md for details
