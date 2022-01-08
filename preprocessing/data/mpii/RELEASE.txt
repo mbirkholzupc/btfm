@@ -1,0 +1,7 @@
+version: 12
+act: act.csv
+annolist: annolist.csv
+annorect: annorect.csv
+img_train: img_train.csv
+single_person: single_person.csv
+video_list: video_list.csv
