@@ -11,7 +11,7 @@ The main datasets are:
 
 Preprocessing:
  * Refer to instructions in preprocessing/Readme.md for details
- * No scripts need to be run manually. Any preprocessing will be called by setup\_workspace.sh
+ * No scripts need to be run manually. Any preprocessing will be called by setup\_workspace.py
 
 Preparing the workspace:
  * Run setup\_workspace.sh
