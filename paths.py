@@ -8,6 +8,7 @@
 #   - TDPW_DATASET_DIR
 #   - MI3_DATASET_DIR
 #   - MI3_PP_DATASET_DIR
+#   - UPI_S1H_DATASET_DIR
 
 # Note that this relies on a filesystem that supports symlinks
 
@@ -34,6 +35,7 @@ MPII_DATASET_DIR='/media/data/mpii'
 TDPW_DATASET_DIR='/media/data/3dpw'
 MI3_DATASET_DIR='/media/data/mpi_inf_3dhp/mpi_inf_3dhp/download'
 MI3_PP_DATASET_DIR='/media/data/mpi_inf_3dhp_pp'
+UPI_S1H_DATASET_DIR='/media/data/up/upi-s1h'
 
 # Required preprocessing
 # LSP: convertlsp.m to convert joints.mat to lsp.csv
@@ -73,3 +75,4 @@ MI3_TEST_DIR=MI3_DIR+'/mpi_inf_3dhp_test_set/mpi_inf_3dhp_test_set'
 MI3_PP_DIR='/mi3_pp'
 
 
+UPI_S1H_DIR='/upi-s1h'

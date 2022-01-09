@@ -103,5 +103,6 @@ class PyLSP:
             for xy in ['x', 'y', 'v']:
                 annotation[f'{xy}{j}'] = self._joints[index][iidx]
                 iidx+=1
+        annotation['silhouette'] = '/upi-s1h/data/lsp/im' + f'{index+1:04d}' + '_segmentation.png'
                 
         return annotation
