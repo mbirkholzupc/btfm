@@ -16,11 +16,12 @@ lsp_joints = [ 'right ankle', 'right knee', 'right hip',
                'neck', 'head top']
 
 class PyLSP:
-    def __init__(self, lsp_path, csv_path):
+    def __init__(self, base_path, lsp_path, csv_path):
+        self._base_path = base_path
         self._lsp_path = lsp_path
         self._csv_path = csv_path
 
-        self._csv = pd.read_csv(self._csv_path)
+        self._csv = pd.read_csv(self._base_path+self._csv_path)
         self._image_list = self._csv['image'].to_numpy()
         self._joints = self._csv.drop('image', axis=1).to_numpy()
 
@@ -33,7 +34,7 @@ class PyLSP:
     def disp_image(self, index):
         # Read in image and normalize. These are jpeg's, so need to be divided by 255 to
         # get values in range [0, 1]
-        img=matplotlib.image.imread(self._image_path(index))
+        img=matplotlib.image.imread(self._base_path+self._image_path(index))
         img=img/255
         plt.imshow(img)
         plt.show()
@@ -42,7 +43,7 @@ class PyLSP:
         print(self._image_path(index))
         # Read in image and normalize. These are jpeg's, so need to be divided by 255 to
         # get values in range [0, 1]
-        img=matplotlib.image.imread(self._image_path(index))
+        img=matplotlib.image.imread(self._base_path+self._image_path(index))
         img=img/255
         height=img.shape[0]
         width=img.shape[1]
@@ -86,7 +87,7 @@ class PyLSP:
         return result
 
     def _format_annotation(self, index, number):
-        img=matplotlib.image.imread(self._image_path(index))
+        img=matplotlib.image.imread(self._base_path+self._image_path(index))
         height=img.shape[0]
         width=img.shape[1]
 

@@ -66,18 +66,18 @@ gid = GID()
 # Create the data loader objects. If memory issues, may need to do one at a time.
 # LSP Recommended split: first 1000 training, last 1000 testing
 if USE_LSP:
-    lsp = PyLSP(LSP_DIR, LSP_CSV)
+    lsp = PyLSP(BTFM_BASE, LSP_DIR, LSP_CSV)
 if USE_LSPET:
     # LSPET Recommended split: all 10000 for training only
-    lspet = PyLSPET(LSPET_DIR, LSPET_CSV)
+    lspet = PyLSPET(BTFM_BASE, LSPET_DIR, LSPET_CSV)
 
 if USE_MPII:
     # MPII dataset has a test/train bool to check for split
-    mpii = PyMPII(MPII_RELEASE_PICKLE, MPII_IMG_DIR)
+    mpii = PyMPII(BTFM_BASE, MPII_RELEASE_PICKLE, MPII_IMG_DIR)
 if USE_COCO:
-    coco = PyCOCO(COCO_TRAIN_IMG, COCO_TRAIN_ANNOT, COCO_VAL_IMG, COCO_VAL_ANNOT, COCO_TEST_IMG, COCO_TEST_INFO)
+    coco = PyCOCO(BTFM_BASE, COCO_TRAIN_IMG, COCO_TRAIN_ANNOT, COCO_VAL_IMG, COCO_VAL_ANNOT, COCO_TEST_IMG, COCO_TEST_INFO)
 if USE_3DPW:
-    tdpw = Py3DPW(TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR)
+    tdpw = Py3DPW(BTFM_BASE, TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR)
 if USE_3DHP:
     #mi3 = PyMI3(TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR)
     pass

@@ -20,10 +20,10 @@ coco_joints = [ 'nose', 'left_eye', 'right_eye',
 BBOX_IDX = { 'x' : 0, 'y' : 1, 'w' : 2, 'h' : 3 }
 
 class PyCOCO:
-    def __init__(self, path_to_trn_img, path_to_trn_annot, path_to_val_img, path_to_val_annot, path_to_test_img, path_to_test_info):
-        self._coco_trn = PyCOCOTrainVal(path_to_trn_img, path_to_trn_annot)
-        self._coco_val = PyCOCOTrainVal(path_to_val_img, path_to_val_annot)
-        self._coco_tst = PyCOCOTest(path_to_test_img, path_to_test_info)
+    def __init__(self, base_path, path_to_trn_img, path_to_trn_annot, path_to_val_img, path_to_val_annot, path_to_test_img, path_to_test_info):
+        self._coco_trn = PyCOCOTrainVal(base_path, path_to_trn_img, path_to_trn_annot)
+        self._coco_val = PyCOCOTrainVal(base_path, path_to_val_img, path_to_val_annot)
+        self._coco_tst = PyCOCOTest(base_path, path_to_test_img, path_to_test_info)
 
     def gather_data(self, which_set, gid=None):
         if gid==None:
@@ -43,12 +43,13 @@ class PyCOCO:
     
 
 class PyCOCOTrainVal:
-    def __init__(self, path_to_img, path_to_annot):
+    def __init__(self, base_path, path_to_img, path_to_annot):
+        self._base_path = base_path
         self._path_to_img = path_to_img
         self._path_to_annot = path_to_annot
 
         # Load data set
-        self._coco=COCO(self._path_to_annot)
+        self._coco=COCO(self._base_path+self._path_to_annot)
 
         # Load categories. Code to retrieve names included in comment
         self._cats = self._coco.loadCats(self._coco.getCatIds())
@@ -72,7 +73,7 @@ class PyCOCOTrainVal:
     def disp_image(self, index):
         # Read in image and normalize. These are jpeg's, so need to be divided by 255 to
         # get values in range [0, 1]
-        img=matplotlib.image.imread(self._image_path(index))
+        img=matplotlib.image.imread(self._base_path+self._image_path(index))
         img=img/255
         plt.imshow(img)
         plt.show()
@@ -80,7 +81,7 @@ class PyCOCOTrainVal:
     def disp_annotations(self, index):
         # Read in image and normalize. These are jpeg's, so need to be divided by 255 to
         # get values in range [0, 1]
-        img=matplotlib.image.imread(self._image_path(index))
+        img=matplotlib.image.imread(self._base_path+self._image_path(index))
         img=img/255
         height=img.shape[0]
         width=img.shape[1]
@@ -167,12 +168,13 @@ class PyCOCOTrainVal:
         return annotation
 
 class PyCOCOTest:
-    def __init__(self, path_to_img, path_to_img_info):
+    def __init__(self, base_path, path_to_img, path_to_img_info):
+        self._base_path = base_path
         self._path_to_img = path_to_img
         self._path_to_img_info = path_to_img_info
 
         # Load data set. Need to just work with raw JSON unfortunately.
-        infile=open(self._path_to_img_info,'r')
+        infile=open(self._base_path+self._path_to_img_info,'r')
         self._img_info=json.load(infile)
         infile.close()
 
@@ -192,7 +194,7 @@ class PyCOCOTest:
     def disp_image(self, index):
         # Read in image and normalize. These are jpeg's, so need to be divided by 255 to
         # get values in range [0, 1]
-        img=matplotlib.image.imread(self._image_path(index))
+        img=matplotlib.image.imread(self._base_path+self._image_path(index))
         img=img/255
         plt.imshow(img)
         plt.show()

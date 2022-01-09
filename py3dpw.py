@@ -38,7 +38,8 @@ py3dpw_joints3d = [ 'pelvis', 'left_hip', 'right_hip',
                     'left_hand', 'right_hand' ]
 
 class Py3DPW:
-    def __init__(self, path_to_trn_annot, path_to_val_annot, path_to_tst_annot, path_to_img, filter_same=True):
+    def __init__(self, base_path, path_to_trn_annot, path_to_val_annot, path_to_tst_annot, path_to_img, filter_same=True):
+        self._base_path = base_path
         self._trn_path = path_to_trn_annot
         self._val_path = path_to_val_annot
         self._tst_path = path_to_tst_annot
@@ -51,7 +52,7 @@ class Py3DPW:
         self._pkl_limits = []
 
         img_count=0
-        for d,p in zip([self._trn_path, self._val_path, self._tst_path], self._pkls):
+        for d,p in zip([self._base_path+self._trn_path, self._base_path+self._val_path, self._base_path+self._tst_path], self._pkls):
             pkl_files = sorted(list(Path(d).glob('*')))
             pkl_idx=0
             for f in pkl_files:
@@ -72,55 +73,53 @@ class Py3DPW:
                 # Save the pickle
                 self._pkls[p].append(one_pickle)
 
-        for s in self._pkls:
-            for p in self._pkls[s]:
-                print(p['sequence'])
-
         print(self._num_imgs)
 
-        print(self._pkl_limits)
+        # Tests of some specific values
+        # Keeping code around for verification if we make any changes
+        #print(self._pkl_limits)
+        #print('which 0: ' + str(self._convert_index(0)))
+        #print('which 764: ' + str(self._convert_index(764)))
+        #print('which 765: ' + str(self._convert_index(765)))
+        #print('which 1000: ' + str(self._convert_index(1000)))
+        #print('which 17903: ' + str(self._convert_index(17903)))
+        #print('which 17904: ' + str(self._convert_index(17904)))
+        #print('which 23542: ' + str(self._convert_index(23542)))
+        #print('which 23543: ' + str(self._convert_index(23543)))
+        #print('which 26412: ' + str(self._convert_index(26412)))
+        #print('which 26413: ' + str(self._convert_index(26413)))
+        #print('which 28644: ' + str(self._convert_index(28644)))
+        #print('which 29230: ' + str(self._convert_index(29230)))
+        #print('which 29231: ' + str(self._convert_index(29231)))
+        #print('which 29817: ' + str(self._convert_index(29817)))
+        #print('which 29818: ' + str(self._convert_index(29818)))
+        #print('which 52652: ' + str(self._convert_index(52652)))
+        #print('which 72797: ' + str(self._convert_index(72797)))
+        #print('which 72798: ' + str(self._convert_index(72798)))
+        #print('which 74619: ' + str(self._convert_index(74619)))
 
-        print('which 0: ' + str(self._convert_index(0)))
-        print('which 764: ' + str(self._convert_index(764)))
-        print('which 765: ' + str(self._convert_index(765)))
-        print('which 1000: ' + str(self._convert_index(1000)))
-        print('which 17903: ' + str(self._convert_index(17903)))
-        print('which 17904: ' + str(self._convert_index(17904)))
-        print('which 23542: ' + str(self._convert_index(23542)))
-        print('which 23543: ' + str(self._convert_index(23543)))
-        print('which 26412: ' + str(self._convert_index(26412)))
-        print('which 26413: ' + str(self._convert_index(26413)))
-        print('which 28644: ' + str(self._convert_index(28644)))
-        print('which 29230: ' + str(self._convert_index(29230)))
-        print('which 29231: ' + str(self._convert_index(29231)))
-        print('which 29817: ' + str(self._convert_index(29817)))
-        print('which 29818: ' + str(self._convert_index(29818)))
-        print('which 52652: ' + str(self._convert_index(52652)))
-        print('which 72797: ' + str(self._convert_index(72797)))
-        print('which 72798: ' + str(self._convert_index(72798)))
-        print('which 74619: ' + str(self._convert_index(74619)))
-
-        print(self._image_path(0))
-        print(self._image_path(1000))
-        print(self._image_path(17903))
-        print(self._image_path(17904))
-        print(self._image_path(23542))
-        print(self._image_path(23543))
-        print(self._image_path(26412))
-        print(self._image_path(26413))
-        print(self._image_path(28644))
-        print(self._image_path(29230))
-        print(self._image_path(29231))
-        print(self._image_path(29817))
-        print(self._image_path(29818))
-        print(self._image_path(52652))
-        print(self._image_path(72797))
-        print(self._image_path(72798))
-        print(self._image_path(74619))
+        #print(self._image_path(0))
+        #print(self._image_path(1000))
+        #print(self._image_path(17903))
+        #print(self._image_path(17904))
+        #print(self._image_path(23542))
+        #print(self._image_path(23543))
+        #print(self._image_path(26412))
+        #print(self._image_path(26413))
+        #print(self._image_path(28644))
+        #print(self._image_path(29230))
+        #print(self._image_path(29231))
+        #print(self._image_path(29817))
+        #print(self._image_path(29818))
+        #print(self._image_path(52652))
+        #print(self._image_path(72797))
+        #print(self._image_path(72798))
+        #print(self._image_path(74619))
 
         # Filter out images whose poses are considered identical
         # Start this off as a list because _filter_same_pose needs to traverse items in order
         self._filtered_idxs = list(range(MAX_IMAGE+1))
+        print('Filtering out same poses...')
         print('Before:')
         print(len(self._filtered_idxs))
         if(filter_same):
@@ -129,7 +128,6 @@ class Py3DPW:
         self._filtered_idxs = set(self._filtered_idxs)
         print('After:')
         print(len(self._filtered_idxs))
-        print('Length 2D joints: ' + str(len(py3dpw_joints2d)))
 
     def _convert_index(self, index):
         assert(index >= 0)
@@ -177,7 +175,7 @@ class Py3DPW:
     def disp_image(self, index):
         # Read in image and normalize. These are jpeg's, so need to be divided by 255 to
         # get values in range [0, 1]
-        img=matplotlib.image.imread(self._image_path(index))
+        img=matplotlib.image.imread(self._base_path+self._image_path(index))
         img=img/255
         plt.imshow(img)
         plt.show()
@@ -186,7 +184,7 @@ class Py3DPW:
         print(self._image_path(index))
         # Read in image and normalize. These are jpeg's, so need to be divided by 255 to
         # get values in range [0, 1]
-        img=matplotlib.image.imread(self._image_path(index))
+        img=matplotlib.image.imread(self._base_path+self._image_path(index))
         img=img/255
         height=img.shape[0]
         width=img.shape[1]
@@ -243,7 +241,7 @@ class Py3DPW:
         return result
 
     def _format_annotation(self, index, number):
-        img=matplotlib.image.imread(self._image_path(index))
+        img=matplotlib.image.imread(self._base_path+self._image_path(index))
         height=img.shape[0]
         width=img.shape[1]
 

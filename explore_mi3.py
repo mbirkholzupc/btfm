@@ -11,6 +11,6 @@ from paths import *
 subject=1 #[1, 8]
 sequence=1 #[1, 2]
 
-matfile=loadmat(MI3_DIR+f'/S{subject}/Seq{sequence}/annot.mat')
+matfile=loadmat(BTFM_BASE+MI3_DIR+f'/S{subject}/Seq{sequence}/annot.mat')
 
 

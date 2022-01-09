@@ -21,11 +21,12 @@ annorect_map = { 'id' : 0, 'scale' : 1, 'obj_x' : 2, 'obj_y' : 3,
     'joints' : 8 } # Note: joints are from 8 to end (x, y, v; 16*3=48 total)
 
 class PyMPII:
-    def __init__(self, path_to_mpii_release, path_to_image):
+    def __init__(self, base_path, path_to_mpii_release, path_to_image):
+        self._base_path = base_path
         self._path_to_release = path_to_mpii_release
         self._path_to_image = path_to_image
 
-        with open(self._path_to_release,'rb') as infile:
+        with open(self._base_path+self._path_to_release,'rb') as infile:
             self._release=pickle.load(infile)
 
         # Convert to pandas for ease of accesss
@@ -39,7 +40,7 @@ class PyMPII:
     def disp_image(self, index):
         # Read in image and normalize. These are jpeg's, so need to be divided by 255 to
         # get values in range [0, 1]
-        img=matplotlib.image.imread(self._image_path(index))
+        img=matplotlib.image.imread(self._base_path+self._image_path(index))
         img=img/255
         plt.imshow(img)
         plt.show()
@@ -47,7 +48,7 @@ class PyMPII:
     def disp_annotations(self, index):
         # Read in image and normalize. These are jpeg's, so need to be divided by 255 to
         # get values in range [0, 1]
-        img=matplotlib.image.imread(self._image_path(index))
+        img=matplotlib.image.imread(self._base_path+self._image_path(index))
         img=img/255
         height=img.shape[0]
         width=img.shape[1]
@@ -141,7 +142,7 @@ class PyMPII:
             '002878268.jpg' ]:
             # This file is missing
             return None
-        img=matplotlib.image.imread(self._image_path(index))
+        img=matplotlib.image.imread(self._base_path+self._image_path(index))
         height=img.shape[0]
         width=img.shape[1]
 

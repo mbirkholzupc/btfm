@@ -7,10 +7,10 @@ from pathlib import Path
 from paths import *
 
 
-infile=open(TDPW_TRAIN_DIR+'/courtyard_arguing_00.pkl', 'rb')
-#infile=open(TDPW_TEST_DIR+'/downtown_arguing_00.pkl', 'rb')
-#infile=open(TDPW_TEST_DIR+'/outdoors_fencing_01.pkl', 'rb')
-#infile=open(TDPW_TEST_DIR+'/office_phoneCall_00.pkl', 'rb')
+infile=open(BTFM_BASE+TDPW_TRAIN_DIR+'/courtyard_arguing_00.pkl', 'rb')
+#infile=open(BTFM_BASE+TDPW_TEST_DIR+'/downtown_arguing_00.pkl', 'rb')
+#infile=open(BTFM_BASE+TDPW_TEST_DIR+'/outdoors_fencing_01.pkl', 'rb')
+#infile=open(BTFM_BASE+TDPW_TEST_DIR+'/office_phoneCall_00.pkl', 'rb')
 seq00=pickle.load(infile, encoding='latin1')
 infile.close()
 
@@ -21,7 +21,7 @@ girl=seq00['jointPositions'][0]
 #girl_diff=[max(abs(g1-g2)) for g1, g2 in zip(girl[1:], girl[0:-1])]
 
 
-dirs = [ TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR ]
+dirs = [ BTFM_BASE+TDPW_TRAIN_DIR, BTFM_BASE+TDPW_VAL_DIR, BTFM_BASE+TDPW_TEST_DIR ]
 
 for d in dirs:
     num_imgs=0

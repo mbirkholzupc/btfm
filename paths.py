@@ -16,10 +16,15 @@
 BTFM_BASE='/media/data/btfm'
 
 # Set up other paths in output for preprocessed data
-BTFM_PP=BTFM_BASE+'/pp'
+BTFM_PP='/pp'
 BTFM_PP_LSP=BTFM_PP+'/lsp'
 BTFM_PP_LSPET=BTFM_PP+'/lspet'
 BTFM_PP_MPII=BTFM_PP+'/mpii'
+
+# Pre-processed files
+LSP_CSV=BTFM_PP_LSP+'/lsp.csv'
+LSPET_CSV=BTFM_PP_LSPET+'/lspet.csv'
+MPII_RELEASE_PICKLE=BTFM_PP_MPII+'/mpii-RELEASE.pickle'
 
 # Set up paths to datasets (absolute)
 LSP_DATASET_DIR='/media/data/lsp'
@@ -39,11 +44,9 @@ MI3_PP_DATASET_DIR='/media/data/mpi_inf_3dhp_pp'
 # The following paths are all relative, starting from BTFM_BASE
 LSP_DIR='/lsp'
 LSP_IMG_DIR=LSP_DIR + '/images'
-LSP_CSV=LSP_DIR+'/lsp.csv'
 
 LSPET_DIR='/lspet'
 LSPET_IMG_DIR=LSPET_DIR+'/images'
-LSPET_CSV=LSPET_DIR+'/lspet.csv'
 
 COCO_DIR='/coco2017'
 COCO_TRAIN_IMG=COCO_DIR+'/train2017'
@@ -57,7 +60,6 @@ COCO_TEST_INFO=COCO_DIR+'/annotations/image_info_test2017.json'
 
 MPII_DIR='/mpii'
 MPII_IMG_DIR=MPII_DIR+'/images'
-MPII_RELEASE_PICKLE=BTFM_PP_MPII+'/mpii-RELEASE.pickle'
 
 TDPW_DIR='/3dpw'
 TDPW_IMG_DIR=TDPW_DIR+'/imageFiles'
