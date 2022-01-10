@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 from skimage import io
+from pathlib import Path
 
 from utils import plotMultiOnImage, clip_detect, GID
 
@@ -16,14 +17,22 @@ lsp_joints = [ 'right ankle', 'right knee', 'right hip',
                'neck', 'head top']
 
 class PyLSPET:
-    def __init__(self, base_path, lsp_path, csv_path):
+    def __init__(self, base_path, lsp_path, csv_path, upi_s1h_path):
         self._base_path = base_path
         self._lsp_path = lsp_path
         self._csv_path = csv_path
+        self._upi_s1h_path = upi_s1h_path
 
         self._csv = pd.read_csv(self._base_path+self._csv_path)
         self._image_list = self._csv['image'].to_numpy()
         self._joints = self._csv.drop('image', axis=1).to_numpy()
+
+        # Need to check which images actually have silhouettes
+        # Save as a set in order to make it easy to check later
+        full_path_upi_s1h=base_path+upi_s1h_path+'/data/lsp_extended'
+        # Each filename is exactly 24 characters long, so super-easy to extract
+        self._silhouettes = set([str(x)[-24:] for x in sorted(list(Path(full_path_upi_s1h).glob('*')))])
+
 
     def _image_path(self, index):
         index += 1  # Convert to 1-based
@@ -104,5 +113,10 @@ class PyLSPET:
             for xy in ['x', 'y', 'v']:
                 annotation[f'{xy}{j}'] = self._joints[index][iidx]
                 iidx+=1
+
+        # If a silhouette file exists, write it. If not, skip
+        sil_filename=f'im{index+1:05d}_segmentation.png'
+        if sil_filename in self._silhouettes:
+            annotation['silhouette'] = self._upi_s1h_path+'/data/lsp_extended/' + sil_filename
                 
         return annotation

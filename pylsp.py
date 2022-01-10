@@ -16,10 +16,11 @@ lsp_joints = [ 'right ankle', 'right knee', 'right hip',
                'neck', 'head top']
 
 class PyLSP:
-    def __init__(self, base_path, lsp_path, csv_path):
+    def __init__(self, base_path, lsp_path, csv_path, upi_s1h_path):
         self._base_path = base_path
         self._lsp_path = lsp_path
         self._csv_path = csv_path
+        self._upi_s1h_path = upi_s1h_path
 
         self._csv = pd.read_csv(self._base_path+self._csv_path)
         self._image_list = self._csv['image'].to_numpy()
@@ -103,6 +104,6 @@ class PyLSP:
             for xy in ['x', 'y', 'v']:
                 annotation[f'{xy}{j}'] = self._joints[index][iidx]
                 iidx+=1
-        annotation['silhouette'] = '/upi-s1h/data/lsp/im' + f'{index+1:04d}' + '_segmentation.png'
+        annotation['silhouette'] = self._upi_s1h_path+'/data/lsp/im' + f'{index+1:04d}' + '_segmentation.png'
                 
         return annotation

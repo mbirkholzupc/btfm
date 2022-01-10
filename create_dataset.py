@@ -66,10 +66,10 @@ gid = GID()
 # Create the data loader objects. If memory issues, may need to do one at a time.
 # LSP Recommended split: first 1000 training, last 1000 testing
 if USE_LSP:
-    lsp = PyLSP(BTFM_BASE, LSP_DIR, LSP_CSV)
+    lsp = PyLSP(BTFM_BASE, LSP_DIR, LSP_CSV, UPI_S1H_DIR)
 if USE_LSPET:
     # LSPET Recommended split: all 10000 for training only
-    lspet = PyLSPET(BTFM_BASE, LSPET_DIR, LSPET_CSV)
+    lspet = PyLSPET(BTFM_BASE, LSPET_DIR, LSPET_CSV, UPI_S1H_DIR)
 
 if USE_MPII:
     # MPII dataset has a test/train bool to check for split
