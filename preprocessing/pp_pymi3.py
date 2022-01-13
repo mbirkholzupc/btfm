@@ -9,7 +9,7 @@ from pymi3_utils import MpiiSeqInfo, mpii_get_sequence_info
 
 # Threshold to consider poses "different" in mm
 # Current: 40 mm
-JOINT_DIFF_THRESHOLD=40
+JOINT_DIFF_THRESHOLD=80
 
 SUBJS = [1, 2, 3, 4, 5, 6, 7, 8]
 SEQS = [1, 2]

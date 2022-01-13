@@ -13,39 +13,22 @@ from utils import filterJoints, plotMultiOnImage, clip_detect, GID
 MIN_IMAGE=0
 MAX_IMAGE=74619
 
-# Threshold to consider poses "different" in m
-# Current: 40 mm
-JOINT_DIFF_THRESHOLD=0.040
-
 SUBJS = [1, 2, 3, 4, 5, 6, 7, 8]
 SEQS = [1, 2]
+CAMERAS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 
-# Says it's COCO format (according to README), but joints don't match up
-pymi3_joints2d = [ 'nose', 'neck',
-                   'right_shoulder', 'right_elbow', 'right_wrist',
-                   'left_shoulder', 'left_elbow', 'left_wrist',
-                   'right_hip', 'right_knee', 'right_ankle',
-                   'left_hip', 'left_knee', 'left_ankle',
-                   'right_eye', 'left_eye',
-                   'right_ear', 'left_ear' ]
-
-# SMPL format (according to README)
-pymi3_joints3d = [ 'pelvis', 'left_hip', 'right_hip',
-                   'spine1', 'left_knee', 'right_knee',
-                   'spine2', 'left_ankle', 'right_ankle',
-                   'spine3', 'left_foot', 'right_foot',
-                   'neck', 'left_collar', 'right_collar',
-                   'head', 'left_shoulder', 'right_shoulder',
-                   'left_elbow', 'right_elbow',
-                   'left_wrist', 'right_wrist',
-                   'left_hand', 'right_hand' ]
+pymi3_joints = [ 'spine3', 'spine4', 'spine2', 'spine', 'pelvis', # 5
+        'neck', 'head', 'head_top', 'left_clavicle', 'left_shoulder', 'left_elbow', # 11
+       'left_wrist', 'left_hand',  'right_clavicle', 'right_shoulder', 'right_elbow', 'right_wrist', # 17
+       'right_hand', 'left_hip', 'left_knee', 'left_ankle', 'left_foot', 'left_toe', # 23
+       'right_hip' , 'right_knee', 'right_ankle', 'right_foot', 'right_toe' ]
 
 class PyMI3:
-    def __init__(self, path_to_trn_annot, path_to_val_annot, path_to_tst_annot, path_to_img, filter_same=True):
-        self._trn_path = path_to_trn_annot
-        self._val_path = path_to_val_annot
-        self._tst_path = path_to_tst_annot
-        self._img_path = path_to_img
+    def __init__(self, base_path, trn_path, pp_path, test_path):
+        self._base_path = base_path
+        self._trn_path = trn_path
+        self._pp_path = pp_path
+        self._test_path = test_path
 
         # Need to read in all annotations from train, val and test folder pickles and
         # string them all together. Somehow need to create a common index.
