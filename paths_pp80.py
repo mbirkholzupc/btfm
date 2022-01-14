@@ -21,6 +21,7 @@ BTFM_PP='/pp'
 BTFM_PP_LSP=BTFM_PP+'/lsp'
 BTFM_PP_LSPET=BTFM_PP+'/lspet'
 BTFM_PP_MPII=BTFM_PP+'/mpii'
+BTFM_PP_SILHOUETTE=BTFM_PP+'/silhouette'
 
 # Pre-processed files
 LSP_CSV=BTFM_PP_LSP+'/lsp.csv'
@@ -36,6 +37,9 @@ TDPW_DATASET_DIR='/media/data/3dpw'
 MI3_DATASET_DIR='/media/data/mpi_inf_3dhp/mpi_inf_3dhp/download'
 MI3_PP_DATASET_DIR='/media/data/mpi_inf_3dhp_pp80'
 UPI_S1H_DATASET_DIR='/media/data/up/upi-s1h'
+
+# Other weights
+MASK_RCNN_WEIGHTS='/media/data/maskrcnn_weights/mask_rcnn_coco.h5'
 
 # Required preprocessing
 # LSP: convertlsp.m to convert joints.mat to lsp.csv
