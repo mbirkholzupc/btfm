@@ -76,3 +76,6 @@ MI3_PP_DIR='/mi3_pp'
 
 
 UPI_S1H_DIR='/upi-s1h'
+UPI_S1H_MPII=UPI_S1H_DIR+'/data/mpii'
+UPI_S1H_MPII_IMG=UPI_S1H_MPII+'/images'
+UPI_S1H_MPII_ANNOT=UPI_S1H_MPII+'/correspondences.csv'
