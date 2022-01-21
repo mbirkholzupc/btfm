@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 from skimage import io
+from PIL import Image
 
 from utils import plotMultiOnImage, clip_detect, GID
 
@@ -88,17 +89,20 @@ class PyLSP:
         return result
 
     def _format_annotation(self, index, number):
-        img=matplotlib.image.imread(self._base_path+self._image_path(index))
-        height=img.shape[0]
-        width=img.shape[1]
+        # Read width, height of image
+        img=Image.open(self._base_path+self._image_path(index))
+        width, height = img.size
 
         annotation = {}
         annotation['ID'] = number
         annotation['path'] = self._image_path(index)
-        annotation['bbox_x'] = 0
-        annotation['bbox_y'] = 0
-        annotation['bbox_h'] = height
-        annotation['bbox_w'] = width
+
+        # Create bbox from joints
+        jointsx=self._joints[index][0::3]
+        jointsy=self._joints[index][1::3]
+        bbox=self._joint_minimal_bbox(index,jointsx, jointsy, (width,height))
+        annotation['bbox'] = bbox
+
         iidx=0
         for j in range(len(lsp_joints)):
             for xy in ['x', 'y', 'v']:
@@ -107,3 +111,37 @@ class PyLSP:
         annotation['silhouette'] = self._upi_s1h_path+'/data/lsp/im' + f'{index+1:04d}' + '_segmentation.png'
                 
         return annotation
+
+    def _valid_joints(self, jointsx, jointsy, dims):
+        """
+        _valid_joints: Function to decide which joints are valid. Each dataset
+                       has different criteria, so can't have a single function. Boo.
+        jointsx: ndarray joints x cood
+        jointsy: ndarray joints y coord
+        dims: (width, height)
+        """
+        # Note: In this dataset, all joints are valid, whether visible or not
+        assert(jointsx.shape==jointsy.shape)
+
+        return np.array([True]*jointsx.shape[0])
+
+    def _joint_minimal_bbox(self, index, jointsx, jointsy, dims):
+        # dims: (width, height)
+        jx=jointsx.round(0)
+        jy=jointsy.round(0)
+        joint_mask=self._valid_joints(jx, jy, dims)
+
+        # Check if we need to clip
+        outside_image=(jx<0)|(jx>=dims[0])|(jy<0)|(jy>=dims[1])
+        if outside_image.any():
+            jx=jx.clip(0, dims[0]-1)
+            jy=jy.clip(0, dims[1]-1)
+
+        if joint_mask.any() == True:
+            x0=int(jx[joint_mask].min())
+            x1=int(jx[joint_mask].max())
+            y0=int(jy[joint_mask].min())
+            y1=int(jy[joint_mask].max())
+        else:
+            x0=x1=y0=y1=0
+        return (x0, y0, x1, y1)
