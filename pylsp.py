@@ -100,7 +100,7 @@ class PyLSP:
         # Create bbox from joints
         jointsx=self._joints[index][0::3]
         jointsy=self._joints[index][1::3]
-        bbox=self._joint_minimal_bbox(index,jointsx, jointsy, (width,height))
+        bbox=self._joint_minimal_bbox(jointsx, jointsy, (width,height))
         annotation['bbox'] = bbox
 
         iidx=0
@@ -125,7 +125,7 @@ class PyLSP:
 
         return np.array([True]*jointsx.shape[0])
 
-    def _joint_minimal_bbox(self, index, jointsx, jointsy, dims):
+    def _joint_minimal_bbox(self, jointsx, jointsy, dims):
         # dims: (width, height)
         jx=jointsx.round(0)
         jy=jointsy.round(0)

@@ -4,6 +4,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from skimage import io
 from pathlib import Path
+from PIL import Image
 
 from utils import plotMultiOnImage, clip_detect, GID
 
@@ -15,6 +16,10 @@ lsp_joints = [ 'right ankle', 'right knee', 'right hip',
                'right wrist', 'right elbow', 'right shoulder', 
                'left shoulder', 'left elbow', 'left wrist', 
                'neck', 'head top']
+
+# These images have annotations that would either require manually fixing or too much logic in the 
+# code, so let's drop them
+poor_annotations=[6098, 8074]
 
 class PyLSPET:
     def __init__(self, base_path, lsp_path, csv_path, upi_s1h_path):
@@ -84,6 +89,9 @@ class PyLSPET:
         result = []
         if which_set == 'train':
             for i in range(MAX_IMAGE):
+                # Images that are beyond recovery. Drop them.
+                if i in poor_annotations:
+                    continue
                 result.append(self._format_annotation(i,gid.next()))
         elif which_set == 'val':
             # No validation in this set
@@ -97,17 +105,20 @@ class PyLSPET:
         return result
 
     def _format_annotation(self, index, number):
-        img=matplotlib.image.imread(self._base_path+self._image_path(index))
-        height=img.shape[0]
-        width=img.shape[1]
+        # Read width, height of image
+        img=Image.open(self._base_path+self._image_path(index))
+        width, height = img.size
 
         annotation = {}
         annotation['ID'] = number
         annotation['path'] = self._image_path(index)
-        annotation['bbox_x'] = 0
-        annotation['bbox_y'] = 0
-        annotation['bbox_h'] = height
-        annotation['bbox_w'] = width
+
+        # Create bbox from joints
+        jointsx=self._joints[index][0::3]
+        jointsy=self._joints[index][1::3]
+        bbox=self._joint_minimal_bbox(jointsx, jointsy, (width,height))
+        annotation['bbox'] = bbox
+
         iidx=0
         for j in range(len(lsp_joints)):
             for xy in ['x', 'y', 'v']:
@@ -120,3 +131,76 @@ class PyLSPET:
             annotation['silhouette'] = self._upi_s1h_path+'/data/lsp_extended/' + sil_filename
                 
         return annotation
+
+    def _valid_joints(self, jointsx, jointsy, dims):
+        """
+        _valid_joints: Function to decide which joints are valid. Each dataset
+                       has different criteria, so can't have a single function. Boo.
+        jointsx: ndarray joints x cood
+        jointsy: ndarray joints y coord
+        dims: (width, height)
+        """
+        # Note: In this dataset, joints are signaled invalid by a negative number in one coordinate
+        #       and zero in the other or (0,0)
+        assert(jointsx.shape==jointsy.shape)
+
+        # Let's filter the negative and 0 case first
+        fix_y=False
+
+        negx=jointsx<0
+        negy=jointsy<0
+
+        # This case doesn't happen
+        for x,y in zip(jointsx[negx], jointsy[negx]):
+            if (x<0) and (y!=0):
+                #print('Uh oh Y!')
+                pass
+
+        # This case happens 3 times
+        # If it's -1, make it 0 and call valid. I guess they did this to get around using
+        # 0 to signal invalid...
+        for x,y in zip(jointsx[negy], jointsy[negy]):
+            if (y<0) and (x!=0):
+                #print('Uh oh X! Fixing...')
+                fix_y=True
+                break
+
+        if fix_y:
+            jointsy[jointsy==-1]=0
+            negy=jointsy<0
+
+        valid_idxs=np.logical_not(negx|negy)
+
+        # Now, filter out (0,0) joints
+        all_zero=(jointsx==0)&(jointsy==0)
+        valid_idxs=valid_idxs&np.logical_not(all_zero)
+
+        return valid_idxs
+
+    def _joint_minimal_bbox(self, jointsx, jointsy, dims):
+        # dims: (width, height)
+        jx=jointsx.round(0)
+        jy=jointsy.round(0)
+        joint_mask=self._valid_joints(jx, jy, dims)
+
+        # Only use valid joints from here
+        jx=jx[joint_mask]
+        jy=jy[joint_mask]
+
+        if not joint_mask.any():
+            assert(1==0)
+
+        # Check if we need to clip
+        outside_image=(jx<0)|(jx>=dims[0])|(jy<0)|(jy>=dims[1])
+        if outside_image.any():
+            jx=jx.clip(0, dims[0]-1)
+            jy=jy.clip(0, dims[1]-1)
+
+        if joint_mask.any() == True:
+            x0=int(jx.min())
+            x1=int(jx.max())
+            y0=int(jy.min())
+            y1=int(jy.max())
+        else:
+            x0=x1=y0=y1=0
+        return (x0, y0, x1, y1)
