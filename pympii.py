@@ -22,14 +22,14 @@ annorect_map = { 'id' : 0, 'scale' : 1, 'obj_x' : 2, 'obj_y' : 3,
     'joints' : 8 } # Note: joints are from 8 to end (x, y, v; 16*3=48 total)
 
 def mpii_valid_joints(jointsx, jointsy, dims):
-    # dims: width, height
+    # dims: (width, height)
     # Note: First comparisons return False for nan, so should filter out missing joints
     in_image=(jointsx>=0)&(jointsy>=0)&(jointsx<=dims[0])&(jointsy<=dims[1])
     nonzero=(jointsx!=0)|(jointsy!=0)
     return in_image & nonzero
 
 def mpii_bbox(jointsx, jointsy, dims):
-    # dims: width, height
+    # dims: (width, height)
     joint_mask=mpii_valid_joints(jointsx, jointsy, dims)
     if joint_mask.any() == True:
         c0=int(jointsx[joint_mask].min())
@@ -359,7 +359,21 @@ class PyMPII:
             annotation['ID'] = gid.next()
             annotation['path'] = self._image_path(index)
 
-            # TODO: Bbox calc later
+            # Minimal bounding box containing joints
+            jointsx=uann[0][8::3]
+            jointsy=uann[0][9::3]
+            valj=mpii_valid_joints(jointsx, jointsy, (width, height))
+            if valj.any():
+                mbb=mpii_bbox(jointsx, jointsy, (width, height))
+                # Convert to (x0,y0,x1,y1)
+                mbb=(mbb[1],mbb[0],mbb[3],mbb[2])
+                area=(mbb[2]-mbb[0])*(mbb[3]-mbb[1])
+                if area > 0:
+                    annotation['bbox'] = mbb
+                else:
+                    print(f"Zero area! {index} {area}")
+                    print(mbb)
+                    print(annotation['ID'])
             #annotation['bbox_x'] = 0
             #annotation['bbox_y'] = 0
             #annotation['bbox_h'] = height
