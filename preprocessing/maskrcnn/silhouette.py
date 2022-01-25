@@ -183,7 +183,7 @@ def choose_masks(seq, frame, masks, rois, class_ids, scores, class_idx_person):
     return best_bbscores
 
 # Clean up everything before we start
-os.system(f'rm -rf {BTFM_BASE}{BTFM_PP_SILHOUETTE}/*')
+os.system(f'rm -rf {BTFM_BASE}{BTFM_PP_3DPW_SILHOUETTE}/*')
 
 config = InferenceConfig()
 config.display()
@@ -235,7 +235,7 @@ for d in dirs_3dpw:
         # Unfortunately, this pkl is missing from the data
         continue
     ictr=0
-    os.mkdir(f'{BTFM_BASE}{BTFM_PP_SILHOUETTE}/{d}')
+    os.mkdir(f'{BTFM_BASE}{BTFM_PP_3DPW_SILHOUETTE}/{d}')
     curdir=os.path.join(base_img_dir, d)
     img_list=sorted(next(os.walk(curdir))[2])
     for img in img_list:
@@ -252,10 +252,10 @@ for d in dirs_3dpw:
         if best_masks is not None:
             # Note: If choose_masks is updated to return only a single mask, need to update this too
             for a, m in enumerate(best_masks):
-                save_silhouette(f'{BTFM_BASE}{BTFM_PP_SILHOUETTE}/{d}/{img[:-4]}_subj{a}.png',r['masks'][:,:,m])
+                save_silhouette(f'{BTFM_BASE}{BTFM_PP_3DPW_SILHOUETTE}/{d}/{img[:-4]}_subj{a}.png',r['masks'][:,:,m])
             
         #for m in range(r['masks'].shape[2]):
-        #    save_silhouette(f'{BTFM_BASE}{BTFM_PP_SILHOUETTE}/{d}/{img[:-4]}_{m}.png',r['masks'][:,:,m])
+        #    save_silhouette(f'{BTFM_BASE}{BTFM_PP_3DPW_SILHOUETTE}/{d}/{img[:-4]}_{m}.png',r['masks'][:,:,m])
         images_processed+=1
         ictr+=1
         if 0 == (ictr%100):
