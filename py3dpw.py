@@ -6,6 +6,7 @@ import pickle
 from skimage import io
 from pathlib import Path
 from scipy.spatial.distance import euclidean
+from PIL import Image
 
 from utils import filterJoints, plotMultiOnImage, clip_detect, GID
 
@@ -36,6 +37,70 @@ py3dpw_joints3d = [ 'pelvis', 'left_hip', 'right_hip',
                     'left_elbow', 'right_elbow',
                     'left_wrist', 'right_wrist',
                     'left_hand', 'right_hand' ]
+
+def tdpw_valid_joints(index, jointsx, jointsy, jointsv, dims):
+    # dims: (width, height)
+    assert(jointsx.shape==jointsy.shape)
+    assert(jointsx.shape==jointsv.shape)
+
+    val_joints=(jointsv>0)
+
+    # The only one of these rules that is "broken" is too-large X
+    # We will clip it in the caller, so no need to signal invalid
+    # Can keep to check in future if new data added
+    #inval_joints=(jointsv==0)
+    #xinvalidgt0=jointsx[inval_joints]>0
+    #yinvalidgt0=jointsy[inval_joints]>0
+    #if (xinvalidgt0).any():
+    #    print('INVALID BUT NONZERO X')
+    #    print(jointsx)
+    #if (yinvalidgt0).any():
+    #    print('INVALID BUT NONZERO Y')
+    #    print(jointsy)
+    ##if (jointsx>=dims[0]).any():
+    ##    print(f'BAD X BIG {index} {dims[0]}')
+    ##    print(dims)
+    ##    print(jointsx)
+    ##    print(jointsy)
+    #if (jointsx<0).any():
+    #    print(f'BAD X SMALL {index} {dims[0]}')
+    #    print(dims)
+    #    print(jointsx)
+    #    print(jointsy)
+    #if (jointsy>=dims[1]).any():
+    #    print(f'BAD Y BIG {index} {dims[1]}')
+    #    print(dims)
+    #    print(jointsx)
+    #    print(jointsy)
+    #if (jointsy<0).any():
+    #    print(f'BAD Y SMALL {index} {dims[1]}')
+    #    print(dims)
+    #    print(jointsx)
+    #    print(jointsy)
+
+    return val_joints
+
+def tdpw_bbox(index, jointsx, jointsy, jointsv, dims):
+    # dims: (width, height)
+    jx=np.array(jointsx).round(0)
+    jy=np.array(jointsy).round(0)
+    jv=np.array(jointsv)
+    joint_mask=tdpw_valid_joints(index, jx, jy, jv, dims)
+
+    if joint_mask.any() == True:
+        # Check if we need to clip
+        outside_image=(jx<0)|(jx>=dims[0])|(jy<0)|(jy>=dims[1])
+        if outside_image.any():
+            jx=jx.clip(0, dims[0]-1)
+            jy=jy.clip(0, dims[1]-1)
+
+        x0=int(jx[joint_mask].min())
+        x1=int(jx[joint_mask].max())
+        y0=int(jy[joint_mask].min())
+        y1=int(jy[joint_mask].max())
+    else:
+        x0=x1=y0=y1=0
+    return (x0, y0, x1, y1)
 
 class Py3DPW:
     def __init__(self, base_path, path_to_trn_annot, path_to_val_annot, path_to_tst_annot, path_to_img, filter_same=True):
@@ -241,13 +306,16 @@ class Py3DPW:
         return result
 
     def _format_annotation(self, index, number):
-        img=matplotlib.image.imread(self._base_path+self._image_path(index))
-        height=img.shape[0]
-        width=img.shape[1]
+        # Read width, height of image
+        img=Image.open(self._base_path+self._image_path(index))
+        width, height = img.size
 
         # Get the internal index and pickle for the sequence
         iidx = self._convert_index(index)
         pkl = self._pkls[iidx[0]][iidx[1]]
+
+        # Look up gender
+        gender = pkl['genders'][iidx[2]]
 
         # Look up the 2D joint positions
         j2d = pkl['poses2d'][iidx[2]][iidx[3]]
@@ -261,13 +329,15 @@ class Py3DPW:
         j3y=j3d[1::3]
         j3z=j3d[2::3]
 
+        # Calculate minimal 2D bbox
+        bbox=tdpw_bbox(index, j2x, j2y, j2v, (width, height))
+
         annotation = {}
         annotation['ID'] = number
         annotation['path'] = self._image_path(index)
-        annotation['bbox_x'] = 0
-        annotation['bbox_y'] = 0
-        annotation['bbox_h'] = height
-        annotation['bbox_w'] = width
+        annotation['gender'] = gender
+        if bbox != (0,0,0,0):
+            annotation['bbox'] = bbox
 
 
         # Add 2D joints
