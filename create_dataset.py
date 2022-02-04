@@ -10,6 +10,7 @@
 #   - MPI-INF-3DHP
 
 
+import time
 import argparse
 import json
 import numpy as np
@@ -77,10 +78,9 @@ if USE_MPII:
 if USE_COCO:
     coco = PyCOCO(BTFM_BASE, COCO_TRAIN_IMG, COCO_TRAIN_ANNOT, COCO_VAL_IMG, COCO_VAL_ANNOT, COCO_TEST_IMG, COCO_TEST_INFO, BTFM_PP_COCO_SILHOUETTE)
 if USE_3DPW:
-    tdpw = Py3DPW(BTFM_BASE, TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR)
+    tdpw = Py3DPW(BTFM_BASE, TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR, BTFM_PP_3DPW_SILHOUETTE, BTFM_PP_3DPW_SILHOUETTE_VALID)
 if USE_3DHP:
-    #mi3 = PyMI3(TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR)
-    pass
+    mi3 = PyMI3(BTFM_BASE, MI3_DIR, MI3_TEST_DIR, MI3_PP_DIR)
 
 
 # Start dataset. Top level is dict.
@@ -103,7 +103,10 @@ if USE_3DPW:
     tdpw_data = tdpw.gather_data(which_set, gid=gid)
     dataset['3dpw']=tdpw_data
 if USE_3DHP:
-    mi3_data = [ "no data" ]
+    tick=time.time()
+    mi3_data = mi3.gather_data(which_set, gid=gid)
+    tock=time.time()
+    print(f'Elapsed time: {tock-tick}')
     dataset['mpi-inf-3dhp']=mi3_data
 
 # Write to file

@@ -103,12 +103,14 @@ def tdpw_bbox(index, jointsx, jointsy, jointsv, dims):
     return (x0, y0, x1, y1)
 
 class Py3DPW:
-    def __init__(self, base_path, path_to_trn_annot, path_to_val_annot, path_to_tst_annot, path_to_img, filter_same=True):
+    def __init__(self, base_path, path_to_trn_annot, path_to_val_annot, path_to_tst_annot, path_to_img, path_to_silhouette, path_to_silhouette_valid, filter_same=True):
         self._base_path = base_path
         self._trn_path = path_to_trn_annot
         self._val_path = path_to_val_annot
         self._tst_path = path_to_tst_annot
         self._img_path = path_to_img
+        self._path_to_silhouette = path_to_silhouette
+        self._path_to_silhouette_valid = path_to_silhouette_valid
 
         # Need to read in all annotations from train, val and test folder pickles and
         # string them all together. Somehow need to create a common index.
@@ -189,6 +191,15 @@ class Py3DPW:
         print(len(self._filtered_idxs))
         if(filter_same):
             self._filtered_idxs=self._filter_same_pose(self._filtered_idxs)
+
+        # Create a lookup table to check each index against preprocessed data
+        print('Creating jm lookup...')
+        self._jm_lookup=self._create_jm_lookup()
+        print('Done creating jm lookup...')
+
+        # Filter even further, discarding images that do not have joint annotations
+        self._filtered_idxs=self._filter_no_joint_annotations(self._filtered_idxs)
+
         # Convert to set to make checking if it contains an element quicker
         self._filtered_idxs = set(self._filtered_idxs)
         print('After:')
@@ -329,6 +340,12 @@ class Py3DPW:
         j3y=j3d[1::3]
         j3z=j3d[2::3]
 
+        # Look up shape (betas)
+        betas=pkl['betas'][iidx[2]]
+        if len(betas)>10:
+            if (betas[10:]!=0).any():
+                print('Warning: Truncating betas')
+
         # Calculate minimal 2D bbox
         bbox=tdpw_bbox(index, j2x, j2y, j2v, (width, height))
 
@@ -351,6 +368,18 @@ class Py3DPW:
             annotation[f'3d_x{j}'] = j3x[j]
             annotation[f'3d_y{j}'] = j3y[j]
             annotation[f'3d_z{j}'] = j3z[j]
+
+        # Add shape (betas) - Should generally be first 10 PCA components
+        # Confirmed only 10 are used, although some zero-pad out to 300
+        annotation['betas']=betas[0:10].tolist()
+
+        # Add silhouette if there is a valid one
+        if self._jm_lookup[index][1]:
+            silhouette_filename=self._path_to_silhouette+'/'+pkl['sequence']+'/'
+            actor=iidx[2]
+            frame=iidx[3]
+            silhouette_filename+=f'image_{frame:05d}_subj{actor}.png'
+            annotation['silhouette']=silhouette_filename
                 
         return annotation
 
@@ -387,3 +416,37 @@ class Py3DPW:
                 last_j=j[last_idx]
 
         return unique_pose_idxs
+
+    def _filter_no_joint_annotations(self, idxs):
+        """
+        Remove image/subject pairs that don't have joint annotations
+        """
+        new_idxs=[]
+        for idx in idxs:
+            if self._jm_lookup[idx][0]:
+                new_idxs.append(idx)
+
+        return new_idxs
+
+    def _create_jm_lookup(self):
+        """
+        Create a lookup table to convert from index to joint/mask validity
+        """
+        infile=open(self._base_path+self._path_to_silhouette_valid, 'rb')
+        sil_valid_pkl=pickle.load(infile)
+        infile.close()
+
+        jm_lookup={}
+        for i in range(MAX_IMAGE+1):
+            iidx = self._convert_index(i)
+            pkl = self._pkls[iidx[0]][iidx[1]]
+            seq = pkl['sequence']
+            actor = iidx[2]
+            frame = iidx[3]
+
+            pkl_key=f'{seq}/image_{frame:05d}.jpg'
+
+            entry=sil_valid_pkl[pkl_key]
+            jm_lookup[i]=(entry[0+actor], entry[2+actor])
+
+        return jm_lookup

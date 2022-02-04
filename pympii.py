@@ -397,7 +397,7 @@ class PyMPII:
             if uann[1] is not None:
                 silhouette_filename = uann[1][2]  # In numpy format, image_name is index 2
                 silhouette_filename = silhouette_filename[:5]+'_segmentation_full.png'
-                annotation['silhouette'] = self._base_path+self._upi_s1h_img+'/'+silhouette_filename
+                annotation['silhouette'] = self._upi_s1h_img+'/'+silhouette_filename
 
             # Note: UPi-S1H provides the following formats if alternates are needed
             #00001.png - just person in bbox area

@@ -149,6 +149,8 @@ def choose_masks(seq, frame, masks, rois, class_ids, scores, class_idx_person):
         jointsy=joints[1]
         jointsv=joints[2]
         for midx in range(masks.shape[2]):
+            if not people_idxs[midx]:
+                continue # Skip any that aren't human masks
             mask=masks[:,:,midx]
             roi=rois[midx,:]
             
@@ -164,6 +166,10 @@ def choose_masks(seq, frame, masks, rois, class_ids, scores, class_idx_person):
             #ax.plot(jointsx[valj],jointsy[valj],'ro')
             #plt.show()
     # Check the scores and pick best match for each actor
+    print(f"seq: {seq['sequence']} frame: {frame}")
+    print(jscore)
+    print(bbscore)
+    print(people_idxs)
     best_jscores=np.argmax(jscore, axis=1)
     best_bbscores=np.argmax(bbscore, axis=1)
     if( not np.array_equal(best_jscores, best_bbscores) ):
@@ -204,6 +210,10 @@ dirs_3dpw = sorted(next(os.walk(base_img_dir))[1])
 # join dirs
 for d in dirs_3dpw:
     curdir=os.path.join(base_img_dir, d)
+    ## ADD
+    #if os.path.split(curdir)[1]!='downtown_bar_00':
+    #    continue
+    ## END ADD
     if os.path.split(curdir)[1]=='downtown_cafe_01':
         # Unfortunately, this pkl is missing from the data
         continue
@@ -231,6 +241,10 @@ for d, p_list in zip([f'{BTFM_BASE}{TDPW_TRAIN_DIR}', f'{BTFM_BASE}{TDPW_VAL_DIR
 images_processed=0
 octr=0
 for d in dirs_3dpw:
+    ## ADD
+    #if d!='downtown_bar_00':
+    #    continue
+    ## END ADD
     if d=='downtown_cafe_01':
         # Unfortunately, this pkl is missing from the data
         continue

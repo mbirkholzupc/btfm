@@ -38,7 +38,7 @@ def filterJoints(joints, visibility):
     fjoints=joints[visibility>0,:]
     return fjoints
 
-def plotMultiOnImage(img, data_fmt_zip, visibility=None):
+def plotMultiOnImage(img, data_fmt_zip, rects=None):
     # Need to draw image into array instead of plot it
     # Same as plotOnImage except data and fmt are a zipped list of points and formats
     arr_fig = Figure(figsize=plt.figaspect(img))
@@ -50,6 +50,11 @@ def plotMultiOnImage(img, data_fmt_zip, visibility=None):
     arr_ax.imshow(img)
     for data, fmt in data_fmt_zip:
         arr_ax.plot(data[:,1],data[:,0],fmt)
+
+    if rects:
+        for r in rects:
+            arr_ax.add_patch(r)
+
     # Draw image to buffer
     canvas.draw()
     out_img = np.array(canvas.renderer.buffer_rgba())
