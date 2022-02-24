@@ -16,7 +16,17 @@ from pymi3_utils import mpii_get_sequence_info
 # Training info
 SUBJS = [1, 2, 3, 4, 5, 6, 7, 8]
 SEQS = [1, 2]
-CAMERAS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+# Default camera set for download (minus extra wall/ceiling cameras)
+#DEFAULT_CAMERAS = [0, 1, 2, 4, 5, 6, 7, 8]
+# Different sets of cameras for reference
+#ALL_CAMERAS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+#EXTRA_WALL_CAMERAS=[9, 3, 10]
+#EXTRA_CEILING_CAMERAS=[11,12,13]
+# Chosen set:
+#  - extra wall: just 9 since no other gives a top-down view
+#  - 1 and 4 almost identical, so keep only 1 since 4 is a narrower FOV
+#  - Extra ceiling cameras show actor upside-down. Not sure if we want this. Omit.
+CAMERAS = [0, 1, 2, 5, 6, 7, 8, 9]
 # Genders per subject
 GENDERS={1:'f', 2:'m', 3:'m', 4:'f', 5:'f', 6:'f', 7:'m', 8:'m'}
 
