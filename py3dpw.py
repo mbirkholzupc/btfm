@@ -311,7 +311,7 @@ class Py3DPW:
                 if (not filter_same) or (filter_same and (i in self._filtered_idxs)):
                     result.append(self._format_annotation(i,gid.next()))
         elif which_set == 'toy':
-            for i in range(10):
+            for i in range(50):
                 if (not filter_same) or (filter_same and (i in self._filtered_idxs)):
                     result.append(self._format_annotation(i,gid.next()))
         return result
@@ -351,6 +351,7 @@ class Py3DPW:
 
         annotation = {}
         annotation['ID'] = number
+        annotation['set'] = '3DPW'
         annotation['path'] = self._image_path(index)
         annotation['gender'] = gender
         if bbox != (0,0,0,0):

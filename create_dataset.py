@@ -83,31 +83,31 @@ if USE_3DHP:
     mi3 = PyMI3(BTFM_BASE, MI3_DIR, MI3_TEST_DIR, MI3_PP_DIR)
 
 
-# Start dataset. Top level is dict.
-dataset = {}
+# Start dataset. Top level is list.
+dataset = []
 
 # Gather data from each enabled dataset and add to top-level dict
 if USE_LSP:
     lsp_data = lsp.gather_data(which_set, gid=gid)
-    dataset['lsp']=lsp_data
+    dataset+=lsp_data
 if USE_LSPET:
     lspet_data = lspet.gather_data(which_set, gid=gid)
-    dataset['lspet']=lspet_data
+    dataset+=lspet_data
 if USE_MPII:
     mpii_data = mpii.gather_data(which_set, gid=gid)
-    dataset['mpii']=mpii_data
+    dataset+=mpii_data
 if USE_COCO:
     coco_data = coco.gather_data(which_set, gid=gid)
-    dataset['coco']=coco_data
+    dataset+=coco_data
 if USE_3DPW:
     tdpw_data = tdpw.gather_data(which_set, gid=gid)
-    dataset['3dpw']=tdpw_data
+    dataset+=tdpw_data
 if USE_3DHP:
     tick=time.time()
     mi3_data = mi3.gather_data(which_set, gid=gid)
     tock=time.time()
     print(f'Elapsed time: {tock-tick}')
-    dataset['mpi-inf-3dhp']=mi3_data
+    dataset+=mi3_data
 
 # Write to file
 with open('dataset.json', 'w') as outfile:

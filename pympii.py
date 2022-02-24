@@ -357,6 +357,7 @@ class PyMPII:
 
             annotation = {}
             annotation['ID'] = gid.next()
+            annotation['set'] = 'MPII'
             annotation['path'] = self._image_path(index)
 
             # Minimal bounding box containing joints

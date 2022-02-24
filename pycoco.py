@@ -267,6 +267,7 @@ class PyCOCOTrainVal:
         for ann in annotations:
             annotation = {}
             annotation['ID'] = gid.next()
+            annotation['set'] = 'COCO'
             annotation['path'] = ann['path']
 
             # Minimal bounding box containing joints
@@ -405,6 +406,7 @@ class PyCOCOTest:
 
         annotation = {}
         annotation['ID'] = number
+        annotation['set'] = 'COCO'
         annotation['path'] = self._image_path(index)
 
         # If height/width needed, uncomment

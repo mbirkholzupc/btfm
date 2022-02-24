@@ -323,6 +323,7 @@ class PyMI3:
         # Now write the info to the DB
         annotation = {}
         annotation['ID'] = gid.next()
+        annotation['set'] = 'MI3'
         annotation['path'] = self._image_path(index)
         annotation['gender'] = gender
 
@@ -380,6 +381,7 @@ class PyMI3:
         # Now write the info to the DB
         annotation = {}
         annotation['ID'] = gid.next()
+        annotation['set'] = 'MI3'
         annotation['path'] = self._image_path(index+self._num_trn_image)
         annotation['gender'] = gender
 

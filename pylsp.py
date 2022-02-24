@@ -95,6 +95,7 @@ class PyLSP:
 
         annotation = {}
         annotation['ID'] = number
+        annotation['set'] = 'LSP'
         annotation['path'] = self._image_path(index)
 
         # Create bbox from joints

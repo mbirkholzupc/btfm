@@ -111,6 +111,7 @@ class PyLSPET:
 
         annotation = {}
         annotation['ID'] = number
+        annotation['set'] = 'LSPET'
         annotation['path'] = self._image_path(index)
 
         # Create bbox from joints
