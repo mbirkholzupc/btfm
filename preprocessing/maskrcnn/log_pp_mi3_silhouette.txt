@@ -1,0 +1,3296 @@
+(py38btfm) ubuntu@ip-172-31-41-17:~/src/btfm/preprocessing/maskrcnn$ python silhouette.py 
+
+Configurations:
+BACKBONE                       resnet101
+BACKBONE_STRIDES               [4, 8, 16, 32, 64]
+BATCH_SIZE                     1
+BBOX_STD_DEV                   [0.1 0.1 0.2 0.2]
+COMPUTE_BACKBONE_SHAPE         None
+DETECTION_MAX_INSTANCES        100
+DETECTION_MIN_CONFIDENCE       0.7
+DETECTION_NMS_THRESHOLD        0.3
+FPN_CLASSIF_FC_LAYERS_SIZE     1024
+GPU_COUNT                      1
+GRADIENT_CLIP_NORM             5.0
+IMAGES_PER_GPU                 1
+IMAGE_CHANNEL_COUNT            3
+IMAGE_MAX_DIM                  1024
+IMAGE_META_SIZE                93
+IMAGE_MIN_DIM                  800
+IMAGE_MIN_SCALE                0
+IMAGE_RESIZE_MODE              square
+IMAGE_SHAPE                    [1024 1024    3]
+LEARNING_MOMENTUM              0.9
+LEARNING_RATE                  0.001
+LOSS_WEIGHTS                   {'rpn_class_loss': 1.0, 'rpn_bbox_loss': 1.0, 'mrcnn_class_loss': 1.0, 'mrcnn_bbox_loss': 1.0, 'mrcnn_mask_loss': 1.0}
+MASK_POOL_SIZE                 14
+MASK_SHAPE                     [28, 28]
+MAX_GT_INSTANCES               100
+MEAN_PIXEL                     [123.7 116.8 103.9]
+MINI_MASK_SHAPE                (56, 56)
+NAME                           coco
+NUM_CLASSES                    81
+POOL_SIZE                      7
+POST_NMS_ROIS_INFERENCE        1000
+POST_NMS_ROIS_TRAINING         2000
+PRE_NMS_LIMIT                  6000
+ROI_POSITIVE_RATIO             0.33
+RPN_ANCHOR_RATIOS              [0.5, 1, 2]
+RPN_ANCHOR_SCALES              (32, 64, 128, 256, 512)
+RPN_ANCHOR_STRIDE              1
+RPN_BBOX_STD_DEV               [0.1 0.1 0.2 0.2]
+RPN_NMS_THRESHOLD              0.7
+RPN_TRAIN_ANCHORS_PER_IMAGE    256
+STEPS_PER_EPOCH                1000
+TOP_DOWN_PYRAMID_SIZE          256
+TRAIN_BN                       False
+TRAIN_ROIS_PER_IMAGE           200
+USE_MINI_MASK                  True
+USE_RPN_ROIS                   True
+VALIDATION_STEPS               50
+WEIGHT_DECAY                   0.0001
+
+
+2022-01-14 21:19:21.161582: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-01-14 21:19:21.760971: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 13793 MB memory:  -> device: 0, name: Tesla T4, pci bus id: 0000:00:1e.0, compute capability: 7.5
+WARNING:tensorflow:From /home/ubuntu/.pyenv/versions/py38btfm/lib/python3.8/site-packages/tensorflow/python/util/deprecation.py:620: calling map_fn_v2 (from tensorflow.python.ops.map_fn) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Use fn_output_signature instead
+Total images: 52653
+2022-01-14 21:19:32.020080: I tensorflow/stream_executor/cuda/cuda_dnn.cc:366] Loaded cuDNN version 8302
+Images processed: 100/52653
+Images processed: 200/52653
+Images processed: 300/52653
+Images processed: 400/52653
+Images processed: 500/52653
+Images processed: 600/52653
+Images processed: 700/52653
+Images processed: 765/52653
+Images processed: 865/52653
+Images processed: 965/52653
+Images processed: 1065/52653
+Images processed: 1165/52653
+Images processed: 1265/52653
+Images processed: 1365/52653
+Images processed: 1465/52653
+Images processed: 1565/52653
+Images processed: 1665/52653
+Images processed: 1765/52653
+Images processed: 1865/52653
+Images processed: 1965/52653
+Images processed: 2027/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_00 Frame: 42
+J Scores: [0 0]
+[[0.35294118 0.         0.         0.         0.29411765 0.29411765
+  0.11764706]
+ [0.94117647 0.         0.         0.         0.11764706 0.
+  0.17647059]]
+BB Scores: [4 0]
+[[0.24266113 0.         0.01091703 0.12471353 0.80638416 0.14105373
+  0.05498357]
+ [0.59365404 0.         0.         0.38171546 0.23665082 0.
+  0.17626063]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_00 Frame: 43
+J Scores: [3 0]
+[[0.13333333 0.         0.06666667 0.4        0.26666667 0.
+  0.        ]
+ [0.88235294 0.         0.         0.         0.05882353 0.
+  0.05882353]]
+BB Scores: [4 0]
+[[0.25935699 0.         0.02007565 0.16668216 0.74088053 0.0589995
+  0.04666667]
+ [0.60794391 0.         0.         0.         0.27790772 0.30577942
+  0.15372989]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_00 Frame: 45
+J Scores: [3 0]
+[[0.2        0.         0.         0.46666667 0.26666667 0.        ]
+ [1.         0.         0.         0.         0.05882353 0.        ]]
+BB Scores: [4 0]
+[[0.25754582 0.         0.02364904 0.2294321  0.6371812  0.06588172]
+ [0.57973323 0.         0.         0.         0.23816807 0.33937193]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_00 Frame: 48
+J Scores: [3 0]
+[[0.33333333 0.         0.         0.73333333 0.         0.        ]
+ [1.         0.         0.         0.         0.         0.        ]]
+BB Scores: [3 4]
+[[0.2457758  0.01121772 0.         0.75135595 0.13609344 0.00656945]
+ [0.50240917 0.         0.         0.18441795 0.51280175 0.        ]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_00 Frame: 49
+J Scores: [3 0]
+[[0.26666667 0.         0.         0.73333333 0.        ]
+ [1.         0.         0.         0.         0.        ]]
+BB Scores: [3 2]
+[[0.23010782 0.00942067 0.16293814 0.58985615 0.00465582]
+ [0.43359361 0.         0.46762447 0.06689126 0.        ]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_00 Frame: 50
+J Scores: [2 0]
+[[0.26666667 0.         0.8        0.         0.         0.        ]
+ [1.         0.         0.         0.         0.         0.        ]]
+BB Scores: [2 3]
+[[0.19662815 0.         0.65929643 0.15294615 0.         0.        ]
+ [0.48656047 0.         0.17537297 0.59252544 0.         0.11061861]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_00 Frame: 52
+J Scores: [1 0]
+[[0.         0.86666667 0.         0.         0.        ]
+ [1.         0.         0.         0.         0.        ]]
+BB Scores: [1 3]
+[[0.15624845 0.56769561 0.         0.0978234  0.        ]
+ [0.45303737 0.12557122 0.         0.53850285 0.        ]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_00 Frame: 53
+J Scores: [1 0]
+[[0.         1.         0.         0.         0.        ]
+ [0.94117647 0.         0.         0.         0.        ]]
+BB Scores: [1 3]
+[[0.14535096 0.52080634 0.         0.1328621  0.        ]
+ [0.48284423 0.13590837 0.         0.52058486 0.        ]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_00 Frame: 54
+J Scores: [1 0]
+[[0. 1. 0. 0. 0. 0.]
+ [1. 0. 0. 0. 0. 0.]]
+BB Scores: [1 3]
+[[0.12558753 0.54652428 0.         0.09498654 0.         0.        ]
+ [0.46961792 0.14706685 0.         0.55049411 0.         0.        ]]
+Images processed: 2127/52653
+Images processed: 2227/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_00 Frame: 268
+J Scores: [0 0]
+[[0.58333333 0.         0.16666667 0.         0.         0.        ]
+ [0.78571429 0.         0.         0.         0.         0.        ]]
+BB Scores: [2 0]
+[[0.39378184 0.         0.50651496 0.         0.         0.05298411]
+ [0.33353601 0.00965953 0.17107724 0.         0.04323328 0.        ]]
+Images processed: 2327/52653
+Images processed: 2427/52653
+Images processed: 2495/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_01 Frame: 45
+J Scores: [0]
+[[1. 0. 0. 0. 0. 0.]]
+BB Scores: [3]
+[[0.56260745 0.04490784 0.03923415 0.5698167  0.09509373 0.        ]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_01 Frame: 48
+J Scores: [0]
+[[1. 0. 0. 0. 0.]]
+BB Scores: [4]
+[[0.56329622 0.04309259 0.04496823 0.09084273 0.57935129]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_01 Frame: 50
+J Scores: [0]
+[[0.8125 0.     0.0625 0.1875]]
+BB Scores: [2]
+[[0.53854572 0.03934538 0.59053739 0.14062507]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_01 Frame: 52
+J Scores: [0]
+[[0.875  0.     0.0625 0.1875]]
+BB Scores: [2]
+[[0.52218158 0.02935001 0.57052164 0.16989282]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_01 Frame: 53
+J Scores: [0]
+[[0.9375 0.     0.0625 0.375 ]]
+BB Scores: [2]
+[[0.52302115 0.03023307 0.58062507 0.19760586]]
+WARNING! J/BB scores not equal!' Seq: courtyard_basketball_01 Frame: 54
+J Scores: [0]
+[[0.86666667 0.         0.06666667 0.26666667]]
+BB Scores: [2]
+[[0.52962558 0.02975962 0.58401352 0.16288582]]
+Images processed: 2595/52653
+Images processed: 2695/52653
+Images processed: 2795/52653
+Images processed: 2895/52653
+Images processed: 2995/52653
+Images processed: 3095/52653
+Images processed: 3195/52653
+Images processed: 3295/52653
+Images processed: 3395/52653
+Images processed: 3453/52653
+Images processed: 3553/52653
+Images processed: 3653/52653
+Images processed: 3753/52653
+Images processed: 3853/52653
+Images processed: 3953/52653
+Images processed: 4053/52653
+Images processed: 4153/52653
+Images processed: 4253/52653
+Images processed: 4353/52653
+Images processed: 4453/52653
+Images processed: 4553/52653
+Images processed: 4653/52653
+Images processed: 4710/52653
+Images processed: 4810/52653
+Images processed: 4910/52653
+Images processed: 5010/52653
+Images processed: 5110/52653
+Images processed: 5210/52653
+Images processed: 5310/52653
+Images processed: 5410/52653
+Images processed: 5510/52653
+Images processed: 5610/52653
+Images processed: 5710/52653
+Images processed: 5751/52653
+Images processed: 5851/52653
+Images processed: 5951/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_capoeira_00 Frame: 284
+J Scores: [0 1]
+[[0.9375     0.         0.        ]
+ [0.         1.         0.15384615]]
+BB Scores: [0 2]
+[[0.67298494 0.14648406 0.05493574]
+ [0.13571273 0.50352113 0.66818128]]
+WARNING! J/BB scores not equal!' Seq: courtyard_capoeira_00 Frame: 286
+J Scores: [0 1]
+[[0.92857143 0.         0.         0.        ]
+ [0.         1.         0.         0.07142857]]
+BB Scores: [0 3]
+[[0.36846684 0.         0.         0.        ]
+ [0.10252754 0.50439459 0.         0.53687218]]
+Images processed: 6051/52653
+Images processed: 6151/52653
+Images processed: 6186/52653
+Images processed: 6286/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_captureSelfies_00 Frame: 177
+J Scores: [0 0]
+[[0.4        0.4        0.         0.        ]
+ [0.90909091 0.         0.         0.        ]]
+BB Scores: [1 0]
+[[0.37081253 0.8400683  0.20116295 0.        ]
+ [0.41677619 0.2097476  0.12395815 0.        ]]
+Images processed: 6386/52653
+Images processed: 6486/52653
+Images processed: 6586/52653
+Images processed: 6686/52653
+Images processed: 6786/52653
+Images processed: 6886/52653
+Images processed: 6936/52653
+Images processed: 7036/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_00 Frame: 162
+J Scores: [0 3]
+[[0.8        0.         0.2        0.        ]
+ [0.08333333 0.         0.         0.58333333]]
+BB Scores: [0 0]
+[[0.6858386  0.05394285 0.0968462  0.04723209]
+ [0.31195441 0.12554342 0.01347626 0.20615928]]
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_00 Frame: 165
+J Scores: [0 3]
+[[0.85714286 0.14285714 0.         0.07142857 0.        ]
+ [0.25       0.08333333 0.         0.5        0.        ]]
+BB Scores: [0 0]
+[[0.72934441 0.08032818 0.27710502 0.04204211 0.04404197]
+ [0.32573399 0.02563966 0.16976952 0.22215308 0.10682992]]
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_00 Frame: 166
+J Scores: [0 4]
+[[0.78571429 0.21428571 0.         0.         0.        ]
+ [0.16666667 0.08333333 0.         0.         0.5       ]]
+BB Scores: [0 0]
+[[0.73590214 0.09037928 0.03789048 0.16183786 0.04640393]
+ [0.31698581 0.02630658 0.09724302 0.17901773 0.22131804]]
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_00 Frame: 168
+J Scores: [0 3]
+[[0.78571429 0.21428571 0.         0.         0.        ]
+ [0.21428571 0.21428571 0.         0.42857143 0.        ]]
+BB Scores: [0 0]
+[[0.74135124 0.09838279 0.06130659 0.04340521 0.14408391]
+ [0.67726625 0.1565954  0.10189944 0.12061003 0.14864153]]
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_00 Frame: 169
+J Scores: [0 2]
+[[0.78571429 0.21428571 0.         0.         0.        ]
+ [0.28571429 0.21428571 0.42857143 0.         0.        ]]
+BB Scores: [0 0]
+[[0.74186618 0.09593007 0.04552719 0.0577218  0.15787543]
+ [0.68830422 0.18287377 0.12034926 0.09747395 0.16715441]]
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_00 Frame: 170
+J Scores: [0 1]
+[[0.92857143 0.         0.         0.14285714 0.        ]
+ [0.35714286 0.42857143 0.         0.21428571 0.        ]]
+BB Scores: [0 0]
+[[0.71295506 0.03770875 0.19478359 0.10512161 0.06908348]
+ [0.66179754 0.11413882 0.17771358 0.19441859 0.10976424]]
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_00 Frame: 171
+J Scores: [0 1]
+[[0.92857143 0.07142857 0.         0.        ]
+ [0.4        0.46666667 0.         0.        ]]
+BB Scores: [0 0]
+[[0.74094853 0.12005345 0.08650853 0.04558955]
+ [0.64015327 0.27305262 0.13027576 0.04821503]]
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_00 Frame: 172
+J Scores: [0 4]
+[[1.         0.         0.14285714 0.         0.        ]
+ [0.33333333 0.         0.53333333 0.         0.66666667]]
+BB Scores: [0 0]
+[[0.69683415 0.08112533 0.12687036 0.3101399  0.25731157]
+ [0.61363281 0.11995905 0.30471965 0.19585572 0.43086817]]
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_00 Frame: 173
+J Scores: [0 3]
+[[1.         0.         0.         0.14285714 0.        ]
+ [0.4        0.         0.         0.53333333 0.        ]]
+BB Scores: [0 0]
+[[0.67538231 0.         0.0930867  0.13776116 0.33574879]
+ [0.57535513 0.         0.1376438  0.33193183 0.16772875]]
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_00 Frame: 174
+J Scores: [0 1]
+[[1.         0.08333333 0.         0.         0.        ]
+ [0.5        0.55555556 0.         0.         0.        ]]
+BB Scores: [0 0]
+[[0.66256112 0.13393281 0.         0.09001842 0.3299827 ]
+ [0.71178145 0.28041525 0.         0.13061786 0.28323879]]
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_00 Frame: 176
+J Scores: [0 1]
+[[1.         0.07692308 0.         0.         0.        ]
+ [0.5        0.5625     0.         0.         0.        ]]
+BB Scores: [0 0]
+[[0.67129762 0.13672848 0.0816703  0.         0.32231552]
+ [0.73429959 0.30372311 0.11725643 0.         0.31164127]]
+Images processed: 7136/52653
+Images processed: 7236/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_00 Frame: 335
+J Scores: [1 0]
+[[0.25       0.58333333 0.08333333]
+ [0.77777778 0.11111111 0.11111111]]
+BB Scores: [0 0]
+[[0.44559841 0.3359116  0.27410969]
+ [0.76837243 0.20490798 0.24448933]]
+Images processed: 7336/52653
+Images processed: 7395/52653
+Images processed: 7495/52653
+Images processed: 7595/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_dancing_01 Frame: 260
+J Scores: [0 0]
+[[0.58333333 0.58333333 0.        ]
+ [1.         0.         0.        ]]
+BB Scores: [1 0]
+[[0.17750906 0.46587615 0.1045085 ]
+ [0.25507417 0.09172076 0.        ]]
+Images processed: 7695/52653
+Images processed: 7746/52653
+Images processed: 7846/52653
+Images processed: 7946/52653
+Images processed: 8046/52653
+Images processed: 8146/52653
+Images processed: 8246/52653
+Images processed: 8346/52653
+Images processed: 8435/52653
+Images processed: 8535/52653
+Images processed: 8635/52653
+Images processed: 8735/52653
+Images processed: 8835/52653
+Images processed: 8935/52653
+Images processed: 9035/52653
+Images processed: 9135/52653
+Images processed: 9235/52653
+Images processed: 9283/52653
+Images processed: 9383/52653
+Images processed: 9483/52653
+Images processed: 9583/52653
+Images processed: 9683/52653
+Images processed: 9783/52653
+Images processed: 9883/52653
+Images processed: 9887/52653
+Images processed: 9987/52653
+Images processed: 10087/52653
+Images processed: 10187/52653
+Images processed: 10287/52653
+Images processed: 10318/52653
+Images processed: 10418/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_hug_00 Frame: 152
+J Scores: [0 0]
+[[0.88888889 0.         0.         0.        ]
+ [0.06666667 0.         0.         0.        ]]
+BB Scores: [0 3]
+[[0.61997538 0.         0.         0.16907327]
+ [0.25671355 0.         0.         0.27195921]]
+WARNING! J/BB scores not equal!' Seq: courtyard_hug_00 Frame: 153
+J Scores: [0 0]
+[[0.88888889 0.         0.         0.         0.        ]
+ [0.06666667 0.         0.         0.         0.        ]]
+BB Scores: [0 3]
+[[0.6062809  0.         0.         0.16249089 0.09135904]
+ [0.27005984 0.         0.         0.28468127 0.14028411]]
+WARNING! J/BB scores not equal!' Seq: courtyard_hug_00 Frame: 154
+J Scores: [0 0]
+[[0.77777778 0.         0.         0.         0.        ]
+ [0.06666667 0.         0.         0.         0.        ]]
+BB Scores: [0 3]
+[[0.6430161  0.         0.         0.17410013 0.10263228]
+ [0.27191819 0.         0.         0.2789596  0.15630194]]
+WARNING! J/BB scores not equal!' Seq: courtyard_hug_00 Frame: 155
+J Scores: [0 0]
+[[0.77777778 0.         0.         0.         0.        ]
+ [0.         0.         0.         0.         0.        ]]
+BB Scores: [0 3]
+[[0.62063695 0.         0.         0.11393307 0.10953478]
+ [0.26541343 0.         0.         0.31118731 0.16382985]]
+WARNING! J/BB scores not equal!' Seq: courtyard_hug_00 Frame: 156
+J Scores: [0 0]
+[[0.93333333 0.         0.         0.        ]
+ [0.14285714 0.         0.         0.        ]]
+BB Scores: [0 3]
+[[0.59693775 0.         0.         0.16913847]
+ [0.24993742 0.         0.         0.27419884]]
+WARNING! J/BB scores not equal!' Seq: courtyard_hug_00 Frame: 159
+J Scores: [0 0]
+[[0.72222222 0.         0.         0.        ]
+ [0.         0.         0.         0.        ]]
+BB Scores: [0 3]
+[[6.86936974e-01 0.00000000e+00 6.31059606e-04 2.07207487e-01]
+ [2.43856026e-01 0.00000000e+00 0.00000000e+00 3.04277782e-01]]
+WARNING! J/BB scores not equal!' Seq: courtyard_hug_00 Frame: 160
+J Scores: [0 0]
+[[0.77777778 0.         0.         0.        ]
+ [0.         0.         0.         0.        ]]
+BB Scores: [0 3]
+[[5.47012784e-01 0.00000000e+00 1.33314191e-04 2.03561280e-01]
+ [2.38122992e-01 0.00000000e+00 0.00000000e+00 2.83873397e-01]]
+WARNING! J/BB scores not equal!' Seq: courtyard_hug_00 Frame: 163
+J Scores: [0 0]
+[[0.77777778 0.         0.         0.        ]
+ [0.         0.         0.         0.        ]]
+BB Scores: [0 2]
+[[0.69409257 0.00509761 0.22403482 0.        ]
+ [0.23211567 0.         0.26675392 0.        ]]
+Images processed: 10518/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_hug_00 Frame: 204
+J Scores: [0 0]
+[[0.75  0.    0.    0.   ]
+ [0.125 0.    0.    0.   ]]
+BB Scores: [0 3]
+[[0.25776243 0.         0.         0.01916311]
+ [0.22808664 0.         0.         0.24397656]]
+Images processed: 10618/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_hug_00 Frame: 323
+J Scores: [0 1]
+[[0.69230769 0.07692308 0.         0.         0.         0.61538462]
+ [0.06666667 0.86666667 0.         0.         0.         0.        ]]
+BB Scores: [5 1]
+[[0.22885843 0.16227739 0.         0.         0.01402136 0.68831763]
+ [0.25086052 0.64005501 0.         0.         0.0199189  0.17781015]]
+WARNING! J/BB scores not equal!' Seq: courtyard_hug_00 Frame: 389
+J Scores: [0 0]
+[[0.78571429 0.         0.         0.         0.        ]
+ [0.06666667 0.         0.         0.         0.        ]]
+BB Scores: [0 1]
+[[0.54188142 0.22951777 0.         0.0030523  0.13755622]
+ [0.26832121 0.2751256  0.         0.         0.14288522]]
+Images processed: 10718/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_hug_00 Frame: 482
+J Scores: [0 0]
+[[0.46666667 0.46666667 0.         0.         0.        ]
+ [0.875      0.0625     0.         0.         0.        ]]
+BB Scores: [1 0]
+[[0.23952593 0.48375946 0.         0.0534692  0.        ]
+ [0.60105144 0.18759975 0.         0.2876788  0.        ]]
+Images processed: 10818/52653
+Images processed: 10918/52653
+Images processed: 10932/52653
+Images processed: 11032/52653
+Images processed: 11132/52653
+Images processed: 11232/52653
+Images processed: 11332/52653
+Images processed: 11432/52653
+Images processed: 11532/52653
+Images processed: 11632/52653
+Images processed: 11732/52653
+Images processed: 11832/52653
+Images processed: 11932/52653
+Images processed: 12032/52653
+Images processed: 12132/52653
+Images processed: 12177/52653
+Images processed: 12277/52653
+Images processed: 12377/52653
+Images processed: 12477/52653
+Images processed: 12577/52653
+Images processed: 12677/52653
+Images processed: 12777/52653
+Images processed: 12796/52653
+Images processed: 12896/52653
+Images processed: 12996/52653
+Images processed: 13096/52653
+Images processed: 13196/52653
+Images processed: 13296/52653
+Images processed: 13396/52653
+Images processed: 13496/52653
+Images processed: 13596/52653
+Images processed: 13696/52653
+Images processed: 13727/52653
+Images processed: 13827/52653
+Images processed: 13927/52653
+Images processed: 14027/52653
+Images processed: 14127/52653
+Images processed: 14227/52653
+Images processed: 14327/52653
+Images processed: 14328/52653
+Images processed: 14428/52653
+Images processed: 14528/52653
+Images processed: 14628/52653
+Images processed: 14728/52653
+Images processed: 14828/52653
+Images processed: 14915/52653
+Images processed: 15015/52653
+Images processed: 15115/52653
+Images processed: 15215/52653
+Images processed: 15315/52653
+Images processed: 15415/52653
+Images processed: 15473/52653
+Images processed: 15573/52653
+Images processed: 15673/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_relaxOnBench_01 Frame: 294
+J Scores: [0]
+[[0.85714286 0.         0.57142857]]
+BB Scores: [2]
+[[0.42721601 0.         0.4914171 ]]
+Images processed: 15773/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_relaxOnBench_01 Frame: 343
+J Scores: [0]
+[[1.         0.         0.         0.66666667]]
+BB Scores: [3]
+[[0.39458656 0.0922043  0.         0.45443212]]
+Images processed: 15873/52653
+Images processed: 15973/52653
+Images processed: 16073/52653
+Images processed: 16173/52653
+Images processed: 16273/52653
+Images processed: 16373/52653
+Images processed: 16432/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_shakeHands_00 Frame: 90
+J Scores: [0 0]
+[[0.5        0.5        0.        ]
+ [0.78571429 0.         0.        ]]
+BB Scores: [1 0]
+[[0.2237115  0.58043274 0.        ]
+ [0.6996208  0.32584584 0.10643271]]
+Images processed: 16532/52653
+Images processed: 16632/52653
+Images processed: 16732/52653
+Images processed: 16823/52653
+Images processed: 16923/52653
+Images processed: 17023/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_warmWelcome_00 Frame: 211
+J Scores: [0 0]
+[[0.     0.     0.     0.     0.    ]
+ [0.5625 0.3125 0.     0.     0.4375]]
+BB Scores: [0 4]
+[[0.         0.         0.         0.         0.        ]
+ [0.44572895 0.08299656 0.00681612 0.0485248  0.56754182]]
+Images processed: 17123/52653
+Images processed: 17223/52653
+WARNING! J/BB scores not equal!' Seq: courtyard_warmWelcome_00 Frame: 467
+J Scores: [0 0]
+[[0.6 0.  0.6 0. ]
+ [1.  0.  0.  0. ]]
+BB Scores: [2 0]
+[[0.15783584 0.         0.69251839 0.        ]
+ [0.48776949 0.00854718 0.13524251 0.        ]]
+Images processed: 17323/52653
+Images processed: 17422/52653
+Images processed: 17522/52653
+Images processed: 17622/52653
+Images processed: 17722/52653
+Images processed: 17822/52653
+Images processed: 17922/52653
+Images processed: 18022/52653
+Images processed: 18122/52653
+Images processed: 18222/52653
+Images processed: 18320/52653
+Images processed: 18420/52653
+J score not human! Seq: downtown_bar_00 Frame: 114
+BB score not human! Seq: downtown_bar_00 Frame: 114
+J score not human! Seq: downtown_bar_00 Frame: 114
+BB score not human! Seq: downtown_bar_00 Frame: 114
+J score not human! Seq: downtown_bar_00 Frame: 115
+BB score not human! Seq: downtown_bar_00 Frame: 115
+J score not human! Seq: downtown_bar_00 Frame: 115
+BB score not human! Seq: downtown_bar_00 Frame: 115
+J score not human! Seq: downtown_bar_00 Frame: 116
+BB score not human! Seq: downtown_bar_00 Frame: 116
+J score not human! Seq: downtown_bar_00 Frame: 118
+BB score not human! Seq: downtown_bar_00 Frame: 118
+J score not human! Seq: downtown_bar_00 Frame: 122
+BB score not human! Seq: downtown_bar_00 Frame: 122
+J score not human! Seq: downtown_bar_00 Frame: 128
+BB score not human! Seq: downtown_bar_00 Frame: 128
+J score not human! Seq: downtown_bar_00 Frame: 136
+BB score not human! Seq: downtown_bar_00 Frame: 136
+J score not human! Seq: downtown_bar_00 Frame: 136
+BB score not human! Seq: downtown_bar_00 Frame: 136
+WARNING! J/BB scores not equal!' Seq: downtown_bar_00 Frame: 167
+J Scores: [2 0]
+[[0.21428571 0.         0.5        0.         0.         0.28571429]
+ [0.94117647 0.         0.         0.         0.         0.05882353]]
+BB Scores: [5 0]
+[[0.16762908 0.         0.33682716 0.         0.         0.66510491]
+ [0.73392644 0.         0.04085469 0.         0.         0.25742652]]
+Images processed: 18520/52653
+Images processed: 18620/52653
+Images processed: 18720/52653
+Images processed: 18820/52653
+Images processed: 18920/52653
+Images processed: 19020/52653
+Images processed: 19120/52653
+Images processed: 19220/52653
+Images processed: 19320/52653
+Images processed: 19420/52653
+Images processed: 19520/52653
+Images processed: 19620/52653
+Images processed: 19720/52653
+Images processed: 19723/52653
+Images processed: 19823/52653
+Images processed: 19923/52653
+Images processed: 20023/52653
+Images processed: 20123/52653
+WARNING! J/BB scores not equal!' Seq: downtown_bus_00 Frame: 433
+J Scores: [0 4]
+[[0.85714286 0.         0.         0.         0.         0.
+  0.         0.         0.        ]
+ [0.         0.38461538 0.         0.07692308 0.53846154 0.
+  0.         0.         0.        ]]
+BB Scores: [0 1]
+[[0.55172223 0.         0.         0.         0.         0.00578008
+  0.06592982 0.00884568 0.02407143]
+ [0.         0.60276578 0.02572257 0.16121085 0.28332119 0.
+  0.         0.         0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_bus_00 Frame: 438
+J Scores: [0 3]
+[[1.         0.         0.         0.         0.         0.
+  0.         0.        ]
+ [0.         0.23076923 0.         0.38461538 0.         0.
+  0.         0.        ]]
+BB Scores: [0 1]
+[[0.58287123 0.         0.         0.         0.         0.03721609
+  0.0823258  0.01487747]
+ [0.         0.38142544 0.         0.34101966 0.         0.
+  0.         0.        ]]
+Images processed: 20223/52653
+WARNING! J/BB scores not equal!' Seq: downtown_bus_00 Frame: 513
+J Scores: [1 2]
+[[0.         0.5        0.         0.42857143 0.         0.
+  0.         0.        ]
+ [0.07692308 0.         0.76923077 0.         0.         0.
+  0.         0.        ]]
+BB Scores: [3 2]
+[[0.         0.23184788 0.         0.5714871  0.01837453 0.
+  0.04189638 0.02661852]
+ [0.18056296 0.         0.72289794 0.         0.08238841 0.07544579
+  0.         0.        ]]
+Images processed: 20323/52653
+Images processed: 20423/52653
+Images processed: 20523/52653
+Images processed: 20623/52653
+Images processed: 20723/52653
+Images processed: 20823/52653
+Images processed: 20923/52653
+J score not human! Seq: downtown_bus_00 Frame: 1282
+BB score not human! Seq: downtown_bus_00 Frame: 1282
+J score not human! Seq: downtown_bus_00 Frame: 1282
+BB score not human! Seq: downtown_bus_00 Frame: 1282
+Images processed: 21023/52653
+WARNING! J/BB scores not equal!' Seq: downtown_bus_00 Frame: 1316
+J Scores: [3 0]
+[[0.         0.         0.30769231 0.46153846 0.         0.
+  0.        ]
+ [0.76923077 0.         0.         0.         0.         0.
+  0.15384615]]
+BB Scores: [2 0]
+[[0.         0.         0.55979324 0.21381481 0.         0.01743551
+  0.        ]
+ [0.77264661 0.         0.         0.         0.         0.
+  0.32916767]]
+WARNING! J/BB scores not equal!' Seq: downtown_bus_00 Frame: 1343
+J Scores: [3 0]
+[[0.     0.3125 0.     0.4375 0.0625 0.     0.    ]
+ [0.9375 0.     0.     0.     0.     0.     0.    ]]
+BB Scores: [1 0]
+[[0.         0.48558326 0.09031256 0.47751655 0.09178106 0.
+  0.        ]
+ [0.75708229 0.         0.         0.         0.         0.16603534
+  0.00414892]]
+WARNING! J/BB scores not equal!' Seq: downtown_bus_00 Frame: 1344
+J Scores: [4 0]
+[[0.         0.07692308 0.15384615 0.         0.30769231 0.        ]
+ [0.85714286 0.         0.         0.         0.         0.        ]]
+BB Scores: [2 0]
+[[0.         0.08324936 0.45374294 0.         0.24238275 0.        ]
+ [0.72440827 0.         0.         0.         0.         0.09771028]]
+WARNING! J/BB scores not equal!' Seq: downtown_bus_00 Frame: 1345
+J Scores: [1 0]
+[[0.         0.33333333 0.         0.33333333 0.08333333]
+ [0.9375     0.         0.         0.         0.        ]]
+BB Scores: [3 0]
+[[0.         0.4058133  0.         0.62038465 0.06951724]
+ [0.74965849 0.         0.         0.         0.        ]]
+J score not human! Seq: downtown_bus_00 Frame: 1345
+BB score not human! Seq: downtown_bus_00 Frame: 1345
+Images processed: 21123/52653
+Images processed: 21223/52653
+Images processed: 21323/52653
+Images processed: 21423/52653
+Images processed: 21523/52653
+Images processed: 21623/52653
+Images processed: 21723/52653
+Images processed: 21823/52653
+Images processed: 21901/52653
+Images processed: 22001/52653
+Images processed: 22101/52653
+Images processed: 22201/52653
+Images processed: 22301/52653
+J score not human! Seq: downtown_cafe_00 Frame: 496
+BB score not human! Seq: downtown_cafe_00 Frame: 496
+Images processed: 22401/52653
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 534
+J Scores: [0 4]
+[[0.75  0.    0.125 0.    0.    0.    0.    0.   ]
+ [0.    0.    0.    0.    0.4   0.4   0.    0.   ]]
+BB Scores: [0 5]
+[[0.60108498 0.         0.28256534 0.         0.         0.
+  0.         0.        ]
+ [0.         0.         0.         0.         0.49724364 0.54602131
+  0.         0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 534
+BB score not human! Seq: downtown_cafe_00 Frame: 534
+Images processed: 22501/52653
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 628
+J Scores: [6 3]
+[[0.    0.2   0.    0.    0.    0.    0.8   0.    0.    0.    0.    0.
+  0.   ]
+ [0.    0.    0.    0.625 0.    0.    0.    0.625 0.    0.125 0.    0.
+  0.   ]]
+BB Scores: [6 9]
+[[0.         0.32983045 0.         0.         0.         0.
+  0.57298417 0.         0.11626074 0.         0.         0.
+  0.        ]
+ [0.         0.         0.         0.35415164 0.         0.
+  0.         0.56943553 0.         0.57090016 0.         0.0510687
+  0.03261764]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 630
+J Scores: [5 3]
+[[0.     0.1875 0.     0.     0.     0.75   0.     0.     0.     0.    ]
+ [0.     0.     0.     0.6    0.     0.     0.2    0.     0.     0.    ]]
+BB Scores: [5 6]
+[[0.         0.34314061 0.         0.         0.         0.57004332
+  0.         0.         0.12095705 0.        ]
+ [0.         0.         0.         0.31299655 0.         0.
+  0.57577507 0.         0.         0.04101544]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 631
+J Scores: [5 3]
+[[0.         0.1875     0.         0.         0.         0.8125
+  0.         0.         0.         0.         0.         0.        ]
+ [0.         0.         0.         0.6        0.26666667 0.
+  0.         0.         0.         0.         0.4        0.        ]]
+BB Scores: [5 4]
+[[0.         0.33705757 0.         0.         0.         0.55618323
+  0.         0.         0.10700346 0.         0.         0.        ]
+ [0.         0.         0.         0.34303804 0.53486235 0.
+  0.         0.         0.         0.040062   0.51818249 0.03489383]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 632
+J Scores: [6 3]
+[[0.     0.     0.1875 0.     0.     0.     0.8125 0.     0.     0.
+  0.     0.    ]
+ [0.     0.     0.     0.5    0.25   0.     0.     0.     0.1875 0.
+  0.3125 0.    ]]
+BB Scores: [ 6 10]
+[[0.         0.         0.32763384 0.         0.         0.
+  0.5584306  0.         0.         0.11639883 0.         0.        ]
+ [0.         0.         0.         0.3022761  0.52387275 0.
+  0.         0.         0.07651271 0.         0.60133388 0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 633
+J Scores: [8 1]
+[[0.1875 0.     0.     0.     0.     0.     0.     0.     0.8125 0.
+  0.    ]
+ [0.     0.5    0.     0.     0.     0.     0.     0.25   0.     0.125
+  0.    ]]
+BB Scores: [8 7]
+[[0.32562891 0.         0.         0.         0.         0.
+  0.         0.         0.54846016 0.         0.12658533]
+ [0.         0.26183455 0.         0.         0.         0.
+  0.0468103  0.5096297  0.         0.06048033 0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 635
+J Scores: [6 3]
+[[0.1875 0.     0.     0.     0.     0.     0.8125 0.     0.     0.
+  0.     0.    ]
+ [0.     0.     0.     0.5    0.     0.     0.     0.1875 0.     0.
+  0.125  0.    ]]
+BB Scores: [6 7]
+[[0.35593797 0.         0.         0.         0.         0.
+  0.56509171 0.         0.13142929 0.         0.         0.        ]
+ [0.         0.         0.         0.25574109 0.         0.
+  0.         0.49689943 0.         0.04246101 0.03769975 0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 640
+J Scores: [6 3]
+[[0.29411765 0.         0.         0.         0.         0.
+  0.52941176 0.         0.         0.         0.         0.        ]
+ [0.         0.         0.         0.4375     0.         0.
+  0.         0.         0.4375     0.         0.         0.4375    ]]
+BB Scores: [6 8]
+[[0.36478303 0.         0.         0.         0.         0.
+  0.64413161 0.15925753 0.         0.         0.         0.        ]
+ [0.         0.         0.         0.30379506 0.         0.
+  0.         0.         0.67104469 0.0403932  0.         0.5466585 ]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 641
+J Scores: [8 5]
+[[0.         0.29411765 0.         0.         0.         0.
+  0.         0.         0.70588235 0.         0.         0.
+  0.        ]
+ [0.         0.         0.         0.         0.         0.5
+  0.375      0.         0.         0.         0.0625     0.
+  0.        ]]
+BB Scores: [8 6]
+[[0.         0.3624446  0.         0.         0.         0.
+  0.         0.15694647 0.6289238  0.00162732 0.         0.
+  0.        ]
+ [0.         0.         0.         0.         0.         0.31562335
+  0.49607824 0.         0.         0.2289809  0.01036491 0.03751215
+  0.16900236]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 642
+J Scores: [7 5]
+[[0.         0.         0.         0.29411765 0.         0.
+  0.         0.58823529 0.         0.        ]
+ [0.         0.         0.         0.         0.         0.4375
+  0.         0.         0.4375     0.        ]]
+BB Scores: [7 8]
+[[0.         0.         0.         0.31601526 0.         0.
+  0.1548638  0.44262718 0.         0.        ]
+ [0.         0.         0.         0.         0.         0.27668052
+  0.         0.         0.56551694 0.0361164 ]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 643
+J Scores: [8 2]
+[[0.29411765 0.         0.         0.         0.         0.
+  0.         0.         0.64705882 0.         0.         0.
+  0.        ]
+ [0.         0.         0.53333333 0.         0.         0.4
+  0.         0.         0.         0.         0.         0.
+  0.        ]]
+BB Scores: [8 5]
+[[0.34613505 0.         0.         0.         0.         0.
+  0.157959   0.         0.52122442 0.01648115 0.         0.
+  0.        ]
+ [0.         0.         0.3304606  0.         0.         0.54700592
+  0.         0.         0.         0.24207717 0.0019929  0.02571116
+  0.19200668]]
+J score not human! Seq: downtown_cafe_00 Frame: 644
+BB score not human! Seq: downtown_cafe_00 Frame: 644
+J score not human! Seq: downtown_cafe_00 Frame: 646
+BB score not human! Seq: downtown_cafe_00 Frame: 646
+J score not human! Seq: downtown_cafe_00 Frame: 647
+BB score not human! Seq: downtown_cafe_00 Frame: 647
+J score not human! Seq: downtown_cafe_00 Frame: 648
+BB score not human! Seq: downtown_cafe_00 Frame: 648
+J score not human! Seq: downtown_cafe_00 Frame: 649
+BB score not human! Seq: downtown_cafe_00 Frame: 649
+J score not human! Seq: downtown_cafe_00 Frame: 650
+BB score not human! Seq: downtown_cafe_00 Frame: 650
+J score not human! Seq: downtown_cafe_00 Frame: 650
+BB score not human! Seq: downtown_cafe_00 Frame: 650
+J score not human! Seq: downtown_cafe_00 Frame: 652
+BB score not human! Seq: downtown_cafe_00 Frame: 652
+J score not human! Seq: downtown_cafe_00 Frame: 653
+BB score not human! Seq: downtown_cafe_00 Frame: 653
+J score not human! Seq: downtown_cafe_00 Frame: 653
+BB score not human! Seq: downtown_cafe_00 Frame: 653
+J score not human! Seq: downtown_cafe_00 Frame: 654
+BB score not human! Seq: downtown_cafe_00 Frame: 654
+J score not human! Seq: downtown_cafe_00 Frame: 654
+BB score not human! Seq: downtown_cafe_00 Frame: 654
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 655
+J Scores: [1 3]
+[[0.         0.41176471 0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.41176471]
+ [0.         0.         0.         0.42857143 0.         0.42857143
+  0.         0.         0.         0.         0.         0.        ]]
+BB Scores: [11  5]
+[[0.         0.33832449 0.         0.         0.         0.
+  0.         0.26713287 0.16196717 0.         0.         0.57591674]
+ [0.         0.         0.         0.32867156 0.01011884 0.57703118
+  0.         0.         0.         0.         0.17874093 0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 655
+BB score not human! Seq: downtown_cafe_00 Frame: 655
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 656
+J Scores: [1 2]
+[[0.         0.41176471 0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.41176471]
+ [0.         0.         0.5        0.         0.         0.25
+  0.         0.         0.         0.         0.         0.        ]]
+BB Scores: [11  5]
+[[0.         0.35957732 0.         0.         0.         0.
+  0.28232861 0.         0.15953442 0.0047126  0.         0.58971682]
+ [0.         0.         0.36690469 0.         0.01070847 0.58617505
+  0.         0.01371878 0.         0.21128412 0.         0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 656
+BB score not human! Seq: downtown_cafe_00 Frame: 656
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 657
+J Scores: [0 4]
+[[0.47058824 0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.47058824 0.        ]
+ [0.         0.         0.         0.         0.5        0.3125
+  0.         0.         0.         0.         0.         0.        ]]
+BB Scores: [10  5]
+[[0.36372678 0.         0.         0.         0.         0.
+  0.         0.         0.00773952 0.29941162 0.54507139 0.15409898]
+ [0.         0.         0.         0.00853216 0.34563205 0.5737782
+  0.03716794 0.         0.21671357 0.         0.         0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 657
+BB score not human! Seq: downtown_cafe_00 Frame: 657
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 658
+J Scores: [0 2]
+[[0.47058824 0.         0.         0.         0.         0.
+  0.         0.         0.41176471 0.        ]
+ [0.         0.         0.71428571 0.         0.07142857 0.
+  0.         0.         0.         0.        ]]
+BB Scores: [8 4]
+[[0.36155555 0.         0.         0.         0.         0.
+  0.         0.1506015  0.56817429 0.29016404]
+ [0.         0.         0.36310961 0.         0.6094818  0.00704513
+  0.04350333 0.         0.         0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 658
+BB score not human! Seq: downtown_cafe_00 Frame: 658
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 659
+J Scores: [1 3]
+[[0.         0.47058824 0.         0.         0.         0.
+  0.         0.         0.         0.47058824 0.        ]
+ [0.         0.         0.         0.71428571 0.         0.07142857
+  0.         0.         0.         0.         0.        ]]
+BB Scores: [9 5]
+[[0.         0.37555507 0.         0.         0.         0.
+  0.         0.04720194 0.         0.61919008 0.15119234]
+ [0.         0.         0.00770646 0.35925365 0.         0.61493194
+  0.04949561 0.         0.11081055 0.         0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 659
+BB score not human! Seq: downtown_cafe_00 Frame: 659
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 660
+J Scores: [1 4]
+[[0.         0.47058824 0.         0.         0.         0.
+  0.         0.         0.         0.         0.41176471]
+ [0.         0.         0.         0.         0.69230769 0.15384615
+  0.         0.         0.         0.         0.        ]]
+BB Scores: [10  5]
+[[0.         0.3563453  0.         0.         0.         0.
+  0.07088666 0.         0.         0.16413983 0.56271342]
+ [0.         0.         0.04981673 0.00717949 0.39292118 0.61278832
+  0.         0.         0.25234019 0.         0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 660
+BB score not human! Seq: downtown_cafe_00 Frame: 660
+J score not human! Seq: downtown_cafe_00 Frame: 661
+BB score not human! Seq: downtown_cafe_00 Frame: 661
+J score not human! Seq: downtown_cafe_00 Frame: 661
+BB score not human! Seq: downtown_cafe_00 Frame: 661
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 662
+J Scores: [1 6]
+[[0.         0.52941176 0.         0.         0.         0.
+  0.         0.         0.         0.        ]
+ [0.         0.         0.         0.         0.         0.26666667
+  0.6        0.         0.         0.        ]]
+BB Scores: [1 5]
+[[0.         0.38661619 0.         0.         0.         0.
+  0.         0.         0.3310901  0.17163357]
+ [0.         0.         0.04829864 0.00675538 0.         0.62715777
+  0.39495179 0.0923825  0.         0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 662
+BB score not human! Seq: downtown_cafe_00 Frame: 662
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 663
+J Scores: [1 0]
+[[0.         0.52941176 0.         0.         0.         0.
+  0.         0.         0.47058824]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]]
+BB Scores: [8 0]
+[[0.         0.39888641 0.         0.         0.         0.
+  0.00784435 0.06275421 0.55617124]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 663
+BB score not human! Seq: downtown_cafe_00 Frame: 663
+J score not human! Seq: downtown_cafe_00 Frame: 663
+BB score not human! Seq: downtown_cafe_00 Frame: 663
+J score not human! Seq: downtown_cafe_00 Frame: 664
+BB score not human! Seq: downtown_cafe_00 Frame: 664
+J score not human! Seq: downtown_cafe_00 Frame: 664
+BB score not human! Seq: downtown_cafe_00 Frame: 664
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 665
+J Scores: [0 3]
+[[0.52941176 0.         0.         0.         0.         0.
+  0.         0.         0.         0.        ]
+ [0.         0.         0.         0.5625     0.         0.125
+  0.         0.         0.         0.        ]]
+BB Scores: [0 5]
+[[0.33267296 0.         0.         0.         0.05601603 0.
+  0.         0.         0.18407069 0.        ]
+ [0.         0.         0.00700824 0.43148683 0.         0.61420921
+  0.         0.10975877 0.         0.03132957]]
+J score not human! Seq: downtown_cafe_00 Frame: 665
+BB score not human! Seq: downtown_cafe_00 Frame: 665
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 666
+J Scores: [1 6]
+[[0.         0.52941176 0.         0.         0.         0.
+  0.         0.         0.         0.52941176]
+ [0.         0.         0.         0.         0.05882353 0.
+  0.58823529 0.         0.         0.        ]]
+BB Scores: [9 4]
+[[0.         0.35251999 0.         0.         0.         0.
+  0.         0.04630533 0.00108113 0.5039819 ]
+ [0.         0.         0.         0.00629685 0.63434998 0.05778316
+  0.56374785 0.         0.13125402 0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 666
+BB score not human! Seq: downtown_cafe_00 Frame: 666
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 667
+J Scores: [1 6]
+[[0.         0.52941176 0.         0.         0.         0.
+  0.         0.         0.47058824 0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.53333333 0.         0.         0.        ]]
+BB Scores: [8 3]
+[[0.         0.3370333  0.         0.         0.         0.04486081
+  0.         0.00096987 0.54188829 0.        ]
+ [0.         0.         0.00551269 0.62796834 0.         0.
+  0.39413031 0.09534333 0.         0.04740142]]
+J score not human! Seq: downtown_cafe_00 Frame: 667
+BB score not human! Seq: downtown_cafe_00 Frame: 667
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 668
+J Scores: [8 5]
+[[0.         0.35294118 0.         0.         0.         0.
+  0.         0.         0.52941176 0.        ]
+ [0.         0.         0.         0.         0.         0.53333333
+  0.         0.         0.         0.        ]]
+BB Scores: [8 4]
+[[0.         0.3279055  0.         0.         0.         0.
+  0.03483228 0.         0.52401877 0.        ]
+ [0.         0.         0.00353972 0.         0.60535418 0.47661443
+  0.         0.09596967 0.         0.00099059]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 669
+J Scores: [0 6]
+[[0.41176471 0.         0.         0.         0.         0.
+  0.         0.         0.         0.41176471 0.         0.17647059
+  0.        ]
+ [0.         0.         0.         0.         0.27272727 0.
+  0.36363636 0.         0.         0.         0.         0.
+  0.        ]]
+BB Scores: [9 4]
+[[0.33133103 0.         0.         0.         0.         0.0350602
+  0.         0.         0.         0.52488122 0.         0.4888608
+  0.        ]
+ [0.         0.         0.00184157 0.         0.6399748  0.
+  0.39763279 0.         0.10868562 0.         0.04708993 0.
+  0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 669
+BB score not human! Seq: downtown_cafe_00 Frame: 669
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 670
+J Scores: [0 0]
+[[0.47058824 0.         0.         0.         0.         0.
+  0.         0.         0.         0.41176471 0.         0.
+  0.23529412 0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+BB Scores: [9 0]
+[[0.34205651 0.         0.03870591 0.         0.         0.
+  0.         0.         0.00667344 0.52780386 0.1422997  0.
+  0.47961767 0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 670
+BB score not human! Seq: downtown_cafe_00 Frame: 670
+J score not human! Seq: downtown_cafe_00 Frame: 670
+BB score not human! Seq: downtown_cafe_00 Frame: 670
+J score not human! Seq: downtown_cafe_00 Frame: 672
+BB score not human! Seq: downtown_cafe_00 Frame: 672
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 673
+J Scores: [8 5]
+[[0.         0.35294118 0.         0.         0.         0.
+  0.11764706 0.         0.41176471 0.         0.         0.
+  0.05882353 0.        ]
+ [0.         0.         0.         0.         0.26666667 0.46666667
+  0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+BB Scores: [8 4]
+[[0.         0.31644114 0.         0.         0.         0.
+  0.1552996  0.         0.51730195 0.         0.00974129 0.
+  0.13628258 0.        ]
+ [0.         0.         0.         0.         0.64509818 0.37938756
+  0.         0.13544409 0.         0.         0.05652195 0.
+  0.         0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 674
+BB score not human! Seq: downtown_cafe_00 Frame: 674
+J score not human! Seq: downtown_cafe_00 Frame: 675
+BB score not human! Seq: downtown_cafe_00 Frame: 675
+J score not human! Seq: downtown_cafe_00 Frame: 678
+BB score not human! Seq: downtown_cafe_00 Frame: 678
+J score not human! Seq: downtown_cafe_00 Frame: 679
+BB score not human! Seq: downtown_cafe_00 Frame: 679
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 680
+J Scores: [2 6]
+[[0.35294118 0.         0.47058824 0.         0.         0.
+  0.         0.         0.         0.         0.        ]
+ [0.         0.         0.         0.35714286 0.         0.
+  0.42857143 0.         0.         0.         0.        ]]
+BB Scores: [2 3]
+[[0.34053246 0.00658057 0.48184818 0.         0.         0.
+  0.         0.         0.         0.02860533 0.        ]
+ [0.         0.         0.         0.64766247 0.         0.
+  0.33744522 0.         0.         0.10233733 0.10959504]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 681
+J Scores: [2 6]
+[[0.35294118 0.         0.47058824 0.         0.         0.
+  0.         0.         0.         0.         0.        ]
+ [0.         0.         0.         0.33333333 0.         0.
+  0.4        0.         0.         0.06666667 0.        ]]
+BB Scores: [2 3]
+[[0.33330737 0.         0.49738156 0.         0.         0.01360974
+  0.         0.0159579  0.         0.         0.0421117 ]
+ [0.         0.         0.         0.6806715  0.         0.
+  0.31469641 0.         0.13582212 0.08169372 0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 682
+J Scores: [3 8]
+[[0.         0.35294118 0.         0.47058824 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.2        0.53333333 0.         0.         0.
+  0.        ]]
+BB Scores: [3 7]
+[[0.         0.33161404 0.         0.48465437 0.         0.
+  0.02855289 0.         0.         0.01976046 0.         0.
+  0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.67674955 0.37437457 0.08094181 0.07111819 0.
+  0.18716863]]
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 683
+J Scores: [2 6]
+[[0.35294118 0.         0.47058824 0.         0.         0.
+  0.         0.         0.         0.         0.05882353 0.
+  0.         0.        ]
+ [0.         0.         0.         0.         0.         0.15384615
+  0.53846154 0.         0.         0.         0.         0.
+  0.         0.        ]]
+BB Scores: [2 5]
+[[0.32184078 0.         0.46983535 0.         0.02336291 0.
+  0.         0.         0.03145988 0.         0.04444382 0.01362277
+  0.02734753 0.        ]
+ [0.         0.         0.         0.         0.         0.65509103
+  0.31150449 0.         0.         0.20577182 0.         0.
+  0.05515897 0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 684
+BB score not human! Seq: downtown_cafe_00 Frame: 684
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 688
+J Scores: [0 8]
+[[0.47058824 0.35294118 0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.        ]
+ [0.         0.         0.         0.         0.         0.3125
+  0.         0.         0.5625     0.         0.         0.
+  0.         0.        ]]
+BB Scores: [0 5]
+[[0.53162519 0.33317578 0.         0.         0.         0.
+  0.         0.03162617 0.         0.06856802 0.01659917 0.
+  0.         0.        ]
+ [0.         0.         0.         0.         0.         0.62609234
+  0.         0.         0.55780366 0.         0.06044773 0.
+  0.14656008 0.        ]]
+J score not human! Seq: downtown_cafe_00 Frame: 689
+BB score not human! Seq: downtown_cafe_00 Frame: 689
+WARNING! J/BB scores not equal!' Seq: downtown_cafe_00 Frame: 699
+J Scores: [1 3]
+[[0.         0.64705882 0.         0.         0.         0.29411765
+  0.         0.         0.         0.         0.        ]
+ [0.         0.         0.         0.93333333 0.         0.
+  0.         0.         0.         0.         0.        ]]
+BB Scores: [1 9]
+[[0.         0.56651694 0.10105581 0.         0.         0.35507787
+  0.         0.1178054  0.0895906  0.         0.        ]
+ [0.         0.         0.         0.54988846 0.         0.
+  0.         0.         0.         0.55854552 0.        ]]
+Images processed: 22601/52653
+Images processed: 22701/52653
+J score not human! Seq: downtown_cafe_00 Frame: 806
+BB score not human! Seq: downtown_cafe_00 Frame: 806
+J score not human! Seq: downtown_cafe_00 Frame: 807
+BB score not human! Seq: downtown_cafe_00 Frame: 807
+J score not human! Seq: downtown_cafe_00 Frame: 808
+BB score not human! Seq: downtown_cafe_00 Frame: 808
+J score not human! Seq: downtown_cafe_00 Frame: 809
+BB score not human! Seq: downtown_cafe_00 Frame: 809
+J score not human! Seq: downtown_cafe_00 Frame: 810
+BB score not human! Seq: downtown_cafe_00 Frame: 810
+J score not human! Seq: downtown_cafe_00 Frame: 811
+BB score not human! Seq: downtown_cafe_00 Frame: 811
+J score not human! Seq: downtown_cafe_00 Frame: 812
+BB score not human! Seq: downtown_cafe_00 Frame: 812
+J score not human! Seq: downtown_cafe_00 Frame: 813
+BB score not human! Seq: downtown_cafe_00 Frame: 813
+J score not human! Seq: downtown_cafe_00 Frame: 814
+BB score not human! Seq: downtown_cafe_00 Frame: 814
+J score not human! Seq: downtown_cafe_00 Frame: 815
+BB score not human! Seq: downtown_cafe_00 Frame: 815
+J score not human! Seq: downtown_cafe_00 Frame: 816
+BB score not human! Seq: downtown_cafe_00 Frame: 816
+J score not human! Seq: downtown_cafe_00 Frame: 817
+BB score not human! Seq: downtown_cafe_00 Frame: 817
+J score not human! Seq: downtown_cafe_00 Frame: 818
+BB score not human! Seq: downtown_cafe_00 Frame: 818
+J score not human! Seq: downtown_cafe_00 Frame: 819
+BB score not human! Seq: downtown_cafe_00 Frame: 819
+J score not human! Seq: downtown_cafe_00 Frame: 820
+BB score not human! Seq: downtown_cafe_00 Frame: 820
+J score not human! Seq: downtown_cafe_00 Frame: 821
+BB score not human! Seq: downtown_cafe_00 Frame: 821
+J score not human! Seq: downtown_cafe_00 Frame: 822
+BB score not human! Seq: downtown_cafe_00 Frame: 822
+J score not human! Seq: downtown_cafe_00 Frame: 823
+BB score not human! Seq: downtown_cafe_00 Frame: 823
+J score not human! Seq: downtown_cafe_00 Frame: 824
+BB score not human! Seq: downtown_cafe_00 Frame: 824
+J score not human! Seq: downtown_cafe_00 Frame: 825
+BB score not human! Seq: downtown_cafe_00 Frame: 825
+J score not human! Seq: downtown_cafe_00 Frame: 826
+BB score not human! Seq: downtown_cafe_00 Frame: 826
+J score not human! Seq: downtown_cafe_00 Frame: 827
+BB score not human! Seq: downtown_cafe_00 Frame: 827
+J score not human! Seq: downtown_cafe_00 Frame: 828
+BB score not human! Seq: downtown_cafe_00 Frame: 828
+J score not human! Seq: downtown_cafe_00 Frame: 829
+BB score not human! Seq: downtown_cafe_00 Frame: 829
+J score not human! Seq: downtown_cafe_00 Frame: 830
+BB score not human! Seq: downtown_cafe_00 Frame: 830
+J score not human! Seq: downtown_cafe_00 Frame: 831
+BB score not human! Seq: downtown_cafe_00 Frame: 831
+J score not human! Seq: downtown_cafe_00 Frame: 832
+BB score not human! Seq: downtown_cafe_00 Frame: 832
+J score not human! Seq: downtown_cafe_00 Frame: 833
+BB score not human! Seq: downtown_cafe_00 Frame: 833
+J score not human! Seq: downtown_cafe_00 Frame: 834
+BB score not human! Seq: downtown_cafe_00 Frame: 834
+J score not human! Seq: downtown_cafe_00 Frame: 835
+BB score not human! Seq: downtown_cafe_00 Frame: 835
+J score not human! Seq: downtown_cafe_00 Frame: 836
+BB score not human! Seq: downtown_cafe_00 Frame: 836
+J score not human! Seq: downtown_cafe_00 Frame: 837
+BB score not human! Seq: downtown_cafe_00 Frame: 837
+J score not human! Seq: downtown_cafe_00 Frame: 838
+BB score not human! Seq: downtown_cafe_00 Frame: 838
+J score not human! Seq: downtown_cafe_00 Frame: 839
+BB score not human! Seq: downtown_cafe_00 Frame: 839
+J score not human! Seq: downtown_cafe_00 Frame: 840
+BB score not human! Seq: downtown_cafe_00 Frame: 840
+J score not human! Seq: downtown_cafe_00 Frame: 842
+BB score not human! Seq: downtown_cafe_00 Frame: 842
+J score not human! Seq: downtown_cafe_00 Frame: 845
+BB score not human! Seq: downtown_cafe_00 Frame: 845
+J score not human! Seq: downtown_cafe_00 Frame: 846
+BB score not human! Seq: downtown_cafe_00 Frame: 846
+J score not human! Seq: downtown_cafe_00 Frame: 848
+BB score not human! Seq: downtown_cafe_00 Frame: 848
+J score not human! Seq: downtown_cafe_00 Frame: 849
+BB score not human! Seq: downtown_cafe_00 Frame: 849
+J score not human! Seq: downtown_cafe_00 Frame: 850
+BB score not human! Seq: downtown_cafe_00 Frame: 850
+J score not human! Seq: downtown_cafe_00 Frame: 851
+BB score not human! Seq: downtown_cafe_00 Frame: 851
+J score not human! Seq: downtown_cafe_00 Frame: 852
+BB score not human! Seq: downtown_cafe_00 Frame: 852
+J score not human! Seq: downtown_cafe_00 Frame: 853
+BB score not human! Seq: downtown_cafe_00 Frame: 853
+J score not human! Seq: downtown_cafe_00 Frame: 854
+BB score not human! Seq: downtown_cafe_00 Frame: 854
+J score not human! Seq: downtown_cafe_00 Frame: 855
+BB score not human! Seq: downtown_cafe_00 Frame: 855
+J score not human! Seq: downtown_cafe_00 Frame: 856
+BB score not human! Seq: downtown_cafe_00 Frame: 856
+J score not human! Seq: downtown_cafe_00 Frame: 857
+BB score not human! Seq: downtown_cafe_00 Frame: 857
+J score not human! Seq: downtown_cafe_00 Frame: 858
+BB score not human! Seq: downtown_cafe_00 Frame: 858
+J score not human! Seq: downtown_cafe_00 Frame: 859
+BB score not human! Seq: downtown_cafe_00 Frame: 859
+J score not human! Seq: downtown_cafe_00 Frame: 860
+BB score not human! Seq: downtown_cafe_00 Frame: 860
+J score not human! Seq: downtown_cafe_00 Frame: 861
+BB score not human! Seq: downtown_cafe_00 Frame: 861
+J score not human! Seq: downtown_cafe_00 Frame: 862
+BB score not human! Seq: downtown_cafe_00 Frame: 862
+J score not human! Seq: downtown_cafe_00 Frame: 863
+BB score not human! Seq: downtown_cafe_00 Frame: 863
+J score not human! Seq: downtown_cafe_00 Frame: 864
+BB score not human! Seq: downtown_cafe_00 Frame: 864
+J score not human! Seq: downtown_cafe_00 Frame: 865
+BB score not human! Seq: downtown_cafe_00 Frame: 865
+J score not human! Seq: downtown_cafe_00 Frame: 866
+BB score not human! Seq: downtown_cafe_00 Frame: 866
+J score not human! Seq: downtown_cafe_00 Frame: 867
+BB score not human! Seq: downtown_cafe_00 Frame: 867
+J score not human! Seq: downtown_cafe_00 Frame: 868
+BB score not human! Seq: downtown_cafe_00 Frame: 868
+J score not human! Seq: downtown_cafe_00 Frame: 869
+BB score not human! Seq: downtown_cafe_00 Frame: 869
+J score not human! Seq: downtown_cafe_00 Frame: 870
+BB score not human! Seq: downtown_cafe_00 Frame: 870
+J score not human! Seq: downtown_cafe_00 Frame: 871
+BB score not human! Seq: downtown_cafe_00 Frame: 871
+J score not human! Seq: downtown_cafe_00 Frame: 872
+BB score not human! Seq: downtown_cafe_00 Frame: 872
+J score not human! Seq: downtown_cafe_00 Frame: 873
+BB score not human! Seq: downtown_cafe_00 Frame: 873
+J score not human! Seq: downtown_cafe_00 Frame: 874
+BB score not human! Seq: downtown_cafe_00 Frame: 874
+J score not human! Seq: downtown_cafe_00 Frame: 875
+BB score not human! Seq: downtown_cafe_00 Frame: 875
+J score not human! Seq: downtown_cafe_00 Frame: 876
+BB score not human! Seq: downtown_cafe_00 Frame: 876
+J score not human! Seq: downtown_cafe_00 Frame: 877
+BB score not human! Seq: downtown_cafe_00 Frame: 877
+J score not human! Seq: downtown_cafe_00 Frame: 878
+BB score not human! Seq: downtown_cafe_00 Frame: 878
+J score not human! Seq: downtown_cafe_00 Frame: 879
+BB score not human! Seq: downtown_cafe_00 Frame: 879
+J score not human! Seq: downtown_cafe_00 Frame: 880
+BB score not human! Seq: downtown_cafe_00 Frame: 880
+J score not human! Seq: downtown_cafe_00 Frame: 881
+BB score not human! Seq: downtown_cafe_00 Frame: 881
+J score not human! Seq: downtown_cafe_00 Frame: 882
+BB score not human! Seq: downtown_cafe_00 Frame: 882
+J score not human! Seq: downtown_cafe_00 Frame: 883
+BB score not human! Seq: downtown_cafe_00 Frame: 883
+J score not human! Seq: downtown_cafe_00 Frame: 884
+BB score not human! Seq: downtown_cafe_00 Frame: 884
+J score not human! Seq: downtown_cafe_00 Frame: 885
+BB score not human! Seq: downtown_cafe_00 Frame: 885
+J score not human! Seq: downtown_cafe_00 Frame: 886
+BB score not human! Seq: downtown_cafe_00 Frame: 886
+J score not human! Seq: downtown_cafe_00 Frame: 887
+BB score not human! Seq: downtown_cafe_00 Frame: 887
+J score not human! Seq: downtown_cafe_00 Frame: 888
+BB score not human! Seq: downtown_cafe_00 Frame: 888
+J score not human! Seq: downtown_cafe_00 Frame: 889
+BB score not human! Seq: downtown_cafe_00 Frame: 889
+J score not human! Seq: downtown_cafe_00 Frame: 890
+BB score not human! Seq: downtown_cafe_00 Frame: 890
+J score not human! Seq: downtown_cafe_00 Frame: 891
+BB score not human! Seq: downtown_cafe_00 Frame: 891
+J score not human! Seq: downtown_cafe_00 Frame: 893
+BB score not human! Seq: downtown_cafe_00 Frame: 893
+J score not human! Seq: downtown_cafe_00 Frame: 894
+BB score not human! Seq: downtown_cafe_00 Frame: 894
+J score not human! Seq: downtown_cafe_00 Frame: 895
+BB score not human! Seq: downtown_cafe_00 Frame: 895
+J score not human! Seq: downtown_cafe_00 Frame: 896
+BB score not human! Seq: downtown_cafe_00 Frame: 896
+J score not human! Seq: downtown_cafe_00 Frame: 897
+BB score not human! Seq: downtown_cafe_00 Frame: 897
+J score not human! Seq: downtown_cafe_00 Frame: 898
+BB score not human! Seq: downtown_cafe_00 Frame: 898
+J score not human! Seq: downtown_cafe_00 Frame: 899
+BB score not human! Seq: downtown_cafe_00 Frame: 899
+Images processed: 22801/52653
+J score not human! Seq: downtown_cafe_00 Frame: 900
+BB score not human! Seq: downtown_cafe_00 Frame: 900
+J score not human! Seq: downtown_cafe_00 Frame: 901
+BB score not human! Seq: downtown_cafe_00 Frame: 901
+J score not human! Seq: downtown_cafe_00 Frame: 902
+BB score not human! Seq: downtown_cafe_00 Frame: 902
+J score not human! Seq: downtown_cafe_00 Frame: 903
+BB score not human! Seq: downtown_cafe_00 Frame: 903
+J score not human! Seq: downtown_cafe_00 Frame: 904
+BB score not human! Seq: downtown_cafe_00 Frame: 904
+J score not human! Seq: downtown_cafe_00 Frame: 905
+BB score not human! Seq: downtown_cafe_00 Frame: 905
+J score not human! Seq: downtown_cafe_00 Frame: 906
+BB score not human! Seq: downtown_cafe_00 Frame: 906
+J score not human! Seq: downtown_cafe_00 Frame: 907
+BB score not human! Seq: downtown_cafe_00 Frame: 907
+J score not human! Seq: downtown_cafe_00 Frame: 908
+BB score not human! Seq: downtown_cafe_00 Frame: 908
+J score not human! Seq: downtown_cafe_00 Frame: 909
+BB score not human! Seq: downtown_cafe_00 Frame: 909
+J score not human! Seq: downtown_cafe_00 Frame: 910
+BB score not human! Seq: downtown_cafe_00 Frame: 910
+J score not human! Seq: downtown_cafe_00 Frame: 911
+BB score not human! Seq: downtown_cafe_00 Frame: 911
+J score not human! Seq: downtown_cafe_00 Frame: 912
+BB score not human! Seq: downtown_cafe_00 Frame: 912
+J score not human! Seq: downtown_cafe_00 Frame: 913
+BB score not human! Seq: downtown_cafe_00 Frame: 913
+J score not human! Seq: downtown_cafe_00 Frame: 914
+BB score not human! Seq: downtown_cafe_00 Frame: 914
+J score not human! Seq: downtown_cafe_00 Frame: 915
+BB score not human! Seq: downtown_cafe_00 Frame: 915
+J score not human! Seq: downtown_cafe_00 Frame: 916
+BB score not human! Seq: downtown_cafe_00 Frame: 916
+J score not human! Seq: downtown_cafe_00 Frame: 917
+BB score not human! Seq: downtown_cafe_00 Frame: 917
+J score not human! Seq: downtown_cafe_00 Frame: 918
+BB score not human! Seq: downtown_cafe_00 Frame: 918
+J score not human! Seq: downtown_cafe_00 Frame: 919
+BB score not human! Seq: downtown_cafe_00 Frame: 919
+J score not human! Seq: downtown_cafe_00 Frame: 920
+BB score not human! Seq: downtown_cafe_00 Frame: 920
+J score not human! Seq: downtown_cafe_00 Frame: 921
+BB score not human! Seq: downtown_cafe_00 Frame: 921
+J score not human! Seq: downtown_cafe_00 Frame: 922
+BB score not human! Seq: downtown_cafe_00 Frame: 922
+J score not human! Seq: downtown_cafe_00 Frame: 923
+BB score not human! Seq: downtown_cafe_00 Frame: 923
+J score not human! Seq: downtown_cafe_00 Frame: 924
+BB score not human! Seq: downtown_cafe_00 Frame: 924
+J score not human! Seq: downtown_cafe_00 Frame: 925
+BB score not human! Seq: downtown_cafe_00 Frame: 925
+J score not human! Seq: downtown_cafe_00 Frame: 926
+BB score not human! Seq: downtown_cafe_00 Frame: 926
+J score not human! Seq: downtown_cafe_00 Frame: 927
+BB score not human! Seq: downtown_cafe_00 Frame: 927
+J score not human! Seq: downtown_cafe_00 Frame: 928
+BB score not human! Seq: downtown_cafe_00 Frame: 928
+J score not human! Seq: downtown_cafe_00 Frame: 929
+BB score not human! Seq: downtown_cafe_00 Frame: 929
+J score not human! Seq: downtown_cafe_00 Frame: 930
+BB score not human! Seq: downtown_cafe_00 Frame: 930
+J score not human! Seq: downtown_cafe_00 Frame: 931
+BB score not human! Seq: downtown_cafe_00 Frame: 931
+J score not human! Seq: downtown_cafe_00 Frame: 932
+BB score not human! Seq: downtown_cafe_00 Frame: 932
+J score not human! Seq: downtown_cafe_00 Frame: 933
+BB score not human! Seq: downtown_cafe_00 Frame: 933
+J score not human! Seq: downtown_cafe_00 Frame: 934
+BB score not human! Seq: downtown_cafe_00 Frame: 934
+J score not human! Seq: downtown_cafe_00 Frame: 935
+BB score not human! Seq: downtown_cafe_00 Frame: 935
+J score not human! Seq: downtown_cafe_00 Frame: 936
+BB score not human! Seq: downtown_cafe_00 Frame: 936
+J score not human! Seq: downtown_cafe_00 Frame: 937
+BB score not human! Seq: downtown_cafe_00 Frame: 937
+J score not human! Seq: downtown_cafe_00 Frame: 938
+BB score not human! Seq: downtown_cafe_00 Frame: 938
+J score not human! Seq: downtown_cafe_00 Frame: 939
+BB score not human! Seq: downtown_cafe_00 Frame: 939
+J score not human! Seq: downtown_cafe_00 Frame: 940
+BB score not human! Seq: downtown_cafe_00 Frame: 940
+J score not human! Seq: downtown_cafe_00 Frame: 941
+BB score not human! Seq: downtown_cafe_00 Frame: 941
+J score not human! Seq: downtown_cafe_00 Frame: 942
+BB score not human! Seq: downtown_cafe_00 Frame: 942
+J score not human! Seq: downtown_cafe_00 Frame: 943
+BB score not human! Seq: downtown_cafe_00 Frame: 943
+J score not human! Seq: downtown_cafe_00 Frame: 944
+BB score not human! Seq: downtown_cafe_00 Frame: 944
+J score not human! Seq: downtown_cafe_00 Frame: 945
+BB score not human! Seq: downtown_cafe_00 Frame: 945
+J score not human! Seq: downtown_cafe_00 Frame: 946
+BB score not human! Seq: downtown_cafe_00 Frame: 946
+Images processed: 22901/52653
+Images processed: 23001/52653
+Images processed: 23101/52653
+Images processed: 23102/52653
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 58
+J Scores: [0 0]
+[[1.         0.         0.13333333 0.         0.         0.
+  0.         0.         0.         0.06666667 0.         0.        ]
+ [0.5        0.         0.21428571 0.         0.         0.
+  0.         0.         0.         0.35714286 0.         0.14285714]]
+BB Scores: [0 9]
+[[0.61426695 0.         0.19530177 0.         0.         0.
+  0.         0.         0.         0.105      0.32822168 0.01124194]
+ [0.21079101 0.         0.32514142 0.         0.         0.
+  0.         0.         0.         0.344815   0.17148289 0.17596567]]
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 60
+J Scores: [0 0]
+[[0.91666667 0.         0.         0.         0.         0.16666667
+  0.         0.         0.         0.25       0.         0.
+  0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.        ]]
+BB Scores: [10  0]
+[[0.41583012 0.         0.         0.         0.         0.24752214
+  0.         0.         0.         0.26860738 0.41766146 0.
+  0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.        ]]
+Images processed: 23202/52653
+Images processed: 23302/52653
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 247
+J Scores: [0 1]
+[[0.78571429 0.07142857 0.         0.         0.07142857 0.
+  0.        ]
+ [0.15384615 0.30769231 0.         0.15384615 0.30769231 0.
+  0.        ]]
+BB Scores: [0 4]
+[[0.71125632 0.04030104 0.         0.13117142 0.25195749 0.00291604
+  0.        ]
+ [0.20263806 0.14807827 0.         0.47347062 0.74984116 0.
+  0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 248
+J Scores: [0 1]
+[[0.91666667 0.08333333 0.         0.         0.         0.        ]
+ [0.15384615 0.53846154 0.         0.15384615 0.         0.        ]]
+BB Scores: [0 3]
+[[0.75294349 0.06397685 0.00596503 0.12306877 0.         0.00447227]
+ [0.20247216 0.26778609 0.01557632 0.46115519 0.         0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 249
+J Scores: [0 1]
+[[0.90909091 0.09090909 0.         0.         0.         0.09090909
+  0.        ]
+ [0.15384615 0.53846154 0.         0.15384615 0.         0.23076923
+  0.        ]]
+BB Scores: [0 3]
+[[0.72104204 0.06077822 0.         0.12838203 0.0065395  0.25951108
+  0.00316923]
+ [0.20024361 0.26914994 0.10917923 0.46348202 0.01569679 0.16161689
+  0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 255
+J Scores: [0 6]
+[[1.         0.         0.         0.         0.         0.
+  0.        ]
+ [0.14285714 0.35714286 0.         0.28571429 0.07142857 0.07142857
+  0.5       ]]
+BB Scores: [0 5]
+[[0.63543568 0.04088341 0.         0.21924667 0.02627502 0.00625944
+  0.22484908]
+ [0.14712752 0.37983992 0.         0.20404327 0.22381366 0.44039549
+  0.21227248]]
+J score not human! Seq: downtown_car_00 Frame: 255
+BB score not human! Seq: downtown_car_00 Frame: 255
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 256
+J Scores: [0 1]
+[[0.9375     0.         0.         0.         0.         0.
+  0.        ]
+ [0.13333333 0.33333333 0.33333333 0.         0.         0.
+  0.06666667]]
+BB Scores: [0 6]
+[[0.69232858 0.03416048 0.21453642 0.         0.01144781 0.
+  0.02327546]
+ [0.11369174 0.37111661 0.19901185 0.         0.12150601 0.
+  0.48672434]]
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 258
+J Scores: [0 3]
+[[0.82352941 0.         0.         0.05882353 0.         0.        ]
+ [0.16666667 0.41666667 0.08333333 0.58333333 0.         0.08333333]]
+BB Scores: [0 2]
+[[0.65047775 0.03314827 0.03263284 0.2266743  0.         0.03444798]
+ [0.1071892  0.35029688 0.45576819 0.19679049 0.         0.23381358]]
+J score not human! Seq: downtown_car_00 Frame: 258
+BB score not human! Seq: downtown_car_00 Frame: 258
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 259
+J Scores: [0 5]
+[[0.76470588 0.         0.         0.         0.         0.11764706]
+ [0.16666667 0.41666667 0.16666667 0.         0.         0.58333333]]
+BB Scores: [0 2]
+[[0.70474792 0.02776708 0.12774606 0.         0.         0.24238926]
+ [0.10742857 0.38184686 0.49980541 0.         0.         0.20018005]]
+J score not human! Seq: downtown_car_00 Frame: 259
+BB score not human! Seq: downtown_car_00 Frame: 259
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 260
+J Scores: [0 2]
+[[0.88235294 0.         0.         0.         0.05882353 0.        ]
+ [0.16666667 0.16666667 0.5        0.         0.33333333 0.        ]]
+BB Scores: [0 1]
+[[0.71767994 0.12640781 0.03053991 0.02999512 0.23910946 0.        ]
+ [0.11477411 0.49293735 0.40108482 0.17712541 0.18453617 0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 263
+J Scores: [0 3]
+[[0.76470588 0.         0.         0.         0.11764706 0.        ]
+ [0.08333333 0.08333333 0.         0.58333333 0.58333333 0.08333333]]
+BB Scores: [0 1]
+[[0.75631065 0.08014155 0.         0.02235153 0.26076941 0.03191988]
+ [0.10937163 0.48864502 0.         0.35641362 0.18877109 0.2879214 ]]
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 264
+J Scores: [0 2]
+[[0.76470588 0.         0.         0.         0.05882353 0.        ]
+ [0.15384615 0.07692308 0.46153846 0.         0.38461538 0.        ]]
+BB Scores: [0 1]
+[[0.75252519 0.06928943 0.03156842 0.         0.26986328 0.03511221]
+ [0.11248698 0.47019677 0.30833221 0.         0.18801193 0.08800851]]
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 265
+J Scores: [0 2]
+[[0.76470588 0.         0.         0.         0.         0.05882353
+  0.        ]
+ [0.18181818 0.         0.45454545 0.         0.18181818 0.09090909
+  0.        ]]
+BB Scores: [0 4]
+[[0.74189187 0.06016516 0.03342822 0.         0.06635219 0.32593085
+  0.03838118]
+ [0.13021155 0.29498899 0.32420138 0.         0.37481541 0.17506338
+  0.06839392]]
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 266
+J Scores: [0 2]
+[[0.86666667 0.         0.         0.         0.         0.
+  0.        ]
+ [0.16666667 0.         0.58333333 0.         0.         0.
+  0.08333333]]
+BB Scores: [0 1]
+[[0.74451292 0.07709256 0.03859261 0.03869069 0.32689193 0.
+  0.06349142]
+ [0.13726759 0.33292168 0.27177777 0.09450986 0.06381943 0.
+  0.31881104]]
+Images processed: 23402/52653
+Images processed: 23502/52653
+Images processed: 23602/52653
+J score not human! Seq: downtown_car_00 Frame: 597
+BB score not human! Seq: downtown_car_00 Frame: 597
+J score not human! Seq: downtown_car_00 Frame: 598
+BB score not human! Seq: downtown_car_00 Frame: 598
+Images processed: 23702/52653
+J score not human! Seq: downtown_car_00 Frame: 603
+BB score not human! Seq: downtown_car_00 Frame: 603
+J score not human! Seq: downtown_car_00 Frame: 604
+BB score not human! Seq: downtown_car_00 Frame: 604
+J score not human! Seq: downtown_car_00 Frame: 605
+BB score not human! Seq: downtown_car_00 Frame: 605
+J score not human! Seq: downtown_car_00 Frame: 606
+BB score not human! Seq: downtown_car_00 Frame: 606
+J score not human! Seq: downtown_car_00 Frame: 607
+BB score not human! Seq: downtown_car_00 Frame: 607
+J score not human! Seq: downtown_car_00 Frame: 608
+BB score not human! Seq: downtown_car_00 Frame: 608
+J score not human! Seq: downtown_car_00 Frame: 609
+BB score not human! Seq: downtown_car_00 Frame: 609
+J score not human! Seq: downtown_car_00 Frame: 610
+BB score not human! Seq: downtown_car_00 Frame: 610
+J score not human! Seq: downtown_car_00 Frame: 611
+BB score not human! Seq: downtown_car_00 Frame: 611
+J score not human! Seq: downtown_car_00 Frame: 612
+BB score not human! Seq: downtown_car_00 Frame: 612
+J score not human! Seq: downtown_car_00 Frame: 617
+BB score not human! Seq: downtown_car_00 Frame: 617
+J score not human! Seq: downtown_car_00 Frame: 626
+BB score not human! Seq: downtown_car_00 Frame: 626
+J score not human! Seq: downtown_car_00 Frame: 626
+BB score not human! Seq: downtown_car_00 Frame: 626
+J score not human! Seq: downtown_car_00 Frame: 627
+BB score not human! Seq: downtown_car_00 Frame: 627
+J score not human! Seq: downtown_car_00 Frame: 627
+BB score not human! Seq: downtown_car_00 Frame: 627
+J score not human! Seq: downtown_car_00 Frame: 628
+BB score not human! Seq: downtown_car_00 Frame: 628
+J score not human! Seq: downtown_car_00 Frame: 628
+BB score not human! Seq: downtown_car_00 Frame: 628
+J score not human! Seq: downtown_car_00 Frame: 629
+BB score not human! Seq: downtown_car_00 Frame: 629
+J score not human! Seq: downtown_car_00 Frame: 629
+BB score not human! Seq: downtown_car_00 Frame: 629
+J score not human! Seq: downtown_car_00 Frame: 630
+BB score not human! Seq: downtown_car_00 Frame: 630
+J score not human! Seq: downtown_car_00 Frame: 630
+BB score not human! Seq: downtown_car_00 Frame: 630
+J score not human! Seq: downtown_car_00 Frame: 631
+BB score not human! Seq: downtown_car_00 Frame: 631
+J score not human! Seq: downtown_car_00 Frame: 631
+BB score not human! Seq: downtown_car_00 Frame: 631
+J score not human! Seq: downtown_car_00 Frame: 632
+BB score not human! Seq: downtown_car_00 Frame: 632
+J score not human! Seq: downtown_car_00 Frame: 632
+BB score not human! Seq: downtown_car_00 Frame: 632
+J score not human! Seq: downtown_car_00 Frame: 633
+BB score not human! Seq: downtown_car_00 Frame: 633
+J score not human! Seq: downtown_car_00 Frame: 633
+BB score not human! Seq: downtown_car_00 Frame: 633
+J score not human! Seq: downtown_car_00 Frame: 634
+BB score not human! Seq: downtown_car_00 Frame: 634
+J score not human! Seq: downtown_car_00 Frame: 634
+BB score not human! Seq: downtown_car_00 Frame: 634
+J score not human! Seq: downtown_car_00 Frame: 635
+BB score not human! Seq: downtown_car_00 Frame: 635
+J score not human! Seq: downtown_car_00 Frame: 635
+BB score not human! Seq: downtown_car_00 Frame: 635
+J score not human! Seq: downtown_car_00 Frame: 636
+BB score not human! Seq: downtown_car_00 Frame: 636
+J score not human! Seq: downtown_car_00 Frame: 636
+BB score not human! Seq: downtown_car_00 Frame: 636
+J score not human! Seq: downtown_car_00 Frame: 637
+BB score not human! Seq: downtown_car_00 Frame: 637
+J score not human! Seq: downtown_car_00 Frame: 637
+BB score not human! Seq: downtown_car_00 Frame: 637
+J score not human! Seq: downtown_car_00 Frame: 638
+BB score not human! Seq: downtown_car_00 Frame: 638
+J score not human! Seq: downtown_car_00 Frame: 638
+BB score not human! Seq: downtown_car_00 Frame: 638
+J score not human! Seq: downtown_car_00 Frame: 639
+BB score not human! Seq: downtown_car_00 Frame: 639
+J score not human! Seq: downtown_car_00 Frame: 639
+BB score not human! Seq: downtown_car_00 Frame: 639
+J score not human! Seq: downtown_car_00 Frame: 640
+BB score not human! Seq: downtown_car_00 Frame: 640
+J score not human! Seq: downtown_car_00 Frame: 640
+BB score not human! Seq: downtown_car_00 Frame: 640
+J score not human! Seq: downtown_car_00 Frame: 641
+BB score not human! Seq: downtown_car_00 Frame: 641
+J score not human! Seq: downtown_car_00 Frame: 641
+BB score not human! Seq: downtown_car_00 Frame: 641
+J score not human! Seq: downtown_car_00 Frame: 642
+BB score not human! Seq: downtown_car_00 Frame: 642
+J score not human! Seq: downtown_car_00 Frame: 642
+BB score not human! Seq: downtown_car_00 Frame: 642
+J score not human! Seq: downtown_car_00 Frame: 643
+BB score not human! Seq: downtown_car_00 Frame: 643
+J score not human! Seq: downtown_car_00 Frame: 643
+BB score not human! Seq: downtown_car_00 Frame: 643
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 644
+J Scores: [0 3]
+[[0.         0.         0.         0.        ]
+ [0.         0.58333333 0.         1.        ]]
+BB Scores: [0 1]
+[[0.         0.         0.         0.        ]
+ [0.         0.65544148 0.         0.1261441 ]]
+J score not human! Seq: downtown_car_00 Frame: 644
+BB score not human! Seq: downtown_car_00 Frame: 644
+J score not human! Seq: downtown_car_00 Frame: 644
+BB score not human! Seq: downtown_car_00 Frame: 644
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 645
+J Scores: [0 3]
+[[0.         0.         0.         0.         0.        ]
+ [0.         0.58333333 0.         1.         0.        ]]
+BB Scores: [0 1]
+[[0.         0.         0.         0.         0.        ]
+ [0.         0.64367816 0.         0.14759086 0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 645
+BB score not human! Seq: downtown_car_00 Frame: 645
+J score not human! Seq: downtown_car_00 Frame: 645
+BB score not human! Seq: downtown_car_00 Frame: 645
+J score not human! Seq: downtown_car_00 Frame: 646
+BB score not human! Seq: downtown_car_00 Frame: 646
+J score not human! Seq: downtown_car_00 Frame: 646
+BB score not human! Seq: downtown_car_00 Frame: 646
+J score not human! Seq: downtown_car_00 Frame: 647
+BB score not human! Seq: downtown_car_00 Frame: 647
+J score not human! Seq: downtown_car_00 Frame: 647
+BB score not human! Seq: downtown_car_00 Frame: 647
+J score not human! Seq: downtown_car_00 Frame: 648
+BB score not human! Seq: downtown_car_00 Frame: 648
+J score not human! Seq: downtown_car_00 Frame: 648
+BB score not human! Seq: downtown_car_00 Frame: 648
+J score not human! Seq: downtown_car_00 Frame: 649
+BB score not human! Seq: downtown_car_00 Frame: 649
+J score not human! Seq: downtown_car_00 Frame: 649
+BB score not human! Seq: downtown_car_00 Frame: 649
+J score not human! Seq: downtown_car_00 Frame: 650
+BB score not human! Seq: downtown_car_00 Frame: 650
+J score not human! Seq: downtown_car_00 Frame: 650
+BB score not human! Seq: downtown_car_00 Frame: 650
+J score not human! Seq: downtown_car_00 Frame: 651
+BB score not human! Seq: downtown_car_00 Frame: 651
+J score not human! Seq: downtown_car_00 Frame: 651
+BB score not human! Seq: downtown_car_00 Frame: 651
+J score not human! Seq: downtown_car_00 Frame: 652
+BB score not human! Seq: downtown_car_00 Frame: 652
+J score not human! Seq: downtown_car_00 Frame: 652
+BB score not human! Seq: downtown_car_00 Frame: 652
+J score not human! Seq: downtown_car_00 Frame: 653
+BB score not human! Seq: downtown_car_00 Frame: 653
+J score not human! Seq: downtown_car_00 Frame: 653
+BB score not human! Seq: downtown_car_00 Frame: 653
+J score not human! Seq: downtown_car_00 Frame: 654
+BB score not human! Seq: downtown_car_00 Frame: 654
+J score not human! Seq: downtown_car_00 Frame: 654
+BB score not human! Seq: downtown_car_00 Frame: 654
+J score not human! Seq: downtown_car_00 Frame: 655
+BB score not human! Seq: downtown_car_00 Frame: 655
+J score not human! Seq: downtown_car_00 Frame: 655
+BB score not human! Seq: downtown_car_00 Frame: 655
+J score not human! Seq: downtown_car_00 Frame: 656
+BB score not human! Seq: downtown_car_00 Frame: 656
+J score not human! Seq: downtown_car_00 Frame: 656
+BB score not human! Seq: downtown_car_00 Frame: 656
+J score not human! Seq: downtown_car_00 Frame: 657
+BB score not human! Seq: downtown_car_00 Frame: 657
+J score not human! Seq: downtown_car_00 Frame: 657
+BB score not human! Seq: downtown_car_00 Frame: 657
+J score not human! Seq: downtown_car_00 Frame: 658
+BB score not human! Seq: downtown_car_00 Frame: 658
+J score not human! Seq: downtown_car_00 Frame: 658
+BB score not human! Seq: downtown_car_00 Frame: 658
+J score not human! Seq: downtown_car_00 Frame: 659
+BB score not human! Seq: downtown_car_00 Frame: 659
+J score not human! Seq: downtown_car_00 Frame: 659
+BB score not human! Seq: downtown_car_00 Frame: 659
+J score not human! Seq: downtown_car_00 Frame: 660
+BB score not human! Seq: downtown_car_00 Frame: 660
+J score not human! Seq: downtown_car_00 Frame: 660
+BB score not human! Seq: downtown_car_00 Frame: 660
+J score not human! Seq: downtown_car_00 Frame: 661
+BB score not human! Seq: downtown_car_00 Frame: 661
+J score not human! Seq: downtown_car_00 Frame: 661
+BB score not human! Seq: downtown_car_00 Frame: 661
+J score not human! Seq: downtown_car_00 Frame: 662
+BB score not human! Seq: downtown_car_00 Frame: 662
+J score not human! Seq: downtown_car_00 Frame: 662
+BB score not human! Seq: downtown_car_00 Frame: 662
+J score not human! Seq: downtown_car_00 Frame: 663
+BB score not human! Seq: downtown_car_00 Frame: 663
+J score not human! Seq: downtown_car_00 Frame: 663
+BB score not human! Seq: downtown_car_00 Frame: 663
+J score not human! Seq: downtown_car_00 Frame: 664
+BB score not human! Seq: downtown_car_00 Frame: 664
+J score not human! Seq: downtown_car_00 Frame: 664
+BB score not human! Seq: downtown_car_00 Frame: 664
+J score not human! Seq: downtown_car_00 Frame: 665
+BB score not human! Seq: downtown_car_00 Frame: 665
+J score not human! Seq: downtown_car_00 Frame: 665
+BB score not human! Seq: downtown_car_00 Frame: 665
+J score not human! Seq: downtown_car_00 Frame: 666
+BB score not human! Seq: downtown_car_00 Frame: 666
+J score not human! Seq: downtown_car_00 Frame: 666
+BB score not human! Seq: downtown_car_00 Frame: 666
+J score not human! Seq: downtown_car_00 Frame: 667
+BB score not human! Seq: downtown_car_00 Frame: 667
+J score not human! Seq: downtown_car_00 Frame: 667
+BB score not human! Seq: downtown_car_00 Frame: 667
+J score not human! Seq: downtown_car_00 Frame: 668
+BB score not human! Seq: downtown_car_00 Frame: 668
+J score not human! Seq: downtown_car_00 Frame: 668
+BB score not human! Seq: downtown_car_00 Frame: 668
+J score not human! Seq: downtown_car_00 Frame: 669
+BB score not human! Seq: downtown_car_00 Frame: 669
+J score not human! Seq: downtown_car_00 Frame: 669
+BB score not human! Seq: downtown_car_00 Frame: 669
+J score not human! Seq: downtown_car_00 Frame: 670
+BB score not human! Seq: downtown_car_00 Frame: 670
+J score not human! Seq: downtown_car_00 Frame: 670
+BB score not human! Seq: downtown_car_00 Frame: 670
+J score not human! Seq: downtown_car_00 Frame: 671
+BB score not human! Seq: downtown_car_00 Frame: 671
+J score not human! Seq: downtown_car_00 Frame: 671
+BB score not human! Seq: downtown_car_00 Frame: 671
+J score not human! Seq: downtown_car_00 Frame: 672
+BB score not human! Seq: downtown_car_00 Frame: 672
+J score not human! Seq: downtown_car_00 Frame: 672
+BB score not human! Seq: downtown_car_00 Frame: 672
+J score not human! Seq: downtown_car_00 Frame: 674
+BB score not human! Seq: downtown_car_00 Frame: 674
+J score not human! Seq: downtown_car_00 Frame: 674
+BB score not human! Seq: downtown_car_00 Frame: 674
+J score not human! Seq: downtown_car_00 Frame: 675
+BB score not human! Seq: downtown_car_00 Frame: 675
+J score not human! Seq: downtown_car_00 Frame: 675
+BB score not human! Seq: downtown_car_00 Frame: 675
+J score not human! Seq: downtown_car_00 Frame: 676
+BB score not human! Seq: downtown_car_00 Frame: 676
+J score not human! Seq: downtown_car_00 Frame: 676
+BB score not human! Seq: downtown_car_00 Frame: 676
+J score not human! Seq: downtown_car_00 Frame: 677
+BB score not human! Seq: downtown_car_00 Frame: 677
+J score not human! Seq: downtown_car_00 Frame: 677
+BB score not human! Seq: downtown_car_00 Frame: 677
+J score not human! Seq: downtown_car_00 Frame: 678
+BB score not human! Seq: downtown_car_00 Frame: 678
+J score not human! Seq: downtown_car_00 Frame: 678
+BB score not human! Seq: downtown_car_00 Frame: 678
+J score not human! Seq: downtown_car_00 Frame: 679
+BB score not human! Seq: downtown_car_00 Frame: 679
+J score not human! Seq: downtown_car_00 Frame: 679
+BB score not human! Seq: downtown_car_00 Frame: 679
+J score not human! Seq: downtown_car_00 Frame: 680
+BB score not human! Seq: downtown_car_00 Frame: 680
+J score not human! Seq: downtown_car_00 Frame: 680
+BB score not human! Seq: downtown_car_00 Frame: 680
+J score not human! Seq: downtown_car_00 Frame: 681
+BB score not human! Seq: downtown_car_00 Frame: 681
+J score not human! Seq: downtown_car_00 Frame: 681
+BB score not human! Seq: downtown_car_00 Frame: 681
+J score not human! Seq: downtown_car_00 Frame: 682
+BB score not human! Seq: downtown_car_00 Frame: 682
+J score not human! Seq: downtown_car_00 Frame: 682
+BB score not human! Seq: downtown_car_00 Frame: 682
+J score not human! Seq: downtown_car_00 Frame: 683
+BB score not human! Seq: downtown_car_00 Frame: 683
+J score not human! Seq: downtown_car_00 Frame: 683
+BB score not human! Seq: downtown_car_00 Frame: 683
+J score not human! Seq: downtown_car_00 Frame: 684
+BB score not human! Seq: downtown_car_00 Frame: 684
+J score not human! Seq: downtown_car_00 Frame: 684
+BB score not human! Seq: downtown_car_00 Frame: 684
+J score not human! Seq: downtown_car_00 Frame: 685
+BB score not human! Seq: downtown_car_00 Frame: 685
+J score not human! Seq: downtown_car_00 Frame: 685
+BB score not human! Seq: downtown_car_00 Frame: 685
+J score not human! Seq: downtown_car_00 Frame: 686
+BB score not human! Seq: downtown_car_00 Frame: 686
+J score not human! Seq: downtown_car_00 Frame: 686
+BB score not human! Seq: downtown_car_00 Frame: 686
+J score not human! Seq: downtown_car_00 Frame: 687
+BB score not human! Seq: downtown_car_00 Frame: 687
+J score not human! Seq: downtown_car_00 Frame: 687
+BB score not human! Seq: downtown_car_00 Frame: 687
+J score not human! Seq: downtown_car_00 Frame: 688
+BB score not human! Seq: downtown_car_00 Frame: 688
+J score not human! Seq: downtown_car_00 Frame: 688
+BB score not human! Seq: downtown_car_00 Frame: 688
+J score not human! Seq: downtown_car_00 Frame: 689
+BB score not human! Seq: downtown_car_00 Frame: 689
+J score not human! Seq: downtown_car_00 Frame: 689
+BB score not human! Seq: downtown_car_00 Frame: 689
+J score not human! Seq: downtown_car_00 Frame: 690
+BB score not human! Seq: downtown_car_00 Frame: 690
+J score not human! Seq: downtown_car_00 Frame: 690
+BB score not human! Seq: downtown_car_00 Frame: 690
+J score not human! Seq: downtown_car_00 Frame: 691
+BB score not human! Seq: downtown_car_00 Frame: 691
+J score not human! Seq: downtown_car_00 Frame: 691
+BB score not human! Seq: downtown_car_00 Frame: 691
+J score not human! Seq: downtown_car_00 Frame: 692
+BB score not human! Seq: downtown_car_00 Frame: 692
+J score not human! Seq: downtown_car_00 Frame: 692
+BB score not human! Seq: downtown_car_00 Frame: 692
+J score not human! Seq: downtown_car_00 Frame: 693
+BB score not human! Seq: downtown_car_00 Frame: 693
+J score not human! Seq: downtown_car_00 Frame: 693
+BB score not human! Seq: downtown_car_00 Frame: 693
+J score not human! Seq: downtown_car_00 Frame: 694
+BB score not human! Seq: downtown_car_00 Frame: 694
+J score not human! Seq: downtown_car_00 Frame: 694
+BB score not human! Seq: downtown_car_00 Frame: 694
+J score not human! Seq: downtown_car_00 Frame: 695
+BB score not human! Seq: downtown_car_00 Frame: 695
+J score not human! Seq: downtown_car_00 Frame: 695
+BB score not human! Seq: downtown_car_00 Frame: 695
+J score not human! Seq: downtown_car_00 Frame: 696
+BB score not human! Seq: downtown_car_00 Frame: 696
+J score not human! Seq: downtown_car_00 Frame: 696
+BB score not human! Seq: downtown_car_00 Frame: 696
+J score not human! Seq: downtown_car_00 Frame: 697
+BB score not human! Seq: downtown_car_00 Frame: 697
+J score not human! Seq: downtown_car_00 Frame: 697
+BB score not human! Seq: downtown_car_00 Frame: 697
+J score not human! Seq: downtown_car_00 Frame: 698
+BB score not human! Seq: downtown_car_00 Frame: 698
+J score not human! Seq: downtown_car_00 Frame: 698
+BB score not human! Seq: downtown_car_00 Frame: 698
+J score not human! Seq: downtown_car_00 Frame: 699
+BB score not human! Seq: downtown_car_00 Frame: 699
+J score not human! Seq: downtown_car_00 Frame: 699
+BB score not human! Seq: downtown_car_00 Frame: 699
+Images processed: 23802/52653
+J score not human! Seq: downtown_car_00 Frame: 700
+BB score not human! Seq: downtown_car_00 Frame: 700
+J score not human! Seq: downtown_car_00 Frame: 700
+BB score not human! Seq: downtown_car_00 Frame: 700
+J score not human! Seq: downtown_car_00 Frame: 701
+BB score not human! Seq: downtown_car_00 Frame: 701
+J score not human! Seq: downtown_car_00 Frame: 701
+BB score not human! Seq: downtown_car_00 Frame: 701
+J score not human! Seq: downtown_car_00 Frame: 702
+BB score not human! Seq: downtown_car_00 Frame: 702
+J score not human! Seq: downtown_car_00 Frame: 702
+BB score not human! Seq: downtown_car_00 Frame: 702
+J score not human! Seq: downtown_car_00 Frame: 703
+BB score not human! Seq: downtown_car_00 Frame: 703
+J score not human! Seq: downtown_car_00 Frame: 703
+BB score not human! Seq: downtown_car_00 Frame: 703
+J score not human! Seq: downtown_car_00 Frame: 704
+BB score not human! Seq: downtown_car_00 Frame: 704
+J score not human! Seq: downtown_car_00 Frame: 704
+BB score not human! Seq: downtown_car_00 Frame: 704
+J score not human! Seq: downtown_car_00 Frame: 705
+BB score not human! Seq: downtown_car_00 Frame: 705
+J score not human! Seq: downtown_car_00 Frame: 705
+BB score not human! Seq: downtown_car_00 Frame: 705
+J score not human! Seq: downtown_car_00 Frame: 706
+BB score not human! Seq: downtown_car_00 Frame: 706
+J score not human! Seq: downtown_car_00 Frame: 706
+BB score not human! Seq: downtown_car_00 Frame: 706
+J score not human! Seq: downtown_car_00 Frame: 708
+BB score not human! Seq: downtown_car_00 Frame: 708
+J score not human! Seq: downtown_car_00 Frame: 708
+BB score not human! Seq: downtown_car_00 Frame: 708
+J score not human! Seq: downtown_car_00 Frame: 709
+BB score not human! Seq: downtown_car_00 Frame: 709
+J score not human! Seq: downtown_car_00 Frame: 709
+BB score not human! Seq: downtown_car_00 Frame: 709
+J score not human! Seq: downtown_car_00 Frame: 711
+BB score not human! Seq: downtown_car_00 Frame: 711
+J score not human! Seq: downtown_car_00 Frame: 711
+BB score not human! Seq: downtown_car_00 Frame: 711
+J score not human! Seq: downtown_car_00 Frame: 712
+BB score not human! Seq: downtown_car_00 Frame: 712
+J score not human! Seq: downtown_car_00 Frame: 712
+BB score not human! Seq: downtown_car_00 Frame: 712
+J score not human! Seq: downtown_car_00 Frame: 713
+BB score not human! Seq: downtown_car_00 Frame: 713
+J score not human! Seq: downtown_car_00 Frame: 713
+BB score not human! Seq: downtown_car_00 Frame: 713
+J score not human! Seq: downtown_car_00 Frame: 714
+BB score not human! Seq: downtown_car_00 Frame: 714
+J score not human! Seq: downtown_car_00 Frame: 714
+BB score not human! Seq: downtown_car_00 Frame: 714
+J score not human! Seq: downtown_car_00 Frame: 715
+BB score not human! Seq: downtown_car_00 Frame: 715
+J score not human! Seq: downtown_car_00 Frame: 715
+BB score not human! Seq: downtown_car_00 Frame: 715
+J score not human! Seq: downtown_car_00 Frame: 716
+BB score not human! Seq: downtown_car_00 Frame: 716
+J score not human! Seq: downtown_car_00 Frame: 716
+BB score not human! Seq: downtown_car_00 Frame: 716
+J score not human! Seq: downtown_car_00 Frame: 717
+BB score not human! Seq: downtown_car_00 Frame: 717
+J score not human! Seq: downtown_car_00 Frame: 717
+BB score not human! Seq: downtown_car_00 Frame: 717
+J score not human! Seq: downtown_car_00 Frame: 721
+BB score not human! Seq: downtown_car_00 Frame: 721
+J score not human! Seq: downtown_car_00 Frame: 721
+BB score not human! Seq: downtown_car_00 Frame: 721
+J score not human! Seq: downtown_car_00 Frame: 730
+BB score not human! Seq: downtown_car_00 Frame: 730
+J score not human! Seq: downtown_car_00 Frame: 730
+BB score not human! Seq: downtown_car_00 Frame: 730
+J score not human! Seq: downtown_car_00 Frame: 731
+BB score not human! Seq: downtown_car_00 Frame: 731
+J score not human! Seq: downtown_car_00 Frame: 731
+BB score not human! Seq: downtown_car_00 Frame: 731
+J score not human! Seq: downtown_car_00 Frame: 732
+BB score not human! Seq: downtown_car_00 Frame: 732
+J score not human! Seq: downtown_car_00 Frame: 732
+BB score not human! Seq: downtown_car_00 Frame: 732
+J score not human! Seq: downtown_car_00 Frame: 733
+BB score not human! Seq: downtown_car_00 Frame: 733
+J score not human! Seq: downtown_car_00 Frame: 733
+BB score not human! Seq: downtown_car_00 Frame: 733
+J score not human! Seq: downtown_car_00 Frame: 734
+BB score not human! Seq: downtown_car_00 Frame: 734
+J score not human! Seq: downtown_car_00 Frame: 734
+BB score not human! Seq: downtown_car_00 Frame: 734
+J score not human! Seq: downtown_car_00 Frame: 735
+BB score not human! Seq: downtown_car_00 Frame: 735
+J score not human! Seq: downtown_car_00 Frame: 735
+BB score not human! Seq: downtown_car_00 Frame: 735
+J score not human! Seq: downtown_car_00 Frame: 736
+BB score not human! Seq: downtown_car_00 Frame: 736
+J score not human! Seq: downtown_car_00 Frame: 736
+BB score not human! Seq: downtown_car_00 Frame: 736
+J score not human! Seq: downtown_car_00 Frame: 737
+BB score not human! Seq: downtown_car_00 Frame: 737
+J score not human! Seq: downtown_car_00 Frame: 737
+BB score not human! Seq: downtown_car_00 Frame: 737
+J score not human! Seq: downtown_car_00 Frame: 738
+BB score not human! Seq: downtown_car_00 Frame: 738
+J score not human! Seq: downtown_car_00 Frame: 738
+BB score not human! Seq: downtown_car_00 Frame: 738
+J score not human! Seq: downtown_car_00 Frame: 741
+BB score not human! Seq: downtown_car_00 Frame: 741
+J score not human! Seq: downtown_car_00 Frame: 741
+BB score not human! Seq: downtown_car_00 Frame: 741
+J score not human! Seq: downtown_car_00 Frame: 742
+BB score not human! Seq: downtown_car_00 Frame: 742
+J score not human! Seq: downtown_car_00 Frame: 742
+BB score not human! Seq: downtown_car_00 Frame: 742
+J score not human! Seq: downtown_car_00 Frame: 744
+BB score not human! Seq: downtown_car_00 Frame: 744
+J score not human! Seq: downtown_car_00 Frame: 744
+BB score not human! Seq: downtown_car_00 Frame: 744
+J score not human! Seq: downtown_car_00 Frame: 745
+BB score not human! Seq: downtown_car_00 Frame: 745
+J score not human! Seq: downtown_car_00 Frame: 745
+BB score not human! Seq: downtown_car_00 Frame: 745
+J score not human! Seq: downtown_car_00 Frame: 746
+BB score not human! Seq: downtown_car_00 Frame: 746
+J score not human! Seq: downtown_car_00 Frame: 746
+BB score not human! Seq: downtown_car_00 Frame: 746
+J score not human! Seq: downtown_car_00 Frame: 747
+BB score not human! Seq: downtown_car_00 Frame: 747
+J score not human! Seq: downtown_car_00 Frame: 747
+BB score not human! Seq: downtown_car_00 Frame: 747
+J score not human! Seq: downtown_car_00 Frame: 748
+BB score not human! Seq: downtown_car_00 Frame: 748
+J score not human! Seq: downtown_car_00 Frame: 748
+BB score not human! Seq: downtown_car_00 Frame: 748
+J score not human! Seq: downtown_car_00 Frame: 749
+BB score not human! Seq: downtown_car_00 Frame: 749
+J score not human! Seq: downtown_car_00 Frame: 749
+BB score not human! Seq: downtown_car_00 Frame: 749
+J score not human! Seq: downtown_car_00 Frame: 750
+BB score not human! Seq: downtown_car_00 Frame: 750
+J score not human! Seq: downtown_car_00 Frame: 750
+BB score not human! Seq: downtown_car_00 Frame: 750
+J score not human! Seq: downtown_car_00 Frame: 751
+BB score not human! Seq: downtown_car_00 Frame: 751
+J score not human! Seq: downtown_car_00 Frame: 751
+BB score not human! Seq: downtown_car_00 Frame: 751
+J score not human! Seq: downtown_car_00 Frame: 752
+BB score not human! Seq: downtown_car_00 Frame: 752
+J score not human! Seq: downtown_car_00 Frame: 752
+BB score not human! Seq: downtown_car_00 Frame: 752
+J score not human! Seq: downtown_car_00 Frame: 753
+BB score not human! Seq: downtown_car_00 Frame: 753
+J score not human! Seq: downtown_car_00 Frame: 753
+BB score not human! Seq: downtown_car_00 Frame: 753
+J score not human! Seq: downtown_car_00 Frame: 754
+BB score not human! Seq: downtown_car_00 Frame: 754
+J score not human! Seq: downtown_car_00 Frame: 754
+BB score not human! Seq: downtown_car_00 Frame: 754
+J score not human! Seq: downtown_car_00 Frame: 755
+BB score not human! Seq: downtown_car_00 Frame: 755
+J score not human! Seq: downtown_car_00 Frame: 755
+BB score not human! Seq: downtown_car_00 Frame: 755
+J score not human! Seq: downtown_car_00 Frame: 756
+BB score not human! Seq: downtown_car_00 Frame: 756
+J score not human! Seq: downtown_car_00 Frame: 756
+BB score not human! Seq: downtown_car_00 Frame: 756
+J score not human! Seq: downtown_car_00 Frame: 757
+BB score not human! Seq: downtown_car_00 Frame: 757
+J score not human! Seq: downtown_car_00 Frame: 757
+BB score not human! Seq: downtown_car_00 Frame: 757
+J score not human! Seq: downtown_car_00 Frame: 758
+BB score not human! Seq: downtown_car_00 Frame: 758
+J score not human! Seq: downtown_car_00 Frame: 758
+BB score not human! Seq: downtown_car_00 Frame: 758
+J score not human! Seq: downtown_car_00 Frame: 759
+BB score not human! Seq: downtown_car_00 Frame: 759
+J score not human! Seq: downtown_car_00 Frame: 759
+BB score not human! Seq: downtown_car_00 Frame: 759
+J score not human! Seq: downtown_car_00 Frame: 760
+BB score not human! Seq: downtown_car_00 Frame: 760
+J score not human! Seq: downtown_car_00 Frame: 760
+BB score not human! Seq: downtown_car_00 Frame: 760
+J score not human! Seq: downtown_car_00 Frame: 761
+BB score not human! Seq: downtown_car_00 Frame: 761
+J score not human! Seq: downtown_car_00 Frame: 761
+BB score not human! Seq: downtown_car_00 Frame: 761
+J score not human! Seq: downtown_car_00 Frame: 762
+BB score not human! Seq: downtown_car_00 Frame: 762
+J score not human! Seq: downtown_car_00 Frame: 762
+BB score not human! Seq: downtown_car_00 Frame: 762
+J score not human! Seq: downtown_car_00 Frame: 763
+BB score not human! Seq: downtown_car_00 Frame: 763
+J score not human! Seq: downtown_car_00 Frame: 763
+BB score not human! Seq: downtown_car_00 Frame: 763
+J score not human! Seq: downtown_car_00 Frame: 764
+BB score not human! Seq: downtown_car_00 Frame: 764
+J score not human! Seq: downtown_car_00 Frame: 764
+BB score not human! Seq: downtown_car_00 Frame: 764
+J score not human! Seq: downtown_car_00 Frame: 765
+BB score not human! Seq: downtown_car_00 Frame: 765
+J score not human! Seq: downtown_car_00 Frame: 765
+BB score not human! Seq: downtown_car_00 Frame: 765
+J score not human! Seq: downtown_car_00 Frame: 766
+BB score not human! Seq: downtown_car_00 Frame: 766
+J score not human! Seq: downtown_car_00 Frame: 766
+BB score not human! Seq: downtown_car_00 Frame: 766
+J score not human! Seq: downtown_car_00 Frame: 767
+BB score not human! Seq: downtown_car_00 Frame: 767
+J score not human! Seq: downtown_car_00 Frame: 767
+BB score not human! Seq: downtown_car_00 Frame: 767
+J score not human! Seq: downtown_car_00 Frame: 768
+BB score not human! Seq: downtown_car_00 Frame: 768
+J score not human! Seq: downtown_car_00 Frame: 768
+BB score not human! Seq: downtown_car_00 Frame: 768
+J score not human! Seq: downtown_car_00 Frame: 769
+BB score not human! Seq: downtown_car_00 Frame: 769
+J score not human! Seq: downtown_car_00 Frame: 769
+BB score not human! Seq: downtown_car_00 Frame: 769
+J score not human! Seq: downtown_car_00 Frame: 770
+BB score not human! Seq: downtown_car_00 Frame: 770
+J score not human! Seq: downtown_car_00 Frame: 770
+BB score not human! Seq: downtown_car_00 Frame: 770
+J score not human! Seq: downtown_car_00 Frame: 771
+BB score not human! Seq: downtown_car_00 Frame: 771
+J score not human! Seq: downtown_car_00 Frame: 771
+BB score not human! Seq: downtown_car_00 Frame: 771
+J score not human! Seq: downtown_car_00 Frame: 772
+BB score not human! Seq: downtown_car_00 Frame: 772
+J score not human! Seq: downtown_car_00 Frame: 772
+BB score not human! Seq: downtown_car_00 Frame: 772
+J score not human! Seq: downtown_car_00 Frame: 773
+BB score not human! Seq: downtown_car_00 Frame: 773
+J score not human! Seq: downtown_car_00 Frame: 773
+BB score not human! Seq: downtown_car_00 Frame: 773
+J score not human! Seq: downtown_car_00 Frame: 774
+BB score not human! Seq: downtown_car_00 Frame: 774
+J score not human! Seq: downtown_car_00 Frame: 774
+BB score not human! Seq: downtown_car_00 Frame: 774
+J score not human! Seq: downtown_car_00 Frame: 775
+BB score not human! Seq: downtown_car_00 Frame: 775
+J score not human! Seq: downtown_car_00 Frame: 775
+BB score not human! Seq: downtown_car_00 Frame: 775
+J score not human! Seq: downtown_car_00 Frame: 776
+BB score not human! Seq: downtown_car_00 Frame: 776
+J score not human! Seq: downtown_car_00 Frame: 776
+BB score not human! Seq: downtown_car_00 Frame: 776
+J score not human! Seq: downtown_car_00 Frame: 777
+BB score not human! Seq: downtown_car_00 Frame: 777
+J score not human! Seq: downtown_car_00 Frame: 777
+BB score not human! Seq: downtown_car_00 Frame: 777
+J score not human! Seq: downtown_car_00 Frame: 778
+BB score not human! Seq: downtown_car_00 Frame: 778
+J score not human! Seq: downtown_car_00 Frame: 778
+BB score not human! Seq: downtown_car_00 Frame: 778
+J score not human! Seq: downtown_car_00 Frame: 779
+BB score not human! Seq: downtown_car_00 Frame: 779
+J score not human! Seq: downtown_car_00 Frame: 779
+BB score not human! Seq: downtown_car_00 Frame: 779
+J score not human! Seq: downtown_car_00 Frame: 780
+BB score not human! Seq: downtown_car_00 Frame: 780
+J score not human! Seq: downtown_car_00 Frame: 780
+BB score not human! Seq: downtown_car_00 Frame: 780
+J score not human! Seq: downtown_car_00 Frame: 781
+BB score not human! Seq: downtown_car_00 Frame: 781
+J score not human! Seq: downtown_car_00 Frame: 781
+BB score not human! Seq: downtown_car_00 Frame: 781
+J score not human! Seq: downtown_car_00 Frame: 782
+BB score not human! Seq: downtown_car_00 Frame: 782
+J score not human! Seq: downtown_car_00 Frame: 782
+BB score not human! Seq: downtown_car_00 Frame: 782
+J score not human! Seq: downtown_car_00 Frame: 783
+BB score not human! Seq: downtown_car_00 Frame: 783
+J score not human! Seq: downtown_car_00 Frame: 783
+BB score not human! Seq: downtown_car_00 Frame: 783
+J score not human! Seq: downtown_car_00 Frame: 784
+BB score not human! Seq: downtown_car_00 Frame: 784
+J score not human! Seq: downtown_car_00 Frame: 784
+BB score not human! Seq: downtown_car_00 Frame: 784
+J score not human! Seq: downtown_car_00 Frame: 785
+BB score not human! Seq: downtown_car_00 Frame: 785
+J score not human! Seq: downtown_car_00 Frame: 785
+BB score not human! Seq: downtown_car_00 Frame: 785
+J score not human! Seq: downtown_car_00 Frame: 786
+BB score not human! Seq: downtown_car_00 Frame: 786
+J score not human! Seq: downtown_car_00 Frame: 786
+BB score not human! Seq: downtown_car_00 Frame: 786
+J score not human! Seq: downtown_car_00 Frame: 787
+BB score not human! Seq: downtown_car_00 Frame: 787
+J score not human! Seq: downtown_car_00 Frame: 787
+BB score not human! Seq: downtown_car_00 Frame: 787
+J score not human! Seq: downtown_car_00 Frame: 788
+BB score not human! Seq: downtown_car_00 Frame: 788
+J score not human! Seq: downtown_car_00 Frame: 788
+BB score not human! Seq: downtown_car_00 Frame: 788
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 789
+J Scores: [5 0]
+[[0.   0.   0.75 0.   0.   1.   0.   0.  ]
+ [0.   0.   0.   0.   0.   0.   0.   0.  ]]
+BB Scores: [2 0]
+[[0.         0.         0.51213123 0.         0.         0.07232468
+  0.         0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 789
+BB score not human! Seq: downtown_car_00 Frame: 789
+J score not human! Seq: downtown_car_00 Frame: 789
+BB score not human! Seq: downtown_car_00 Frame: 789
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 790
+J Scores: [5 0]
+[[0.         0.         0.69230769 0.         0.         1.
+  0.         0.23076923 0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]]
+BB Scores: [2 0]
+[[0.         0.         0.61497112 0.         0.         0.07342376
+  0.         0.09682921 0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 790
+BB score not human! Seq: downtown_car_00 Frame: 790
+J score not human! Seq: downtown_car_00 Frame: 790
+BB score not human! Seq: downtown_car_00 Frame: 790
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 791
+J Scores: [7 0]
+[[0.         0.         0.58823529 0.         0.         0.
+  0.         1.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+BB Scores: [2 0]
+[[0.         0.         0.49642696 0.         0.         0.
+  0.         0.07017005]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 791
+BB score not human! Seq: downtown_car_00 Frame: 791
+J score not human! Seq: downtown_car_00 Frame: 791
+BB score not human! Seq: downtown_car_00 Frame: 791
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 792
+J Scores: [7 0]
+[[0.    0.    0.875 0.    0.    0.    0.    1.    0.   ]
+ [0.    0.    0.    0.    0.    0.    0.    0.    0.   ]]
+BB Scores: [2 0]
+[[0.         0.         0.47512549 0.         0.         0.
+  0.         0.07500785 0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 792
+BB score not human! Seq: downtown_car_00 Frame: 792
+J score not human! Seq: downtown_car_00 Frame: 792
+BB score not human! Seq: downtown_car_00 Frame: 792
+J score not human! Seq: downtown_car_00 Frame: 793
+BB score not human! Seq: downtown_car_00 Frame: 793
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 794
+J Scores: [2 6]
+[[0.         0.         0.64705882 0.         0.         0.
+  0.64705882 0.        ]
+ [0.         0.         0.         0.         0.47058824 0.
+  1.         0.        ]]
+BB Scores: [2 4]
+[[0.         0.         0.54520731 0.         0.         0.
+  0.08442657 0.        ]
+ [0.         0.         0.         0.         0.32389828 0.
+  0.09797588 0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 794
+BB score not human! Seq: downtown_car_00 Frame: 794
+J score not human! Seq: downtown_car_00 Frame: 795
+BB score not human! Seq: downtown_car_00 Frame: 795
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 796
+J Scores: [7 0]
+[[0.  0.8 0.  0.  0.  0.  0.  1.  0. ]
+ [0.  0.  0.  0.  0.  0.  0.  0.  0. ]]
+BB Scores: [1 0]
+[[0.         0.58409313 0.         0.         0.         0.
+  0.         0.09250879 0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 796
+BB score not human! Seq: downtown_car_00 Frame: 796
+J score not human! Seq: downtown_car_00 Frame: 796
+BB score not human! Seq: downtown_car_00 Frame: 796
+J score not human! Seq: downtown_car_00 Frame: 797
+BB score not human! Seq: downtown_car_00 Frame: 797
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 798
+J Scores: [6 0]
+[[0.     0.     0.     0.     0.625  0.     0.75   0.0625]
+ [0.     0.     0.     0.     0.     0.     0.     0.    ]]
+BB Scores: [4 0]
+[[0.         0.         0.         0.         0.76001899 0.
+  0.12737782 0.06347728]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 798
+BB score not human! Seq: downtown_car_00 Frame: 798
+J score not human! Seq: downtown_car_00 Frame: 798
+BB score not human! Seq: downtown_car_00 Frame: 798
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 799
+J Scores: [6 0]
+[[0.     0.     0.     0.6875 0.     0.3125 0.8125 0.    ]
+ [0.     0.     0.     0.     0.     0.     0.     0.    ]]
+BB Scores: [3 0]
+[[0.         0.         0.         0.61373029 0.         0.30112447
+  0.12379649 0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 799
+BB score not human! Seq: downtown_car_00 Frame: 799
+J score not human! Seq: downtown_car_00 Frame: 799
+BB score not human! Seq: downtown_car_00 Frame: 799
+Images processed: 23902/52653
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 800
+J Scores: [6 0]
+[[0.         0.         0.         0.         0.58823529 0.
+  0.88235294 0.         0.47058824]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]]
+BB Scores: [4 0]
+[[0.         0.         0.         0.         0.5557728  0.
+  0.10233006 0.         0.36873078]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 800
+BB score not human! Seq: downtown_car_00 Frame: 800
+J score not human! Seq: downtown_car_00 Frame: 800
+BB score not human! Seq: downtown_car_00 Frame: 800
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 801
+J Scores: [6 0]
+[[0.         0.         0.         0.61538462 0.         0.
+  0.92307692 0.61538462]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+BB Scores: [3 0]
+[[0.         0.         0.         0.54641139 0.         0.
+  0.09511465 0.3806048 ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 801
+BB score not human! Seq: downtown_car_00 Frame: 801
+J score not human! Seq: downtown_car_00 Frame: 801
+BB score not human! Seq: downtown_car_00 Frame: 801
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 802
+J Scores: [5 0]
+[[0.   0.   0.   0.   0.75 1.   0.   0.  ]
+ [0.   0.   0.   0.   0.   0.   0.   0.  ]]
+BB Scores: [4 0]
+[[0.         0.         0.         0.         0.47721874 0.0770545
+  0.         0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 802
+BB score not human! Seq: downtown_car_00 Frame: 802
+J score not human! Seq: downtown_car_00 Frame: 802
+BB score not human! Seq: downtown_car_00 Frame: 802
+J score not human! Seq: downtown_car_00 Frame: 803
+BB score not human! Seq: downtown_car_00 Frame: 803
+J score not human! Seq: downtown_car_00 Frame: 804
+BB score not human! Seq: downtown_car_00 Frame: 804
+J score not human! Seq: downtown_car_00 Frame: 805
+BB score not human! Seq: downtown_car_00 Frame: 805
+J score not human! Seq: downtown_car_00 Frame: 806
+BB score not human! Seq: downtown_car_00 Frame: 806
+J score not human! Seq: downtown_car_00 Frame: 807
+BB score not human! Seq: downtown_car_00 Frame: 807
+J score not human! Seq: downtown_car_00 Frame: 808
+BB score not human! Seq: downtown_car_00 Frame: 808
+J score not human! Seq: downtown_car_00 Frame: 809
+BB score not human! Seq: downtown_car_00 Frame: 809
+J score not human! Seq: downtown_car_00 Frame: 810
+BB score not human! Seq: downtown_car_00 Frame: 810
+J score not human! Seq: downtown_car_00 Frame: 811
+BB score not human! Seq: downtown_car_00 Frame: 811
+J score not human! Seq: downtown_car_00 Frame: 812
+BB score not human! Seq: downtown_car_00 Frame: 812
+J score not human! Seq: downtown_car_00 Frame: 814
+BB score not human! Seq: downtown_car_00 Frame: 814
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 816
+J Scores: [5 6]
+[[0.         0.         0.         0.         0.         0.53333333
+  0.46666667]
+ [0.         0.53846154 0.         0.         0.         0.
+  1.        ]]
+BB Scores: [5 1]
+[[0.         0.         0.         0.         0.         0.62248268
+  0.14740386]
+ [0.         0.537801   0.         0.         0.         0.
+  0.12737571]]
+J score not human! Seq: downtown_car_00 Frame: 816
+BB score not human! Seq: downtown_car_00 Frame: 816
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 817
+J Scores: [4 6]
+[[0.         0.         0.         0.         0.4375     0.
+  0.3125     0.        ]
+ [0.         0.57142857 0.         0.         0.         0.
+  1.         0.        ]]
+BB Scores: [4 1]
+[[0.         0.         0.         0.         0.51568212 0.
+  0.14115434 0.        ]
+ [0.         0.54965051 0.         0.         0.         0.
+  0.14017776 0.        ]]
+J score not human! Seq: downtown_car_00 Frame: 817
+BB score not human! Seq: downtown_car_00 Frame: 817
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 818
+J Scores: [5 6]
+[[0.         0.         0.         0.         0.         0.5625
+  0.1875    ]
+ [0.         0.53846154 0.         0.         0.         0.
+  0.61538462]]
+BB Scores: [5 1]
+[[0.         0.         0.         0.         0.         0.52965437
+  0.13125543]
+ [0.         0.54984385 0.         0.         0.         0.
+  0.1442883 ]]
+J score not human! Seq: downtown_car_00 Frame: 818
+BB score not human! Seq: downtown_car_00 Frame: 818
+J score not human! Seq: downtown_car_00 Frame: 831
+BB score not human! Seq: downtown_car_00 Frame: 831
+J score not human! Seq: downtown_car_00 Frame: 832
+BB score not human! Seq: downtown_car_00 Frame: 832
+J score not human! Seq: downtown_car_00 Frame: 833
+BB score not human! Seq: downtown_car_00 Frame: 833
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 834
+J Scores: [4 0]
+[[0.         0.         0.         0.         0.5        0.42857143
+  0.         0.        ]
+ [0.92307692 0.         0.         0.         0.         0.07692308
+  0.         0.        ]]
+BB Scores: [6 0]
+[[0.         0.         0.01906368 0.         0.26116578 0.13938216
+  0.2670525  0.        ]
+ [0.48399538 0.02135893 0.         0.         0.         0.1444535
+  0.         0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_car_00 Frame: 835
+J Scores: [3 0]
+[[0.         0.         0.         0.53846154 0.53846154 0.
+  0.07692308 0.        ]
+ [0.92307692 0.         0.         0.         0.15384615 0.
+  0.         0.        ]]
+BB Scores: [6 0]
+[[0.         0.         0.05276961 0.29282823 0.06272928 0.
+  0.32178469 0.        ]
+ [0.4796375  0.02631946 0.         0.         0.13644787 0.
+  0.         0.        ]]
+Images processed: 24002/52653
+Images processed: 24102/52653
+Images processed: 24122/52653
+Images processed: 24222/52653
+Images processed: 24322/52653
+Images processed: 24422/52653
+WARNING! J/BB scores not equal!' Seq: downtown_crossStreets_00 Frame: 335
+J Scores: [0 1]
+[[0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 1. 0. 0. 0. 0. 0. 0.]]
+BB Scores: [0 6]
+[[0.         0.         0.         0.         0.         0.
+  0.         0.        ]
+ [0.         0.52399894 0.         0.         0.         0.
+  0.57427946 0.        ]]
+Images processed: 24522/52653
+WARNING! J/BB scores not equal!' Seq: downtown_crossStreets_00 Frame: 495
+J Scores: [3 4]
+[[0.         0.         0.         1.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.        ]
+ [0.         0.         0.         0.         0.38461538 0.
+  0.         0.         0.         0.         0.07692308 0.
+  0.         0.38461538 0.         0.        ]]
+BB Scores: [ 3 13]
+[[0.         0.         0.         0.53024417 0.         0.
+  0.         0.         0.05159805 0.02578269 0.         0.
+  0.         0.         0.         0.        ]
+ [0.         0.         0.         0.         0.28042242 0.
+  0.         0.         0.         0.         0.06178674 0.
+  0.         0.61417464 0.         0.        ]]
+Images processed: 24622/52653
+Images processed: 24710/52653
+Images processed: 24810/52653
+Images processed: 24910/52653
+Images processed: 25010/52653
+Images processed: 25110/52653
+Images processed: 25210/52653
+Images processed: 25310/52653
+Images processed: 25410/52653
+Images processed: 25510/52653
+Images processed: 25567/52653
+Images processed: 25667/52653
+Images processed: 25767/52653
+Images processed: 25867/52653
+Images processed: 25967/52653
+Images processed: 26067/52653
+Images processed: 26167/52653
+Images processed: 26267/52653
+Images processed: 26367/52653
+Images processed: 26467/52653
+Images processed: 26567/52653
+Images processed: 26667/52653
+Images processed: 26767/52653
+Images processed: 26867/52653
+Images processed: 26967/52653
+Images processed: 27016/52653
+Images processed: 27116/52653
+Images processed: 27216/52653
+Images processed: 27316/52653
+Images processed: 27416/52653
+Images processed: 27516/52653
+Images processed: 27616/52653
+Images processed: 27716/52653
+Images processed: 27816/52653
+Images processed: 27916/52653
+Images processed: 28000/52653
+Images processed: 28100/52653
+Images processed: 28200/52653
+Images processed: 28300/52653
+Images processed: 28400/52653
+Images processed: 28500/52653
+Images processed: 28600/52653
+Images processed: 28700/52653
+Images processed: 28731/52653
+Images processed: 28831/52653
+Images processed: 28931/52653
+Images processed: 29031/52653
+Images processed: 29131/52653
+Images processed: 29231/52653
+Images processed: 29331/52653
+Images processed: 29431/52653
+WARNING! J/BB scores not equal!' Seq: downtown_runForBus_01 Frame: 758
+J Scores: [3 2]
+[[0.         0.         0.         0.66666667 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.        ]
+ [0.         0.         0.75       0.125      0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+BB Scores: [3 3]
+[[0.         0.         0.28070175 0.44794745 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.        ]
+ [0.         0.         0.31916891 0.4372237  0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_runForBus_01 Frame: 767
+J Scores: [3 2]
+[[0.         0.         0.08333333 0.91666667 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.        ]
+ [0.         0.         0.91666667 0.08333333 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.        ]]
+BB Scores: [3 3]
+[[0.         0.         0.32138131 0.40039062 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.        ]
+ [0.         0.         0.34457263 0.38745671 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_runForBus_01 Frame: 768
+J Scores: [3 2]
+[[0.         0.         0.08333333 0.91666667 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]
+ [0.         0.         0.91666667 0.08333333 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]]
+BB Scores: [3 3]
+[[0.         0.         0.30065521 0.40986922 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]
+ [0.         0.         0.31907688 0.39159955 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_runForBus_01 Frame: 772
+J Scores: [3 2]
+[[0.         0.         0.08333333 0.66666667 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]
+ [0.         0.         0.75       0.125      0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]]
+BB Scores: [3 3]
+[[0.         0.         0.28671667 0.39994671 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]
+ [0.         0.         0.32895796 0.36184422 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_runForBus_01 Frame: 773
+J Scores: [3 2]
+[[0.         0.         0.1        0.9        0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.        ]
+ [0.         0.         0.69230769 0.23076923 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.        ]]
+BB Scores: [3 3]
+[[0.         0.         0.2829672  0.42882833 0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.        ]
+ [0.         0.         0.28612203 0.5549884  0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.        ]]
+Images processed: 29514/52653
+Images processed: 29614/52653
+Images processed: 29714/52653
+Images processed: 29814/52653
+WARNING! J/BB scores not equal!' Seq: downtown_sitOnStairs_00 Frame: 362
+J Scores: [0 0]
+[[0.53333333 0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.26666667 0.46666667 0.         0.         0.
+  0.         0.        ]
+ [0.91666667 0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.08333333 0.         0.         0.
+  0.         0.        ]]
+BB Scores: [14  0]
+[[0.25947068 0.         0.         0.         0.         0.
+  0.         0.         0.04506325 0.         0.         0.
+  0.         0.12053571 0.49223126 0.         0.         0.
+  0.         0.        ]
+ [0.46070461 0.         0.         0.         0.         0.
+  0.         0.         0.00963097 0.         0.         0.
+  0.         0.05035192 0.21505703 0.         0.         0.
+  0.         0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_sitOnStairs_00 Frame: 363
+J Scores: [0 0]
+[[0.46153846 0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.46153846 0.         0.         0.        ]
+ [0.92307692 0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.        ]]
+BB Scores: [13  0]
+[[0.13934339 0.         0.         0.         0.         0.
+  0.         0.         0.         0.07503234 0.         0.
+  0.         0.53645833 0.         0.00347959 0.        ]
+ [0.5004845  0.         0.         0.         0.         0.
+  0.         0.         0.         0.01029857 0.         0.
+  0.         0.15826028 0.         0.         0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_sitOnStairs_00 Frame: 364
+J Scores: [0 0]
+[[0.53333333 0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.46666667 0.         0.        ]
+ [0.85714286 0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.        ]]
+BB Scores: [14  0]
+[[0.30094452 0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.38376513 0.         0.        ]
+ [0.47849039 0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.20420752 0.         0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_sitOnStairs_00 Frame: 369
+J Scores: [0 0]
+[[0.61538462 0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.38461538 0.         0.        ]
+ [1.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.        ]]
+BB Scores: [13  0]
+[[0.24116938 0.         0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.47777388 0.         0.        ]
+ [0.55098837 0.         0.         0.         0.         0.
+  0.         0.         0.01061957 0.         0.         0.
+  0.         0.14124133 0.         0.        ]]
+Images processed: 29914/52653
+WARNING! J/BB scores not equal!' Seq: downtown_sitOnStairs_00 Frame: 406
+J Scores: [0 0]
+[[0.5        0.         0.         0.         0.         0.
+  0.         0.41666667 0.         0.         0.         0.
+  0.         0.         0.         0.         0.        ]
+ [0.85714286 0.         0.         0.         0.         0.
+  0.         0.14285714 0.         0.         0.         0.
+  0.         0.         0.         0.         0.        ]]
+BB Scores: [7 0]
+[[0.4506744  0.         0.         0.00093002 0.         0.
+  0.         0.53831024 0.         0.         0.         0.
+  0.         0.         0.00314775 0.         0.        ]
+ [0.74011441 0.         0.         0.04473468 0.         0.
+  0.         0.23286459 0.         0.         0.         0.
+  0.         0.         0.         0.         0.        ]]
+WARNING! J/BB scores not equal!' Seq: downtown_sitOnStairs_00 Frame: 410
+J Scores: [1 0]
+[[0.45454545 0.54545455 0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.        ]
+ [0.91666667 0.08333333 0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.        ]]
+BB Scores: [0 0]
+[[0.53555489 0.48290047 0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.0374224  0.         0.         0.        ]
+ [0.69032796 0.20848436 0.         0.         0.         0.
+  0.         0.         0.         0.         0.         0.
+  0.02656513 0.         0.         0.        ]]
+Images processed: 30014/52653
+Images processed: 30114/52653
+Images processed: 30214/52653
+Images processed: 30314/52653
+Images processed: 30414/52653
+Images processed: 30514/52653
+Images processed: 30614/52653
+Images processed: 30714/52653
+Images processed: 30814/52653
+Images processed: 30851/52653
+Images processed: 30951/52653
+WARNING! J/BB scores not equal!' Seq: downtown_stairs_00 Frame: 169
+J Scores: [0]
+[[0.70588235 0.         0.11764706 0.17647059]]
+BB Scores: [3]
+[[0.63250541 0.         0.16812872 0.65432378]]
+Images processed: 31051/52653
+J score not human! Seq: downtown_stairs_00 Frame: 211
+BB score not human! Seq: downtown_stairs_00 Frame: 211
+Images processed: 31151/52653
+Images processed: 31251/52653
+Images processed: 31351/52653
+Images processed: 31451/52653
+WARNING! J/BB scores not equal!' Seq: downtown_stairs_00 Frame: 657
+J Scores: [0]
+[[0.83333333 0.75       0.        ]]
+BB Scores: [1]
+[[0.35921515 0.43110872 0.        ]]
+Images processed: 31551/52653
+J score not human! Seq: downtown_stairs_00 Frame: 705
+BB score not human! Seq: downtown_stairs_00 Frame: 705
+J score not human! Seq: downtown_stairs_00 Frame: 706
+BB score not human! Seq: downtown_stairs_00 Frame: 706
+J score not human! Seq: downtown_stairs_00 Frame: 707
+BB score not human! Seq: downtown_stairs_00 Frame: 707
+J score not human! Seq: downtown_stairs_00 Frame: 708
+BB score not human! Seq: downtown_stairs_00 Frame: 708
+J score not human! Seq: downtown_stairs_00 Frame: 710
+BB score not human! Seq: downtown_stairs_00 Frame: 710
+J score not human! Seq: downtown_stairs_00 Frame: 711
+BB score not human! Seq: downtown_stairs_00 Frame: 711
+Images processed: 31651/52653
+Images processed: 31751/52653
+Images processed: 31851/52653
+J score not human! Seq: downtown_stairs_00 Frame: 1029
+BB score not human! Seq: downtown_stairs_00 Frame: 1029
+Images processed: 31951/52653
+Images processed: 32051/52653
+Images processed: 32091/52653
+Images processed: 32191/52653
+Images processed: 32291/52653
+Images processed: 32391/52653
+Images processed: 32491/52653
+Images processed: 32591/52653
+Images processed: 32691/52653
+Images processed: 32791/52653
+Images processed: 32891/52653
+Images processed: 32936/52653
+Images processed: 33036/52653
+Images processed: 33136/52653
+Images processed: 33236/52653
+Images processed: 33336/52653
+Images processed: 33436/52653
+Images processed: 33536/52653
+Images processed: 33636/52653
+Images processed: 33736/52653
+Images processed: 33836/52653
+Images processed: 33936/52653
+Images processed: 34036/52653
+Images processed: 34136/52653
+Images processed: 34236/52653
+Images processed: 34308/52653
+Images processed: 34408/52653
+Images processed: 34508/52653
+Images processed: 34608/52653
+Images processed: 34708/52653
+Images processed: 34745/52653
+Images processed: 34845/52653
+Images processed: 34945/52653
+Images processed: 35045/52653
+Images processed: 35133/52653
+Images processed: 35233/52653
+Images processed: 35333/52653
+Images processed: 35433/52653
+Images processed: 35533/52653
+Images processed: 35633/52653
+Images processed: 35733/52653
+Images processed: 35833/52653
+Images processed: 35933/52653
+J score not human! Seq: downtown_walking_00 Frame: 877
+BB score not human! Seq: downtown_walking_00 Frame: 877
+J score not human! Seq: downtown_walking_00 Frame: 877
+BB score not human! Seq: downtown_walking_00 Frame: 877
+J score not human! Seq: downtown_walking_00 Frame: 878
+BB score not human! Seq: downtown_walking_00 Frame: 878
+J score not human! Seq: downtown_walking_00 Frame: 878
+BB score not human! Seq: downtown_walking_00 Frame: 878
+J score not human! Seq: downtown_walking_00 Frame: 879
+BB score not human! Seq: downtown_walking_00 Frame: 879
+J score not human! Seq: downtown_walking_00 Frame: 880
+BB score not human! Seq: downtown_walking_00 Frame: 880
+J score not human! Seq: downtown_walking_00 Frame: 880
+BB score not human! Seq: downtown_walking_00 Frame: 880
+J score not human! Seq: downtown_walking_00 Frame: 881
+BB score not human! Seq: downtown_walking_00 Frame: 881
+J score not human! Seq: downtown_walking_00 Frame: 881
+BB score not human! Seq: downtown_walking_00 Frame: 881
+J score not human! Seq: downtown_walking_00 Frame: 882
+BB score not human! Seq: downtown_walking_00 Frame: 882
+J score not human! Seq: downtown_walking_00 Frame: 884
+BB score not human! Seq: downtown_walking_00 Frame: 884
+Images processed: 36033/52653
+WARNING! J/BB scores not equal!' Seq: downtown_walking_00 Frame: 952
+J Scores: [0 3]
+[[0.92857143 0.         0.14285714 0.         0.        ]
+ [0.         0.07692308 0.         0.23076923 0.        ]]
+BB Scores: [0 1]
+[[0.48679438 0.         0.16399546 0.         0.        ]
+ [0.         0.36449472 0.         0.29886596 0.        ]]
+J score not human! Seq: downtown_walking_00 Frame: 952
+BB score not human! Seq: downtown_walking_00 Frame: 952
+WARNING! J/BB scores not equal!' Seq: downtown_walking_00 Frame: 970
+J Scores: [0 1]
+[[0.30769231 0.         0.         0.         0.         0.30769231
+  0.         0.         0.23076923 0.        ]
+ [0.         1.         0.         0.         0.3125     0.
+  0.         0.         0.         0.        ]]
+BB Scores: [5 1]
+[[0.43122511 0.         0.         0.         0.         0.55695554
+  0.         0.         0.18632361 0.        ]
+ [0.         0.69224871 0.         0.         0.3309648  0.
+  0.         0.         0.         0.07375269]]
+Images processed: 36133/52653
+Images processed: 36233/52653
+WARNING! J/BB scores not equal!' Seq: downtown_walking_00 Frame: 1102
+J Scores: [0 4]
+[[1.         0.         0.         0.         0.         0.
+  0.         0.        ]
+ [0.         0.         0.09090909 0.         0.45454545 0.
+  0.         0.        ]]
+BB Scores: [0 2]
+[[0.50300966 0.         0.         0.         0.         0.
+  0.         0.        ]
+ [0.         0.         0.4050931  0.         0.27804258 0.01506735
+  0.         0.        ]]
+Images processed: 36333/52653
+WARNING! J/BB scores not equal!' Seq: downtown_walking_00 Frame: 1213
+J Scores: [2 0]
+[[0.         0.         0.53333333 0.         0.         0.46666667
+  0.         0.        ]
+ [1.         0.         0.         0.         0.         0.
+  0.         0.        ]]
+BB Scores: [5 0]
+[[0.         0.08353909 0.42206608 0.         0.         0.46554581
+  0.         0.        ]
+ [0.42607004 0.         0.         0.         0.11389074 0.
+  0.         0.        ]]
+Images processed: 36433/52653
+Images processed: 36520/52653
+Images processed: 36620/52653
+Images processed: 36720/52653
+Images processed: 36820/52653
+WARNING! J/BB scores not equal!' Seq: downtown_warmWelcome_00 Frame: 362
+J Scores: [0 0]
+[[0.54545455 0.         0.         0.45454545 0.         0.
+  0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.        ]]
+BB Scores: [3 0]
+[[0.46700129 0.         0.         0.51417526 0.         0.
+  0.        ]
+ [0.         0.         0.         0.         0.         0.
+  0.        ]]
+Images processed: 36920/52653
+Images processed: 37020/52653
+Images processed: 37109/52653
+Images processed: 37209/52653
+Images processed: 37309/52653
+Images processed: 37409/52653
+Images processed: 37509/52653
+Images processed: 37609/52653
+Images processed: 37709/52653
+Images processed: 37809/52653
+WARNING! J/BB scores not equal!' Seq: downtown_weeklyMarket_00 Frame: 788
+J Scores: [2]
+[[0.07692308 0.         0.15384615 0.         0.         0.
+  0.         0.         0.         0.        ]]
+BB Scores: [0]
+[[0.32660573 0.         0.20739291 0.         0.         0.14075952
+  0.         0.         0.         0.1573179 ]]
+J score not human! Seq: downtown_weeklyMarket_00 Frame: 788
+BB score not human! Seq: downtown_weeklyMarket_00 Frame: 788
+WARNING! J/BB scores not equal!' Seq: downtown_weeklyMarket_00 Frame: 791
+J Scores: [0]
+[[0.30769231 0.         0.         0.         0.         0.
+  0.         0.15384615 0.         0.         0.23076923 0.        ]]
+BB Scores: [10]
+[[0.37701891 0.         0.         0.         0.         0.01231103
+  0.11330508 0.28543711 0.11304754 0.         0.46989904 0.01175872]]
+Images processed: 37909/52653
+Images processed: 38009/52653
+Images processed: 38109/52653
+Images processed: 38209/52653
+Images processed: 38302/52653
+Images processed: 38402/52653
+Images processed: 38502/52653
+Images processed: 38602/52653
+Images processed: 38702/52653
+Images processed: 38802/52653
+Images processed: 38902/52653
+Images processed: 39002/52653
+Images processed: 39102/52653
+WARNING! J/BB scores not equal!' Seq: downtown_windowShopping_00 Frame: 899
+J Scores: [0]
+[[0.625 0.    0.375 0.    0.    0.   ]]
+BB Scores: [2]
+[[0.15046529 0.         0.60885801 0.         0.09595378 0.        ]]
+Images processed: 39202/52653
+Images processed: 39302/52653
+Images processed: 39402/52653
+Images processed: 39502/52653
+Images processed: 39602/52653
+Images processed: 39702/52653
+Images processed: 39802/52653
+Images processed: 39902/52653
+Images processed: 40002/52653
+J score not human! Seq: downtown_windowShopping_00 Frame: 1788
+BB score not human! Seq: downtown_windowShopping_00 Frame: 1788
+J score not human! Seq: downtown_windowShopping_00 Frame: 1789
+BB score not human! Seq: downtown_windowShopping_00 Frame: 1789
+J score not human! Seq: downtown_windowShopping_00 Frame: 1790
+BB score not human! Seq: downtown_windowShopping_00 Frame: 1790
+J score not human! Seq: downtown_windowShopping_00 Frame: 1791
+BB score not human! Seq: downtown_windowShopping_00 Frame: 1791
+J score not human! Seq: downtown_windowShopping_00 Frame: 1792
+BB score not human! Seq: downtown_windowShopping_00 Frame: 1792
+J score not human! Seq: downtown_windowShopping_00 Frame: 1793
+BB score not human! Seq: downtown_windowShopping_00 Frame: 1793
+Images processed: 40102/52653
+Images processed: 40202/52653
+Images processed: 40250/52653
+Images processed: 40350/52653
+Images processed: 40450/52653
+Images processed: 40550/52653
+Images processed: 40650/52653
+Images processed: 40750/52653
+Images processed: 40850/52653
+Images processed: 40950/52653
+Images processed: 40998/52653
+Images processed: 41098/52653
+Images processed: 41198/52653
+Images processed: 41298/52653
+Images processed: 41398/52653
+Images processed: 41498/52653
+Images processed: 41598/52653
+Images processed: 41698/52653
+Images processed: 41798/52653
+Images processed: 41898/52653
+Images processed: 41998/52653
+Images processed: 42098/52653
+Images processed: 42198/52653
+Images processed: 42277/52653
+Images processed: 42377/52653
+Images processed: 42477/52653
+Images processed: 42577/52653
+Images processed: 42677/52653
+Images processed: 42777/52653
+Images processed: 42877/52653
+Images processed: 42977/52653
+Images processed: 43077/52653
+Images processed: 43157/52653
+Images processed: 43257/52653
+Images processed: 43357/52653
+Images processed: 43457/52653
+Images processed: 43557/52653
+Images processed: 43657/52653
+Images processed: 43757/52653
+Images processed: 43857/52653
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_00 Frame: 710
+J Scores: [1]
+[[0.92857143 1.        ]]
+BB Scores: [0]
+[[0.65303084 0.09985234]]
+J score not human! Seq: outdoors_climbing_00 Frame: 710
+BB score not human! Seq: outdoors_climbing_00 Frame: 710
+Images processed: 43957/52653
+Images processed: 44057/52653
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_00 Frame: 928
+J Scores: [5]
+[[0.8125 0.     0.     0.     0.     0.875 ]]
+BB Scores: [0]
+[[0.61589743 0.         0.         0.         0.00684598 0.11651618]]
+J score not human! Seq: outdoors_climbing_00 Frame: 928
+BB score not human! Seq: outdoors_climbing_00 Frame: 928
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_00 Frame: 946
+J Scores: [3]
+[[0.88235294 0.         0.         1.        ]]
+BB Scores: [0]
+[[0.68929367 0.         0.         0.1244398 ]]
+J score not human! Seq: outdoors_climbing_00 Frame: 946
+BB score not human! Seq: outdoors_climbing_00 Frame: 946
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_00 Frame: 967
+J Scores: [1]
+[[0.94117647 1.        ]]
+BB Scores: [0]
+[[0.75085836 0.12537918]]
+J score not human! Seq: outdoors_climbing_00 Frame: 967
+BB score not human! Seq: outdoors_climbing_00 Frame: 967
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_00 Frame: 968
+J Scores: [1]
+[[0.88235294 1.         0.        ]]
+BB Scores: [0]
+[[0.80398989 0.12882468 0.        ]]
+J score not human! Seq: outdoors_climbing_00 Frame: 968
+BB score not human! Seq: outdoors_climbing_00 Frame: 968
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_00 Frame: 972
+J Scores: [3]
+[[0.9375 0.     0.     1.    ]]
+BB Scores: [0]
+[[0.7590911  0.         0.         0.12064483]]
+J score not human! Seq: outdoors_climbing_00 Frame: 972
+BB score not human! Seq: outdoors_climbing_00 Frame: 972
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_00 Frame: 980
+J Scores: [3]
+[[0.9375 0.     0.     1.    ]]
+BB Scores: [0]
+[[0.73639965 0.         0.         0.11635372]]
+J score not human! Seq: outdoors_climbing_00 Frame: 980
+BB score not human! Seq: outdoors_climbing_00 Frame: 980
+Images processed: 44157/52653
+Images processed: 44257/52653
+Images processed: 44357/52653
+Images processed: 44385/52653
+Images processed: 44485/52653
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_01 Frame: 139
+J Scores: [1]
+[[0.93333333 1.        ]]
+BB Scores: [0]
+[[0.67789906 0.09325852]]
+J score not human! Seq: outdoors_climbing_01 Frame: 139
+BB score not human! Seq: outdoors_climbing_01 Frame: 139
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_01 Frame: 140
+J Scores: [1]
+[[0.93333333 1.        ]]
+BB Scores: [0]
+[[0.72706572 0.09085798]]
+J score not human! Seq: outdoors_climbing_01 Frame: 140
+BB score not human! Seq: outdoors_climbing_01 Frame: 140
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_01 Frame: 142
+J Scores: [1]
+[[0.93333333 1.        ]]
+BB Scores: [0]
+[[0.73676257 0.09533427]]
+J score not human! Seq: outdoors_climbing_01 Frame: 142
+BB score not human! Seq: outdoors_climbing_01 Frame: 142
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_01 Frame: 143
+J Scores: [1]
+[[0.9375 1.    ]]
+BB Scores: [0]
+[[0.75035483 0.09492325]]
+J score not human! Seq: outdoors_climbing_01 Frame: 143
+BB score not human! Seq: outdoors_climbing_01 Frame: 143
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_01 Frame: 144
+J Scores: [1]
+[[0.93333333 1.        ]]
+BB Scores: [0]
+[[0.72053519 0.09150415]]
+J score not human! Seq: outdoors_climbing_01 Frame: 144
+BB score not human! Seq: outdoors_climbing_01 Frame: 144
+Images processed: 44585/52653
+Images processed: 44685/52653
+Images processed: 44785/52653
+Images processed: 44885/52653
+Images processed: 44985/52653
+Images processed: 45085/52653
+Images processed: 45185/52653
+Images processed: 45285/52653
+Images processed: 45385/52653
+Images processed: 45447/52653
+Images processed: 45547/52653
+Images processed: 45647/52653
+Images processed: 45747/52653
+Images processed: 45847/52653
+Images processed: 45947/52653
+Images processed: 46047/52653
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_02 Frame: 604
+J Scores: [1]
+[[0.35714286 0.57142857]]
+BB Scores: [0]
+[[0.49383921 0.33082766]]
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_02 Frame: 605
+J Scores: [1]
+[[0.375 0.5  ]]
+BB Scores: [0]
+[[0.63144237 0.2931677 ]]
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_02 Frame: 669
+J Scores: [2]
+[[0.23076923 0.07692308 0.30769231 0.15384615]]
+BB Scores: [0]
+[[0.35031981 0.07980147 0.07865928 0.090697  ]]
+WARNING! J/BB scores not equal!' Seq: outdoors_climbing_02 Frame: 671
+J Scores: [0]
+[[0.5        0.14285714 0.         0.28571429]]
+BB Scores: [3]
+[[0.39708842 0.183455   0.         0.43055036]]
+Images processed: 46147/52653
+Images processed: 46247/52653
+Images processed: 46347/52653
+Images processed: 46363/52653
+Images processed: 46463/52653
+WARNING! J/BB scores not equal!' Seq: outdoors_crosscountry_00 Frame: 133
+J Scores: [1]
+[[0.35714286 0.5       ]]
+BB Scores: [0]
+[[0.53825607 0.32406758]]
+J score not human! Seq: outdoors_crosscountry_00 Frame: 158
+BB score not human! Seq: outdoors_crosscountry_00 Frame: 158
+Images processed: 46563/52653
+Images processed: 46663/52653
+J score not human! Seq: outdoors_crosscountry_00 Frame: 334
+BB score not human! Seq: outdoors_crosscountry_00 Frame: 334
+J score not human! Seq: outdoors_crosscountry_00 Frame: 335
+BB score not human! Seq: outdoors_crosscountry_00 Frame: 335
+J score not human! Seq: outdoors_crosscountry_00 Frame: 336
+BB score not human! Seq: outdoors_crosscountry_00 Frame: 336
+WARNING! J/BB scores not equal!' Seq: outdoors_crosscountry_00 Frame: 352
+J Scores: [0]
+[[0.70588235 0.52941176]]
+BB Scores: [1]
+[[0.3679036  0.44043221]]
+Images processed: 46763/52653
+Images processed: 46863/52653
+Images processed: 46907/52653
+Images processed: 47007/52653
+Images processed: 47107/52653
+Images processed: 47207/52653
+Images processed: 47307/52653
+Images processed: 47407/52653
+Images processed: 47507/52653
+Images processed: 47607/52653
+Images processed: 47707/52653
+Images processed: 47807/52653
+Images processed: 47849/52653
+Images processed: 47949/52653
+Images processed: 48049/52653
+Images processed: 48149/52653
+Images processed: 48249/52653
+Images processed: 48347/52653
+Images processed: 48447/52653
+Images processed: 48547/52653
+Images processed: 48620/52653
+Images processed: 48720/52653
+Images processed: 48820/52653
+Images processed: 48920/52653
+Images processed: 48961/52653
+Images processed: 49061/52653
+Images processed: 49161/52653
+Images processed: 49261/52653
+Images processed: 49361/52653
+Images processed: 49461/52653
+Images processed: 49561/52653
+Images processed: 49661/52653
+Images processed: 49761/52653
+Images processed: 49861/52653
+Images processed: 49961/52653
+WARNING! J/BB scores not equal!' Seq: outdoors_parcours_00 Frame: 1021
+J Scores: [0]
+[[0.46666667 0.06666667 0.         0.26666667]]
+BB Scores: [3]
+[[0.42290035 0.15266949 0.         0.62278574]]
+Images processed: 50061/52653
+Images processed: 50161/52653
+Images processed: 50261/52653
+Images processed: 50361/52653
+Images processed: 50461/52653
+Images processed: 50561/52653
+Images processed: 50622/52653
+Images processed: 50722/52653
+Images processed: 50822/52653
+Images processed: 50922/52653
+Images processed: 51022/52653
+Images processed: 51122/52653
+Images processed: 51222/52653
+WARNING! J/BB scores not equal!' Seq: outdoors_parcours_01 Frame: 674
+J Scores: [1]
+[[0.26666667 0.4        0.        ]]
+BB Scores: [0]
+[[0.64421726 0.21820519 0.05539879]]
+WARNING! J/BB scores not equal!' Seq: outdoors_parcours_01 Frame: 676
+J Scores: [1]
+[[0.26666667 0.46666667 0.        ]]
+BB Scores: [0]
+[[0.5813964  0.21266046 0.03350267]]
+Images processed: 51322/52653
+Images processed: 51422/52653
+Images processed: 51522/52653
+Images processed: 51622/52653
+Images processed: 51722/52653
+Images processed: 51822/52653
+Images processed: 51922/52653
+Images processed: 51949/52653
+Images processed: 52049/52653
+Images processed: 52149/52653
+Images processed: 52249/52653
+Images processed: 52282/52653
+Images processed: 52382/52653
+Images processed: 52482/52653
+Images processed: 52582/52653
+Images processed: 52653/52653
+Done.
+
