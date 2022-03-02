@@ -20,8 +20,8 @@ os.system(f'python preprocessing/convertmpii.py -r {BTFM_BASE}{BTFM_PP_MPII}/REL
 os.system(f'mv mpii-RELEASE.pickle {BTFM_BASE}{BTFM_PP_MPII}/')
 
 # Set up symlinks to all datasets
-datasets=[LSP_DATASET_DIR, LSPET_DATASET_DIR, COCO_DATASET_DIR, MPII_DATASET_DIR, TDPW_DATASET_DIR, MI3_DATASET_DIR, MI3_PP_DATASET_DIR, UPI_S1H_DATASET_DIR]
-links=[LSP_DIR,            LSPET_DIR,         COCO_DIR,         MPII_DIR,         TDPW_DIR,         MI3_DIR,         MI3_PP_DIR,         UPI_S1H_DIR]
+datasets=[LSP_DATASET_DIR, LSPET_DATASET_DIR, COCO_DATASET_DIR, MPII_DATASET_DIR, TDPW_DATASET_DIR, MI3_DATASET_DIR, MI3_PP_DATASET_DIR, UPI_S1H_DATASET_DIR, SSP3D_DATASET_DIR]
+links=[LSP_DIR,            LSPET_DIR,         COCO_DIR,         MPII_DIR,         TDPW_DIR,         MI3_DIR,         MI3_PP_DIR,         UPI_S1H_DIR,         SSP3D_DIR]
 
 for ds, link in zip(datasets, links):
     os.symlink(ds, BTFM_BASE+link)

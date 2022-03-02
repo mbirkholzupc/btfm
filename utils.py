@@ -8,8 +8,8 @@ class GID:
     Global ID class. Used to generate a unique ID each time it is called.
     Note that this function is not thread-safe.
     """
-    def __init__(self):
-        self._id = 0
+    def __init__(self, val=0):
+        self._id = val
     def next(self):
         tmp = self._id
         self._id += 1

@@ -41,6 +41,7 @@ TDPW_DATASET_DIR='/media/data/3dpw'
 MI3_DATASET_DIR='/media/data/mpi_inf_3dhp/mpi_inf_3dhp/download'
 MI3_PP_DATASET_DIR='/media/data/mpi_inf_3dhp_pp'
 UPI_S1H_DATASET_DIR='/media/data/up/upi-s1h'
+SSP3D_DATASET_DIR='/media/data/SSP-3D'
 
 # Other weights
 MASK_RCNN_WEIGHTS='/media/data/maskrcnn_weights/mask_rcnn_coco.h5'
@@ -87,3 +88,5 @@ UPI_S1H_DIR='/upi-s1h'
 UPI_S1H_MPII=UPI_S1H_DIR+'/data/mpii'
 UPI_S1H_MPII_IMG=UPI_S1H_MPII+'/images'
 UPI_S1H_MPII_ANNOT=UPI_S1H_MPII+'/correspondences.csv'
+
+SSP3D_DIR='/ssp-3d'

@@ -23,6 +23,7 @@ from pympii import PyMPII
 from pycoco import PyCOCO
 from py3dpw import Py3DPW
 from pymi3 import PyMI3
+from pyssp3d import PySSP3D
 
 from utils import GID
 
@@ -34,18 +35,21 @@ ap.add_argument("-e", "--lspet", action='store_true', help='Use LSPET dataset')
 ap.add_argument("-c", "--coco", action='store_true', help='Use COCO dataset')
 ap.add_argument("-p", "--3dpw", action='store_true', help='Use 3DPW dataset')
 ap.add_argument("-f", "--3dhp", action='store_true', help='Use MPI-INF-3DHP dataset')
+ap.add_argument("-b", "--ssp3d", action='store_true', help='Use SSP-3D dataset')
 ap.add_argument("-s", "--set", required=True, help="Set: train, val, test or toy")
 args=vars(ap.parse_args())
 
-# If no dataset is specified, generate them all
+# Select which datasets to generate
+# If no dataset is specified, generate them all by default
 USE_MPII=args['mpii']
 USE_LSP=args['lsp']
 USE_LSPET=args['lspet']
 USE_COCO=args['coco']
 USE_3DPW=args['3dpw']
 USE_3DHP=args['3dhp']
-if not (USE_MPII or USE_LSP or USE_LSPET or USE_COCO or USE_3DPW or USE_3DHP):
-    USE_MPII=USE_LSP=USE_LSPET=USE_COCO=USE_3DPW=USE_3DHP=True
+USE_SSP3D=args['ssp3d']
+if not (USE_MPII or USE_LSP or USE_LSPET or USE_COCO or USE_3DPW or USE_3DHP or USE_SSP3D):
+    USE_MPII=USE_LSP=USE_LSPET=USE_COCO=USE_3DPW=USE_3DHP=USE_SSP3D=True
 
 which_set = args['set']
 assert(which_set in ['train','val','test','toy'])
@@ -53,8 +57,14 @@ assert(which_set in ['train','val','test','toy'])
 # Suppress scientific notation in numpy prints (really annoying for pixel locations)
 np.set_printoptions(suppress=True)
 
-# Create a global ID object
-gid = GID()
+# Create a global ID object, priming with start ID value
+# There are around 1M samples in the largest (train) set, so let's roughly double this
+if which_set in ['train','toy']:
+    gid = GID(val=0)
+elif which_set=='val':
+    gid = GID(val=2000000)
+elif which_set=='test':
+    gid = GID(val=4000000)
 
 # QUICK TEST
 #tdpw = Py3DPW(TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR)
@@ -81,12 +91,15 @@ if USE_3DPW:
     tdpw = Py3DPW(BTFM_BASE, TDPW_TRAIN_DIR, TDPW_VAL_DIR, TDPW_TEST_DIR, TDPW_IMG_DIR, BTFM_PP_3DPW_SILHOUETTE, BTFM_PP_3DPW_SILHOUETTE_VALID)
 if USE_3DHP:
     mi3 = PyMI3(BTFM_BASE, MI3_DIR, MI3_TEST_DIR, MI3_PP_DIR)
+if USE_SSP3D:
+    ssp3d = PySSP3D(BTFM_BASE, SSP3D_DIR)
 
 
 # Start dataset. Top level is list.
 dataset = []
 
 # Gather data from each enabled dataset and add to top-level dict
+tick=time.time()
 if USE_LSP:
     lsp_data = lsp.gather_data(which_set, gid=gid)
     dataset+=lsp_data
@@ -103,11 +116,14 @@ if USE_3DPW:
     tdpw_data = tdpw.gather_data(which_set, gid=gid)
     dataset+=tdpw_data
 if USE_3DHP:
-    tick=time.time()
     mi3_data = mi3.gather_data(which_set, gid=gid)
-    tock=time.time()
-    print(f'Elapsed time: {tock-tick}')
     dataset+=mi3_data
+if USE_SSP3D:
+    ssp3d_data = ssp3d.gather_data(which_set, gid=gid)
+    dataset+=ssp3d_data
+
+tock=time.time()
+print(f'Elapsed time: {tock-tick}')
 
 # Write to file
 with open('dataset.json', 'w') as outfile:

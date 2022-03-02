@@ -199,7 +199,7 @@ class PyCOCOTrainVal:
                 the_annotations=self._get_annotations(i, which_set)
                 self._format_annotations(result,i,the_annotations,gid)
         elif which_set == 'toy':
-            for i in range(10):
+            for i in range(30):
                 the_annotations=self._get_annotations(i, which_set)
                 self._format_annotations(result,i,the_annotations,gid)
         else:
