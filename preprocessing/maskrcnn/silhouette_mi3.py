@@ -12,6 +12,7 @@ from matplotlib import patches, lines
 from matplotlib.patches import Polygon
 import matplotlib.pyplot as plt
 from PIL import Image
+import h5py
 
 from paths import *
 
@@ -129,25 +130,28 @@ def eval_bbox_mask(mask, roi, jointsx, jointsy):
     return iou
 
 
-def choose_masks(seq, frame, masks, rois, class_ids, scores, class_idx_person):
+def choose_masks(seq_name, seq, frame, masks, rois, class_ids, scores, class_idx_person):
     # First, only consider masks tagged as "person"
     people_idxs=(class_ids==class_idx_person)
-    num_actors=len(seq['poses2d'])
+    num_actors=1
 
     if masks.shape[2] < num_actors:
         # If we didn't detect at least as many objects as actors, exit
         # Note: Could be improved to still return 1 if we can figure out which
         return None
 
+    width=masks.shape[0]
+    height=masks.shape[1]
+
     # Create arrays to hold scores
     jscore=np.zeros((num_actors, masks.shape[2]))
     bbscore=np.zeros((num_actors, masks.shape[2]))
 
     for a in range(num_actors):
-        joints=seq['poses2d'][a][frame]
-        jointsx=joints[0]
-        jointsy=joints[1]
-        jointsv=joints[2]
+        # Index to frame-1 because filenames are 1-based indexing
+        joints=seq['annot2'][frame-1][0]
+        jointsx=joints[:,0]
+        jointsy=joints[:,1]
         for midx in range(masks.shape[2]):
             if not people_idxs[midx]:
                 continue # Skip any that aren't human masks
@@ -166,14 +170,14 @@ def choose_masks(seq, frame, masks, rois, class_ids, scores, class_idx_person):
             #ax.plot(jointsx[valj],jointsy[valj],'ro')
             #plt.show()
     # Check the scores and pick best match for each actor
-    print(f"seq: {seq['sequence']} frame: {frame}")
+    print(f"seq: {seq_name} frame: {frame}")
     print(jscore)
     print(bbscore)
     print(people_idxs)
     best_jscores=np.argmax(jscore, axis=1)
     best_bbscores=np.argmax(bbscore, axis=1)
     if( not np.array_equal(best_jscores, best_bbscores) ):
-        print(f"WARNING! J/BB scores not equal!' Seq: {seq['sequence']} Frame: {frame}")
+        print(f"WARNING! J/BB scores not equal!' Seq: {seq_name} Frame: {frame}")
         print('J Scores: ' + str(best_jscores))
         print(jscore)
         print('BB Scores: ' + str(best_bbscores))
@@ -182,18 +186,14 @@ def choose_masks(seq, frame, masks, rois, class_ids, scores, class_idx_person):
     # Additionally, make sure best match is a person, not some other class
     for i in range(len(best_jscores)):
         if not people_idxs[best_jscores[i]]:
-            print(f"J score not human! Seq: {seq['sequence']} Frame: {frame}")
+            print(f"J score not human! Seq: {seq_name} Frame: {frame}")
         if not people_idxs[best_jscores[i]]:
-            print(f"BB score not human! Seq: {seq['sequence']} Frame: {frame}")
+            print(f"BB score not human! Seq: {seq_name} Frame: {frame}")
 
     return best_bbscores
 
-# Don't let this run
-print('You probably do not want to run this. Exiting to stay safe!')
-exit()
-
 # Clean up everything before we start
-os.system(f'rm -rf {BTFM_BASE}{BTFM_PP_3DPW_SILHOUETTE}/*')
+os.system(f'rm -rf {BTFM_BASE}{MI3_SIL_DIR}/*')
 
 config = InferenceConfig()
 config.display()
@@ -208,81 +208,112 @@ model.load_weights(MASK_RCNN_WEIGHTS, by_name=True)
 class_idx_person=CocoClassNames.index('person')
 
 # Get list of 3DPW dirs and get all images inside it
-all_3dpw_imgs=[]
-base_img_dir=BTFM_BASE+TDPW_IMG_DIR
-dirs_3dpw = sorted(next(os.walk(base_img_dir))[1])
-# join dirs
-for d in dirs_3dpw:
-    curdir=os.path.join(base_img_dir, d)
-    ## ADD
-    #if os.path.split(curdir)[1]!='downtown_bar_00':
-    #    continue
-    ## END ADD
-    if os.path.split(curdir)[1]=='downtown_cafe_01':
-        # Unfortunately, this pkl is missing from the data
-        continue
-    img_list=sorted(next(os.walk(curdir))[2])
-    for img in img_list:
-        all_3dpw_imgs.append(os.path.join(TDPW_IMG_DIR, d, img))
-
-total_imgs=len(all_3dpw_imgs)
-print('Total images: ' + str(total_imgs))
+all_mi3_images=[]
+base_img_dir=f'{BTFM_BASE}{MI3_TEST_DIR}'
+dirs_mi3 = ['TS1', 'TS2', 'TS3', 'TS4', 'TS5', 'TS6']
 
 # Load metadata about each sequence/frame
-train_pkl=next(os.walk(f'{BTFM_BASE}{TDPW_TRAIN_DIR}'))[2]
-val_pkl=next(os.walk(f'{BTFM_BASE}{TDPW_VAL_DIR}'))[2]
-test_pkl=next(os.walk(f'{BTFM_BASE}{TDPW_TEST_DIR}'))[2]
-pkl_list = sorted(train_pkl+val_pkl+test_pkl)
+seqs={}
+for d in dirs_mi3:
+    ann_path=f'{BTFM_BASE}{MI3_TEST_DIR}/{d}/annot_data.mat'
+    seqs[d] = h5py.File(ann_path,'r')
 
-sequences={}
-for d, p_list in zip([f'{BTFM_BASE}{TDPW_TRAIN_DIR}', f'{BTFM_BASE}{TDPW_VAL_DIR}', f'{BTFM_BASE}{TDPW_TEST_DIR}'],
-                     [train_pkl, val_pkl, test_pkl]):
-    for p in p_list:
-        inpickle=open(os.path.join(d,p),'rb')
-        sequences[p[:-4]] = pickle.load(inpickle,encoding='latin1')
-        inpickle.close()
+# join dirs
+for d in dirs_mi3:
+    curdir=os.path.join(base_img_dir, d, 'imageSequence')
+    img_list=sorted(next(os.walk(curdir))[2])
+    for img in img_list:
+        # Skip "non-valid" images
+        frame=int(img[4:-4]) # 1-based because MATLAB
+        # There are a few missing annotations at the end of TS3 and TS4
+        if d=='TS3' and frame>5838:
+            break
+        if d=='TS4' and frame>6007:
+            break
+        if seqs[d]['valid_frame'][frame-1][0] == 1:
+            all_mi3_images.append(os.path.join(MI3_TEST_DIR, d, 'imageSequence', img))
+
+total_imgs=len(all_mi3_images)
+print('Total images: ' + str(total_imgs))
+
+
+# Example:
+#seqs['TS1']['annot2'][frame-1][0]
+
+#train_pkl=next(os.walk(f'{BTFM_BASE}{TDPW_TRAIN_DIR}'))[2]
+#val_pkl=next(os.walk(f'{BTFM_BASE}{TDPW_VAL_DIR}'))[2]
+#test_pkl=next(os.walk(f'{BTFM_BASE}{TDPW_TEST_DIR}'))[2]
+#pkl_list = sorted(train_pkl+val_pkl+test_pkl)
+
+#sequences={}
+#for d, p_list in zip([f'{BTFM_BASE}{TDPW_TRAIN_DIR}', f'{BTFM_BASE}{TDPW_VAL_DIR}', f'{BTFM_BASE}{TDPW_TEST_DIR}'],
+#                     [train_pkl, val_pkl, test_pkl]):
+#    for p in p_list:
+#        inpickle=open(os.path.join(d,p),'rb')
+#        sequences[p[:-4]] = pickle.load(inpickle,encoding='latin1')
+#        inpickle.close()
 
 images_processed=0
 octr=0
-for d in dirs_3dpw:
-    ## ADD
-    #if d!='downtown_bar_00':
-    #    continue
-    ## END ADD
-    if d=='downtown_cafe_01':
-        # Unfortunately, this pkl is missing from the data
-        continue
+for d in dirs_mi3:
     ictr=0
-    os.mkdir(f'{BTFM_BASE}{BTFM_PP_3DPW_SILHOUETTE}/{d}')
-    curdir=os.path.join(base_img_dir, d)
+    os.mkdir(f'{BTFM_BASE}{MI3_SIL_DIR}/{d}')
+
+    curdir=os.path.join(base_img_dir, d, 'imageSequence')
     img_list=sorted(next(os.walk(curdir))[2])
     for img in img_list:
-        curimg=skimage.io.imread(os.path.join(curdir, img))
-        results=model.detect([curimg], verbose=0)
-        r=results[0]
+        frame=int(img[4:-4]) # 1-based because MATLAB
+        # Skip "non-valid" images
+        # There are a few missing annotations at the end of TS3 and TS4
+        if d=='TS3' and frame>5838:
+            break
+        if d=='TS4' and frame>6007:
+            break
+        if seqs[d]['valid_frame'][frame-1][0] == 1:
+            curimg=skimage.io.imread(os.path.join(curdir, img))
+            results=model.detect([curimg], verbose=0)
+            r=results[0]  # First (only) result in batch
 
-        # Use metadata to decide best silhouettes for each actor
-        seq_key=d
-        frame=int(img[-9:-4])
-        best_masks = choose_masks(sequences[seq_key], frame, r['masks'], r['rois'],
-            r['class_ids'], r['scores'], class_idx_person)
+            # Note: choose_masks() returns an array, so get the first (only) item in it
+            best_mask = choose_masks(d, seqs[d], frame, r['masks'], r['rois'],
+                r['class_ids'], r['scores'], class_idx_person)[0]
 
-        if best_masks is not None:
-            # Note: If choose_masks is updated to return only a single mask, need to update this too
-            for a, m in enumerate(best_masks):
-                save_silhouette(f'{BTFM_BASE}{BTFM_PP_3DPW_SILHOUETTE}/{d}/{img[:-4]}_subj{a}.png',r['masks'][:,:,m])
-            
-        #for m in range(r['masks'].shape[2]):
-        #    save_silhouette(f'{BTFM_BASE}{BTFM_PP_3DPW_SILHOUETTE}/{d}/{img[:-4]}_{m}.png',r['masks'][:,:,m])
-        images_processed+=1
-        ictr+=1
-        if 0 == (ictr%100):
-            print(f'Images processed: {images_processed}/{total_imgs}')
+            if best_mask is not None:
+                save_silhouette(f'{BTFM_BASE}{MI3_SIL_DIR}/{d}/{img[:-4]}.png',r['masks'][:,:,best_mask])
 
+            images_processed+=1
+            ictr+=1
+            if 0 == (ictr%10):
+                print(f'Images processed: {images_processed}/{total_imgs}')
     print(f'Images processed: {images_processed}/{total_imgs}')
     octr+=1
-    if octr==3:
-        #break
-        pass
 
+#    if octr==3:
+#        #break
+#        pass
+
+#        # Use metadata to decide best silhouettes for each actor
+#        seq_key=d
+#        frame=int(img[-9:-4])
+#        best_masks = choose_masks(sequences[seq_key], frame, r['masks'], r['rois'],
+#            r['class_ids'], r['scores'], class_idx_person)
+#
+#        if best_masks is not None:
+#            # Note: If choose_masks is updated to return only a single mask, need to update this too
+#            for a, m in enumerate(best_masks):
+#                save_silhouette(f'{BTFM_BASE}{BTFM_PP_3DPW_SILHOUETTE}/{d}/{img[:-4]}_subj{a}.png',r['masks'][:,:,m])
+#            
+#        #for m in range(r['masks'].shape[2]):
+#        #    save_silhouette(f'{BTFM_BASE}{BTFM_PP_3DPW_SILHOUETTE}/{d}/{img[:-4]}_{m}.png',r['masks'][:,:,m])
+#        images_processed+=1
+#        ictr+=1
+#        if 0 == (ictr%100):
+#            print(f'Images processed: {images_processed}/{total_imgs}')
+#
+#    print(f'Images processed: {images_processed}/{total_imgs}')
+#    octr+=1
+#    if octr==3:
+#        #break
+#        pass
+#
 print('Done.')

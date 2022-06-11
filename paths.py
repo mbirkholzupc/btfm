@@ -82,6 +82,8 @@ TDPW_TEST_DIR=TDPW_SEQ_DIR+'/test'
 MI3_DIR='/mpi_inf_3dhp'
 MI3_TEST_DIR=MI3_DIR+'/mpi_inf_3dhp_test_set/mpi_inf_3dhp_test_set'
 MI3_PP_DIR='/mi3_pp'
+MI3_SIL_DIR='/mi3_pp/test_sil'
+MI3_TEST_SIL_LIST='/mi3_pp/test_sil/mi3_test_silhouette_list.txt'
 
 
 UPI_S1H_DIR='/upi-s1h'

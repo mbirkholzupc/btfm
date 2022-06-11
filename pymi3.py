@@ -97,6 +97,9 @@ class PyMI3:
         infile=open(self._base_path+self._pp_path+'/frames/mi3_pp_test_frames.pkl', 'rb')
         self._tst_frames = pickle.load(infile)
         infile.close()
+        infile=open(self._base_path+self._pp_path+'/test_sil/mi3_test_silhouette_list.pkl', 'rb')
+        self._tst_sil_list = pickle.load(infile)
+        infile.close()
 
         # Create dict of all combinations of subj/seq to look up annotations for each
         # Note: Training annotations are in "normal" MATLAB format and can be read by loadmat
@@ -188,6 +191,16 @@ class PyMI3:
         if index<self._num_trn_image:
             entry=self._trn_index[index]
             path=f"{self._pp_path}/S{entry[0]}/Seq{entry[1]}/fg/fg_{entry[2]}_{entry[4]:06d}.jpg"
+
+        return path
+
+    def _silhouette_path_testset(self, seq, frame):
+        path=""
+
+        key=f'TS{seq}'
+
+        if frame in self._tst_sil_list[key]:
+            path=f"{self._pp_path}/test_sil/TS{seq}/img_{frame:06d}.png"
 
         return path
 
@@ -378,6 +391,9 @@ class PyMI3:
         j3y=j3d[:,1]
         j3z=j3d[:,2]
 
+        # Generate the path to the silhouette file
+        silhouette_filename=self._silhouette_path_testset(seq, frame)
+
         # Now write the info to the DB
         annotation = {}
         annotation['ID'] = gid.next()
@@ -400,6 +416,10 @@ class PyMI3:
             annotation[f'3d_x{j}'] = j3x[j]
             annotation[f'3d_y{j}'] = j3y[j]
             annotation[f'3d_z{j}'] = j3z[j]
+
+        # Add silhouette, if available
+        if silhouette_filename != "":
+            annotation['silhouette'] = silhouette_filename
 
         result.append(annotation)
                 
